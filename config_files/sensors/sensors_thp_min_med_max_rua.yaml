@@ -1,0 +1,29 @@
+################################################################################
+# TYPE: Sensor
+# FILENAME: sensors_temp_hum_press_media_rua.yaml
+# NAME: Média de Temperatura, Humidade e Pressão da Rua
+################################################################################
+
+#### TEMPERATURA MÉDIA (RUA)
+- platform: statistics
+  name: 'Temperatura (rua)'
+  entity_id: sensor.dark_sky_temperature
+  max_age:
+    minutes: 1440
+
+#### HUMIDADE MÉDIA (RUA)
+- platform: statistics
+  name: 'Humidade (rua)'
+  entity_id: sensor.dark_sky_humidity
+  max_age:
+    minutes: 1440
+
+#### PRESSÃO MÉDIA (RUA)
+- platform: statistics
+  name: 'Pressão (rua)'
+  entity_id: sensor.dark_sky_pressure
+  max_age:
+    minutes: 1440
+
+
+####  ####  ####  ####

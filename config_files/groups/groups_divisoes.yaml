@@ -1,0 +1,31 @@
+################################################################################
+# TYPE: Group
+# FILENAME: groups_divisoes.yaml
+# NAME: Divisões
+################################################################################
+
+#### SALA
+sala:
+  name: Sala
+  control: hidden
+  entities:
+    - light.luz_de_fundo_tv
+    - light.candeeiro_de_pe
+
+#### COZINHA
+cozinha:
+  name: Cozinha
+  control: hidden
+  entities:
+    - light.luz_de_presenca_cozinha_1_bancada
+    - light.luz_de_presenca_cozinha_2_mesa
+
+#### CORREDOR
+corredor:
+  name: Corredor
+  control: hidden
+  entities:
+    - light.luz_de_presenca_corredor_estrelas
+
+
+####  ####  ####  ####

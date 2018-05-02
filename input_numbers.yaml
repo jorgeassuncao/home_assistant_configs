@@ -1,0 +1,28 @@
+################################################################################
+# TYPE: Input Numbers (former "input_slider")
+# FILENAME: input_numbers.yaml
+# NAME: Input Numbers
+################################################################################
+
+#### Arranque ventilador WC1
+start_hum_vent_wc1:
+  name: Arranque
+  icon: mdi:ray-start
+  min: 0
+  max: 100
+  step: 1
+  mode: box
+  unit_of_measurement: '%'
+
+#### Paragem ventilador WC1
+stop_hum_vent_wc1:
+  name: Paragem
+  icon: mdi:ray-end
+  min: 0
+  max: 100
+  step: 1
+  mode: box
+  unit_of_measurement: '%'
+
+
+####  ####  ####  ####

@@ -1,0 +1,57 @@
+################################################################################
+# TYPE: Cameras
+# FILENAME: cameras.yaml
+# NAME: Cameras
+################################################################################
+
+#### GPS Tracker
+## JORGE
+- platform: generic
+  name: Jorge
+  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.jmra.attributes.latitude }},{{ states.device_tracker.jmra.attributes.longitude }}&zoom=16&size=500x500&maptype=roadmap&markers=color:green%7Clabel:JA%7C{{ states.device_tracker.jmra.attributes.latitude }},{{ states.device_tracker.jmra.attributes.longitude }}
+  limit_refetch_to_url_change: true
+
+## LARA
+- platform: generic
+  name: Lara
+  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.lslma.attributes.latitude }},{{ states.device_tracker.lslma.attributes.longitude }}&zoom=16&size=500x500&maptype=roadmap&markers=color:pink%7Clabel:LA%7C{{ states.device_tracker.lslma.attributes.latitude }},{{ states.device_tracker.lslma.attributes.longitude }}
+  limit_refetch_to_url_change: true
+
+## BIA
+- platform: generic
+  name: Bia
+  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.bama.attributes.latitude }},{{ states.device_tracker.bama.attributes.longitude }}&zoom=16&size=500x500&maptype=roadmap&markers=color:purple%7Clabel:BA%7C{{ states.device_tracker.bama.attributes.latitude }},{{ states.device_tracker.bama.attributes.longitude }}
+  limit_refetch_to_url_change: true
+
+#### Motion Eye snapshot URLs
+- platform: generic
+  name: Hall de Entrada
+  still_image_url: http://192.168.1.6:8765/picture/1/current/?_username=admin&_signature=95595de740f95c9b054506dd2e4b342070d3bed6
+
+#### IPcam VLC stream
+- platform: generic
+  name: Quarto 3
+  still_image_url: http://192.168.1.81/tmpfs/snap.jpg?usr=admin&pwd=J%2F2508ca
+
+#### Entrada
+- platform: generic
+  name: Kiosk Entrada
+  still_image_url: http://192.168.1.120:2323/?cmd=getCamshot&password=JA2508ca
+
+#### LOCAL USB CAM
+- platform: local_file
+  name: Porta da Rua
+  file_path: /share/motion/lastsnap.jpg
+
+#### SATELITE
+- platform: generic
+  still_image_url: http://api.sat24.com/animated/SP/visual/1/GMT%20Standard%20Time/8152117
+  name: Satélite
+
+#### SATELITE IR
+- platform: generic
+  still_image_url: http://api.sat24.com/animated/SP/infraPolair/1/GMT%20Standard%20Time/3251484
+  name: Satélite IR
+
+
+####  ####  ####  ####

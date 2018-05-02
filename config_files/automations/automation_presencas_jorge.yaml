@@ -1,0 +1,387 @@
+################################################################################
+# TYPE: Automation
+# FILENAME: automation_presencas_jorge.yaml
+# NAME: Presenças Jorge
+################################################################################
+
+#### HOME STATES
+## INITIAL STATE
+- alias: Jorge initial state
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - delay:
+        seconds: 20
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.jorge_status_dropdown
+        option: '{{ states("device_tracker.jmra") }}'
+
+## JUST ARRIVED
+- alias: Jorge has just arrived Home
+  trigger:
+    - platform: state
+      entity_id: device_tracker.jmra
+      from: 'not_home'
+      to: 'home'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.jorge_status_dropdown
+        option: Just Arrived
+    - service: script.notify_zanzito_jorge
+      data:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike acabou de chegar a casa'
+    - service: script.notify_html5
+      data_template:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike acabou de chegar a casa'
+        data:
+          renotify: '1'
+    - service: mqtt.publish
+      data:
+        topic: "tasker/exec"
+        payload: "wifi_on"
+
+## HOME
+- alias: Jorge is Home
+  trigger:
+    - platform: state
+      entity_id: input_select.jorge_status_dropdown
+      to: 'Just Arrived'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_select.jorge_status_dropdown
+      from: 'Just Left'
+      to: 'Just Arrived'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.jorge_status_dropdown
+        option: Home
+    - service: script.notify_zanzito_jorge
+      data:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike está em casa'
+    - service: script.notify_html5
+      data_template:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike está em casa'
+        data:
+          renotify: '1'
+
+## JUST LEFT
+- alias: Jorge has just left home
+  trigger:
+    - platform: state
+      entity_id: device_tracker.jmra
+      from: 'home'
+      to: 'not_home'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.jorge_status_dropdown
+        option: Just Left
+    - service: script.notify_zanzito_jorge
+      data:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike acabou de sair de casa'
+    - service: script.notify_html5
+      data_template:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike acabou de sair de casa'
+        data:
+          renotify: '1'
+
+## AWAY
+- alias: Jorge is away
+  trigger:
+    - platform: state
+      entity_id: input_select.jorge_status_dropdown
+      to: 'Just Left'
+      for:
+        minutes: 10
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.jorge_status_dropdown
+        option: Away
+    - service: script.notify_zanzito_jorge
+      data:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike está fora de casa'
+    - service: script.notify_html5
+      data_template:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike está fora de casa'
+        data:
+          renotify: '1'
+
+## EXTENDED AWAY
+- alias: Jorge is extended away
+  trigger:
+    - platform: state
+      entity_id: input_select.jorge_status_dropdown
+      to: 'Away'
+      for:
+        hours: 24
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.jorge_status_dropdown
+        option: Extended Away
+    - service: script.notify_zanzito_jorge
+      data:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike está em ausência prolongada'
+    - service: script.notify_html5
+      data_template:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike está em ausência prolongada'
+        data:
+          renotify: '1'
+
+#### NOT_HOME STATES
+## ETAR CHELAS - IN
+- alias: Jorge has just arrived at ETAR Chelas
+  trigger:
+    - platform: state
+      entity_id: device_tracker.jmra
+      from: 'not_home'
+      to: 'ETAR Chelas'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.jorge_status_dropdown
+        option: ETAR Chelas
+    - service: script.notify_zanzito_jorge
+      data:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike acabou de chegar à ETAR de Chelas'
+    - service: script.notify_html5
+      data_template:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike acabou de chegar à ETAR de Chelas'
+        data:
+          renotify: '1'
+    - service: mqtt.publish
+      data:
+        topic: "tasker/exec"
+        payload: "wifi_on"
+
+## ETAR CHELAS - OUT
+- alias: Jorge has just left ETAR Chelas
+  trigger:
+    - platform: state
+      entity_id: device_tracker.jmra
+      from: 'ETAR Chelas'
+      to: 'not_home'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.jorge_status_dropdown
+        option: Away
+    - service: script.notify_zanzito_jorge
+      data:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike acabou de sair da ETAR de Chelas'
+    - service: script.notify_html5
+      data_template:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike acabou de sair da ETAR de Chelas'
+        data:
+          renotify: '1'
+
+## EMEL - IN
+- alias: Jorge has just arrived at EMEL
+  trigger:
+    - platform: state
+      entity_id: device_tracker.jmra
+      from: 'not_home'
+      to: 'EMEL'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.jorge_status_dropdown
+        option: EMEL
+    - service: script.notify_zanzito_jorge
+      data:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike acabou de chegar à EMEL'
+    - service: script.notify_html5
+      data_template:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike acabou de chegar à EMEL'
+        data:
+          renotify: '1'
+
+## EMEL - OUT
+- alias: Jorge has just left EMEL
+  trigger:
+    - platform: state
+      entity_id: device_tracker.jmra
+      from: 'EMEL'
+      to: 'not_home'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.jorge_status_dropdown
+        option: Away
+    - service: script.notify_zanzito_jorge
+      data:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike acabou de sair da EMEL'
+    - service: script.notify_html5
+      data_template:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike acabou de sair da EMEL'
+        data:
+          renotify: '1'
+
+## ESCOLA - IN
+- alias: Jorge has just arrived at Escola
+  trigger:
+    - platform: state
+      entity_id: device_tracker.jmra
+      from: 'not_home'
+      to: 'Escola'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.jorge_status_dropdown
+        option: Escola
+    - service: script.notify_zanzito_jorge
+      data:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike acabou de chegar à Escola'
+    - service: script.notify_html5
+      data_template:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike acabou de chegar à Escola'
+        data:
+          renotify: '1'
+
+## ESCOLA - OUT
+- alias: Jorge has just left Escola
+  trigger:
+    - platform: state
+      entity_id: device_tracker.jmra
+      from: 'Escola'
+      to: 'not_home'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.jorge_status_dropdown
+        option: Away
+    - service: script.notify_zanzito_jorge
+      data:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike acabou de sair da Escola'
+    - service: script.notify_html5
+      data_template:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike acabou de sair da Escola'
+        data:
+          renotify: '1'
+
+## CAXIAS - IN
+- alias: Jorge has just arrived at Caxias
+  trigger:
+    - platform: state
+      entity_id: device_tracker.jmra
+      from: 'not_home'
+      to: 'Caxias'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.jorge_status_dropdown
+        option: Caxias
+    - service: script.notify_zanzito_jorge
+      data:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike acabou de chegar a Caxias'
+    - service: script.notify_html5
+      data_template:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike acabou de chegar a Caxias'
+        data:
+          renotify: '1'
+    - service: mqtt.publish
+      data:
+        topic: "tasker/exec"
+        payload: "wifi_on"
+
+## CAXIAS - OUT
+- alias: Jorge has just left Caxias
+  trigger:
+    - platform: state
+      entity_id: device_tracker.jmra
+      from: 'Caxias'
+      to: 'not_home'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.jorge_status_dropdown
+        option: Away
+    - service: script.notify_zanzito_jorge
+      data:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike acabou de sair de Caxias'
+    - service: script.notify_html5
+      data_template:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike acabou de sair de Caxias'
+        data:
+          renotify: '1'
+
+## GINÁSIO - IN
+- alias: Jorge has just arrived at Ginásio
+  trigger:
+    - platform: state
+      entity_id: device_tracker.jmra
+      from: 'not_home'
+      to: 'Ginásio'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.jorge_status_dropdown
+        option: Ginásio
+    - service: script.notify_zanzito_jorge
+      data:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike acabou de chegar ao Ginásio'
+    - service: script.notify_html5
+      data_template:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike acabou de chegar ao Ginásio'
+        data:
+          renotify: '1'
+
+## GINÁSIO - OUT
+- alias: Jorge has just left Ginásio
+  trigger:
+    - platform: state
+      entity_id: device_tracker.jmra
+      from: 'Ginásio'
+      to: 'not_home'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.jorge_status_dropdown
+        option: Away
+    - service: script.notify_html5
+      data:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike acabou de sair do Ginásio'
+    - service: script.notify_html5
+      data_template:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'O Pike acabou de sair do Ginásio'
+        data:
+          renotify: '1'
+
+
+####  ####  ####  ####

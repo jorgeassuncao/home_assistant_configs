@@ -1,0 +1,53 @@
+################################################################################
+# TYPE: Media Players
+# FILENAME: media_players.yaml
+# NAME: Media Players
+################################################################################
+
+#### Samsung TV
+- platform: samsungtv
+  name: 'TV Sala'
+  host: 192.168.1.20
+  port: 8001
+  timeout: 5
+  mac: F8:77:B8:D8:F9:76
+
+#### Vodafone BOX
+- platform: mediaroom
+
+#### Spotify
+- platform: spotify
+  client_id: !secret spotify_client_id
+  client_secret: !secret spotify_client_secret
+  cache_path: /config/.spotify-token-cache
+
+#### Kodi
+##Sala
+- platform: kodi
+  name: 'Kodi Sala'
+  host: 192.168.1.13
+  username: kodi
+  password: kodi
+
+## Servidor
+- platform: kodi
+  name: 'Kodi Servidor'
+  host: 192.168.1.14
+  username: kodi
+  password: servidor
+
+## Snapcast 
+#- platform: snapcast
+#  host: 192.168.1.200
+  
+## Mopidy
+#- platform: mpd
+#  name: 'HA Audio'
+#  host: 192.168.1.200
+#  port: 6601
+
+## Cast
+#- platform: cast
+
+
+####  ####  ####  ####

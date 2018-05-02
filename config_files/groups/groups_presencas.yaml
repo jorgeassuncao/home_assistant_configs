@@ -1,0 +1,32 @@
+################################################################################
+# TYPE: Group
+# FILENAME: groups_presencas.yaml
+# NAME: Presenças
+################################################################################
+
+#### JORGE
+jorge_jmra:
+  name: Jorge Assunção
+  entities:
+    - device_tracker.jmra
+    - sensor.pike__bateria
+    - camera.jorge
+
+#### LARA
+lara_lslma:
+  name: Lara Assunção
+  entities:
+    - device_tracker.lslma
+    - sensor.mike__bateria
+    - camera.lara
+
+#### BIA
+bia_bama:
+  name: Beatriz Assunção
+  entities:
+    - device_tracker.bama
+    - sensor.bia__bateria
+    - camera.bia
+
+
+####  ####  ####  ####

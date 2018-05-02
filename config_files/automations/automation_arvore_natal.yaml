@@ -1,0 +1,56 @@
+################################################################################
+# TYPE: Automation
+# FILENAME: automation_arvore_natal.yaml
+# NAME: Árvore de Natal
+################################################################################
+
+##### ACENDE A ARVORE DE NATAL
+#- alias: 'Acende Árvore de Natal'
+#  initial_state: True
+#  trigger:
+#    - platform: time
+#      minutes: '/1'
+#      seconds: 01
+#  condition:
+#    condition: and
+#    conditions:
+#      - condition: template
+#        value_template: '{{ (states.input_datetime.time_liga_arvore_natal.attributes.timestamp | timestamp_custom("%H:%M",False)) <= ((as_timestamp (now(""))) | timestamp_custom("%H:%M",False))  <= (states.input_datetime.time_liga_arvore_natal.attributes.timestamp | timestamp_custom("%H:%M",False)) }}'
+#      - condition: state
+#        entity_id: group.familia
+#        state: 'home'
+#      - condition: state
+#        entity_id: input_boolean.modo_ferias
+#        state: 'off'
+#  action:
+#    - service: switch.turn_on
+#      data_template:
+#        entity_id: switch.arvore_de_natal
+#    - service: script.notify_save_to_file
+#      data:
+#        message: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }} - Árvore de Natal - LIGADA'
+#
+##### APAGA A ARVORE DE NATAL
+#- alias: 'Apaga Árvore de Natal'
+#  initial_state: True
+#  trigger:
+#    - platform: time
+#      minutes: '/1'
+#      seconds: 01
+#  condition:
+#    condition: and
+#    conditions:
+#      - condition: template
+#        value_template: '{{ (states.input_datetime.time_desliga_arvore_natal.attributes.timestamp | timestamp_custom("%H:%M",False)) <= ((as_timestamp (now(""))) | timestamp_custom("%H:%M",False)) <= (states.input_datetime.time_desliga_arvore_natal.attributes.timestamp | timestamp_custom("%H:%M",False)) }}'
+#      - condition: state
+#        entity_id: group.familia
+#        state: 'home'
+#  action:
+#    - service: switch.turn_off
+#      entity_id: switch.arvore_de_natal
+#    - service: script.notify_save_to_file
+#      data:
+#        message: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }} - Árvore de Natal - DESLIGADA'
+
+
+####  ####  ####  ####

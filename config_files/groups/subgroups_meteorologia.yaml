@@ -1,0 +1,29 @@
+################################################################################
+# TYPE: SubGroup
+# FILENAME: subgroups_meteorologia.yaml
+# NAME: Meteorologia
+################################################################################
+
+#### O TEMPO HOJE
+grp_meteo:
+  name: O Tempo Hoje
+  entities:
+    - sensor.dark_sky_daily_summary
+    - sensor.dark_sky_hourly_summary
+    - sensor.dark_sky_daily_high_temperature
+    - sensor.dark_sky_temperature
+    - sensor.dark_sky_apparent_temperature
+    - sensor.dark_sky_daily_low_temperature
+    - sensor.dark_sky_humidity
+    - sensor.dark_sky_dew_point
+    - sensor.dark_sky_pressure
+    - sensor.dark_sky_cloud_coverage
+    - sensor.dark_sky_precip_probability
+    - sensor.dark_sky_precip_intensity
+    - sensor.dark_sky_uv_index
+    - sensor.dark_sky_ozone
+    - sensor.dark_sky_wind_speed
+    - sensor.dark_sky_wind_bearing
+
+
+####  ####  ####  ####

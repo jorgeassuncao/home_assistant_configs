@@ -1,0 +1,14 @@
+################################################################################
+# TYPE: Displays
+# FILENAME: displays.yaml
+# NAME: Displays
+################################################################################
+
+## KIOSK ENTRADA
+- platform: fully_kiosk
+  name: Kiosk Entrada
+  host: 192.168.1.120
+  password: !secret fully_display_entrada_password
+
+
+####  ####  ####  ####

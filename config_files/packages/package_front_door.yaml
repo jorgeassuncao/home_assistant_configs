@@ -1,0 +1,219 @@
+################################################################################
+# TYPE: Package
+# FILENAME: package_front_door.yaml
+# NAME: Front Door
+################################################################################
+
+#### 
+
+################################################################################
+#### AUTOMATIONS
+################################################################################
+
+automation:
+
+#### FRONT DOOR OPEN
+  - alias: 'Porta da Rua aberta'
+    trigger:
+      platform: state
+      entity_id: sensor.porta_da_rua
+      from: 'Fechada'
+      to: 'Aberta'
+    action:
+      - service: camera.snapshot
+        data:
+          entity_id: camera.homecam01_porta_rua
+          filename: '/config/cam_snapshots/{{ now().strftime("%Y%m%d-%H%M%S") }}_hall_entrada.jpg'
+      - service: camera.snapshot
+        data:
+          entity_id: camera.homecam01_porta_rua
+          filename: '/config/cam_snapshots/latest_hall_entrada.jpg'
+      - service: camera.snapshot
+        data:
+          entity_id: camera.kiosk_entrada
+          filename: '/config/cam_snapshots/{{ now().strftime("%Y%m%d-%H%M%S") }}_kiosk_entrada.jpg'
+      - service: camera.snapshot
+        data:
+          entity_id: camera.kiosk_entrada
+          filename: '/config/cam_snapshots/latest_kiosk_entrada.jpg'
+      - service: script.notify_telegram
+        data_template:
+          title: "{{ as_timestamp (now()) | timestamp_custom('%d/%b/%Y %T') }}"
+          message: Porta da Rua - ABERTA 
+          file: "/config/cam_snapshots/latest_hall_entrada.jpg"
+          caption: "{{ as_timestamp (now()) | timestamp_custom('%d/%b/%Y %T') }} \n Porta da Rua - ABERTA"
+      - service: script.notify_zanzito_jorge
+        data:
+          title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+          message: 'Porta da Rua - ABERTA'
+      - service: script.notify_html5
+        data_template:
+          title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+          message: 'Porta da Rua - ABERTA'
+          data:
+            renotify: '1'
+      - service: rest_command.kiosk_entrada_motion_simulation
+      - service: rest_command.kiosk_entrada_change_url_to_lights
+      - service: script.notify_save_to_file
+        data:
+          message: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }} - Porta da Rua - ABERTA'
+
+#### FRONT DOOR CLOSED
+  - alias: 'Porta da Rua fechada'
+    trigger:
+      platform: state
+      entity_id: sensor.porta_da_rua
+      from: 'Aberta'
+      to: 'Fechada'
+    action:
+      - service: script.notify_zanzito_jorge
+        data:
+          title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+          message: 'Porta da Rua - FECHADA'
+      - service: script.notify_html5
+        data_template:
+          title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+          message: 'Porta da Rua - FECHADA'
+          data:
+            renotify: '1'
+      - service: script.notify_save_to_file
+        data:
+          message: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }} - Porta da Rua - FECHADA'
+
+#### FRONT DOOR ONLINE
+  - alias: 'Sensor da Porta da Rua - Online'
+    initial_state: 'on'
+    trigger:
+      platform: mqtt
+      topic: /home/indoor/sensor/frontdoor/status
+      payload: 'online'
+    action:
+      - service: script.notify_zanzito_jorge
+        data:
+          title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+          message: 'Sensor da Porta da Rua - ONLINE'
+      - service: script.notify_html5
+        data_template:
+          title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+          message: 'Sensor da Porta da Rua - ONLINE'
+          data:
+            renotify: '1'
+      - service: script.notify_save_to_file
+        data:
+          message: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }} - Porta da Rua - ONLINE'
+
+#### FRONT DOOR OFFLINE
+  - alias: 'Sensor da Porta da Rua - Offline'
+    initial_state: 'on'
+    trigger:
+      platform: mqtt
+      topic: /home/indoor/sensor/frontdoor/status
+      payload: 'offline'
+    action:
+      - service: script.notify_zanzito_jorge
+        data:
+          title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+          message: 'Sensor da Porta da Rua - OFFLINE'
+      - service: script.notify_html5
+        data_template:
+          title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+          message: 'Sensor da Porta da Rua - OFFLINE'
+          data:
+            renotify: '1'
+      - service: script.notify_save_to_file
+        data:
+          message: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }} - Porta da Rua - OFFLINE'
+
+
+################################################################################
+#### SENSORS
+################################################################################
+
+sensor:
+
+#### FRONT DOOR STATUS
+  - platform: mqtt
+    state_topic: "home/indoor/sensor/MAID-DWS-01"
+    name: "Porta da Rua"
+    payload_on: 'Aberta'
+    payload_off: 'Fechada'
+    retain: true
+    force_update: true
+
+#### LAST OPEN/CLOSE TIME
+  - platform: template
+    sensors:
+      porta_rua_time:
+        friendly_name: 'Última abertura/fecho '
+        value_template: '{{ as_timestamp(states.sensor.porta_da_rua.last_changed) | timestamp_custom("%H:%M") }}'
+      porta_rua_offset:
+        friendly_name: 'Tempo decorrido '
+        value_template: '{{ (((as_timestamp(now()) | int )) - (as_timestamp(states.sensor.porta_da_rua.last_changed)))  | timestamp_custom("%H:%M",0) }}'
+
+
+################################################################################
+#### BINARY SENSORS
+################################################################################
+
+binary_sensor:
+
+#### FRONT DOOR POSITION
+  - platform: mqtt
+    state_topic: 'home/indoor/sensor/MAID-DWS-01'
+    name: 'Porta da Rua'
+    payload_on: 'Aberta'
+    payload_off: 'Fechada'
+    device_class: opening
+    retain: true
+
+
+################################################################################
+## ALERTS
+################################################################################
+
+alert:
+
+#### FRONT DOOR OPENED FOR TOO LONG
+  porta_da_rua:
+    name: 'Porta da Rua aberta à demasiado tempo'
+    done_message: 'A Porta da Rua foi finalmente fechada'
+    entity_id: binary_sensor.porta_da_rua
+    state: 'Aberta'
+    repeat: 1
+    can_acknowledge: True
+    skip_first: False
+    notifiers:
+      - jorge_zanzito
+
+
+################################################################################
+#### GROUPS
+################################################################################
+
+group:
+
+#### FRONT DOOR
+  porta_da_rua:
+    name: Porta da Rua
+    icon: mdi:glassdoor
+    entities:
+      - sensor.porta_da_rua
+      - sensor.porta_rua_time
+
+
+################################################################################
+#### CUSTOMIZE
+################################################################################
+
+homeassistant:
+
+  customize:
+
+#### PORTA DA RUA
+    sensor.porta_da_rua:
+      icon: mdi:glassdoor
+      show_last_changed: true
+
+
+
+####  ####  ####  ####

@@ -1,0 +1,41 @@
+################################################################################
+# TYPE: Automation
+# FILENAME: automation_presencas_geral.yaml
+# NAME: Presenças Geral
+################################################################################
+
+#### LIGHTS OFF IF NO ONE IS HOME
+- alias: 'Luzes apagadas se ninguem em casa'
+  trigger:
+    - platform: time
+      minutes: '/2'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.familia
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.modo_ferias
+        state: 'off'
+      - condition: state
+        entity_id: group.all_lights
+        state: 'on'
+  action:
+    - service: light.turn_off
+      entity_id: group.all_lights
+    - service: script.notify_zanzito_jorge
+      data:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'Luzes Apagadas - NINGUÉM EM CASA'
+    - service: script.notify_html5
+      data_template:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'Luzes Apagadas - NINGUÉM EM CASA'
+        data:
+          renotify: '1'
+    - service: script.notify_save_to_file
+      data:
+        message: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }} - Luzes Apagadas - NINGUÉM EM CASA'
+
+####  ####  ####  ####

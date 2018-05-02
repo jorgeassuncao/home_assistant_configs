@@ -1,0 +1,42 @@
+################################################################################
+# TYPE: Sensor
+# FILENAME: sensors_cozinha.yaml
+# NAME: Cozinha
+################################################################################
+
+#### SONOFF_BASIC_3C1BDC (LUZ DE PRESENÇA DA COZINHA 1 - BANCADA)
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_BASIC_3C1BDC/app"
+  name: "Firmware Cozinha 1 - Bancada"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_BASIC_3C1BDC/version"
+  name: "Versão Cozinha 1 - Bancada"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_BASIC_3C1BDC/host"
+  name: "Hostname Cozinha 1 - Bancada"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_BASIC_3C1BDC/ip"
+  name: "IP Cozinha 1 - Bancada"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_BASIC_3C1BDC/mac"
+  name: "MAC Cozinha 1 - Bancada"
+
+#### H801_1AAF41 (LUZ DE PRESENÇA DA COZINHA 2 - MESA)
+- platform: mqtt
+  state_topic: "home/indoor/switch/H801_1AAF41/app"
+  name: "Firmware Cozinha 2 - Mesa"
+- platform: mqtt
+  state_topic: "home/indoor/switch/H801_1AAF41/version"
+  name: "Versão Cozinha 2 - Mesa"
+- platform: mqtt
+  state_topic: "home/indoor/switch/H801_1AAF41/host"
+  name: "Hostname Cozinha 2 - Mesa"
+- platform: mqtt
+  state_topic: "home/indoor/switch/H801_1AAF41/ip"
+  name: "IP Cozinha 2 - Mesa"
+- platform: mqtt
+  state_topic: "home/indoor/switch/H801_1AAF41/mac"
+  name: "MAC Cozinha 2 - Mesa"
+
+
+####  ####  ####  ####

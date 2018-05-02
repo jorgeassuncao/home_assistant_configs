@@ -1,0 +1,105 @@
+################################################################################
+# TYPE: Group
+# FILENAME: groups_equipamento_automacao.yaml
+# NAME: Equipamento de Automação
+################################################################################
+
+#### SALA
+## LUZ DE FUNDO (TV)
+grp_eqp_sala:
+  name: Luz de Fundo (TV)
+  entities:
+    - sensor.firmware_luz_de_fundo_tv
+    - sensor.versao_luz_de_fundo_tv
+    - sensor.hostname_luz_de_fundo_tv
+    - sensor.ip_luz_de_fundo_tv
+    - sensor.mac_luz_de_fundo_tv
+
+#### COZINHA
+## LUZ DE PRESENÇA COZINHA 1 (BANCADA)
+grp_lp_cozinha1:
+  name: Luz de Presença Cozinha 1 (Bancada)
+  entities:
+    - sensor.firmware_cozinha_1__bancada
+    - sensor.versao_cozinha_1__bancada
+    - sensor.hostname_cozinha_1__bancada
+    - sensor.ip_cozinha_1__bancada
+    - sensor.mac_cozinha_1__bancada
+
+## LUZ DE PRESENÇA COZINHA 2 (MESA)
+grp_lp_cozinha2:
+  name: Luz de Presença Cozinha 2 (Mesa)
+  entities:
+    - sensor.firmware_cozinha_2__mesa
+    - sensor.versao_cozinha_2__mesa
+    - sensor.hostname_cozinha_2__mesa
+    - sensor.ip_cozinha_2__mesa
+    - sensor.mac_cozinha_2__mesa
+
+#### CORREDOR
+## LUZ DE PRESENÇA CORREDOR (ESTRELAS)
+grp_eqp_corredor:
+  name: Luz de Presença Corredor (Estrelas)
+  entities:
+    - sensor.firmware_corredor__estrelas
+    - sensor.versao_corredor__estrelas
+    - sensor.hostname_corredor__estrelas
+    - sensor.ip_corredor__estrelas
+    - sensor.mac_corredor__estrelas
+
+#### QUARTO 1 (BIA/CHATY)
+## LUZ DE PRESENÇA Q1 (BIA/CHATY)
+grp_lp_q1:
+  name: Luz de Presença Q1 (Bia/Chaty)
+  entities:
+    - sensor.firmware_q1__biachaty
+    - sensor.versao_q1__biachaty
+    - sensor.hostname_q1__biachaty
+    - sensor.ip_q1__biachaty
+    - sensor.mac_q1__biachaty
+    - sensor.temperatura_q1__biachaty
+    - sensor.humidade_q1__biachaty
+
+#### QUARTO 2 - RAFA
+## LUZ DE PRESENÇA Q2 (RAFA)
+grp_lp_q2:
+  name: Luz de Presença Q2 (Rafa)
+  entities:
+    - sensor.firmware_q2__rafa
+    - sensor.versao_q2__rafa
+    - sensor.hostname_q2__rafa
+    - sensor.ip_q2__rafa
+    - sensor.mac_q2__rafa
+    - sensor.temperatura_q2__rafa
+    - sensor.humidade_q2__rafa
+
+#### QUARTO 3 - PIKE E MIKE
+## LUZ DE PRESENÇA Q3 (PIKE E MIKE)
+grp_lp_q3:
+  name: Luz de Presença Q3 (Pike e Mike)
+  entities:
+    - sensor.firmware_q3__pike_e_mike
+    - sensor.versao_q3__pike_e_mike
+    - sensor.hostname_q3__pike_e_mike
+    - sensor.ip_q3__pike_e_mike
+    - sensor.mac_q3__pike_e_mike
+    - sensor.temperatura_q3__pike_e_mike
+    - sensor.humidade_q3__pike_e_mike
+
+#### WC 1
+grp_eqp_wc1:
+  name: WC1
+  entities:
+    - sensor.firmware_extractor_wc1
+    - sensor.versao_extractor_wc1
+    - sensor.hostname_extractor_wc1
+    - sensor.ip_extractor_wc1
+    - sensor.mac_extractor_wc1
+    - sensor.temperatura_extractor_wc1
+    - sensor.humidade_extractor_wc1
+
+#### WC 2
+grp_eqp_wc2:
+  name: WC2
+  entities:
+#    - 

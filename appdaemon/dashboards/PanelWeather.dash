@@ -1,0 +1,165 @@
+#### Weather
+
+title: Weather
+widget_dimensions: [114, 114]
+widget_size: [1, 1]
+widget_margins: [5, 5]
+columns: 8
+global_parameters:
+    use_comma: 0
+    precision: 1
+    use_hass_icon: 1
+
+layout:
+    - clock(2x1), jmra_presence, lslma_presence, bama_presence, panel_label (3x1)
+    - temp_max_out,weather_widget(2x1), press_out, wind_speed_out, precip_intenc_out, cam_meteo_ir(2x2)
+    - temp_apparent_out, weather_summary(2x2), hum_out, wind_bearing_out, precip_prob_out
+    - temp_min_out, spacer, dew_out, cloud_cover_out, uv_out, ozone_out
+    - include: TemplateNavigation
+
+clock:
+  widget_type: clock
+  widget_style: "border-radius: 6px;"
+  time_format: 24hr
+  show_seconds: 1
+  time_style: "color: #00aaff !important"
+  date_format_country: "pt"
+  date_format_options:
+    weekday: "long"
+    day: "2-digit"
+    month: "2-digit"
+    year: "numeric"
+
+jmra_presence:
+  widget_type: device_tracker
+  widget_style: "border-radius: 6px;"
+  title: Jorge
+  device: jmra
+
+lslma_presence:
+  widget_type: device_tracker
+  widget_style: "border-radius: 6px;"
+  title: Lara
+  device: lslma
+
+bama_presence:
+  widget_type: device_tracker
+  widget_style: "border-radius: 6px;"
+  title: Bia
+  device: bama
+
+panel_label:
+  widget_type: label
+  widget_style: "border-radius: 6px;"
+  text: METEOROLOGIA
+  value_style: "margin-top: -10px;"
+
+weather_widget:
+  widget_type: new_weather
+  widget_style: "border-radius: 6px;"
+  units: "&deg;C"
+
+weather_summary:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.morning_meteo
+  title: Previsão Diária
+
+weather_icon:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.dark_sky_icon
+  title: Previsão
+
+temp_out:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.dark_sky_temperature
+  title: Temperatura
+
+temp_apparent_out:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.dark_sky_apparent_temperature
+  title: Temperatura Aparente
+
+temp_max_out:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.dark_sky_daily_high_temperature
+  title: Temperatura Máxima
+
+temp_min_out:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.dark_sky_daily_low_temperature
+  title: Temperatura Minima
+
+hum_out:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.dark_sky_humidity
+  title: Humidade
+
+dew_out:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.dark_sky_dew_point
+  title: Ponto de Orvalho
+
+press_out:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.dark_sky_pressure
+  title: Pressão
+
+ozone_out:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.dark_sky_ozone
+  title: Ozono
+
+uv_out:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.dark_sky_uv_index
+  title: Indice UV
+
+wind_speed_out:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.dark_sky_wind_speed
+  title: Velocidade Vento
+
+wind_bearing_out:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.dark_sky_wind_bearing
+  title: Direcção Vento
+
+cloud_cover_out:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.dark_sky_cloud_coverage
+  title: Nuvens
+
+precip_intenc_out:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.dark_sky_precip_intensity
+  title: Precipitação
+
+precip_prob_out:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.dark_sky_precip_probability
+  title: Intensidade
+
+cam_meteo_ir:
+  widget_type: camera
+  widget_style: "border-radius: 6px;"
+  entity_picture: https://192.168.1.200:8123/api/camera_proxy/camera.satelite_ir?token=fe20db51bcb7352b276a9d22ae875dfdeef1fc1f553f6a21cd65f79a29eb606b
+  refresh: 10
+
+
+####  ####  ####  ####

@@ -1,0 +1,18 @@
+secrets: /config/secrets.yaml
+log:
+  accessfile: /config/appdaemon/logs/access.log
+  logfile: /config/appdaemon/logs/appdaemon.log
+  errorfile: /config/appdaemon/logs/error.log
+appdaemon:
+  threads: 10
+  disable_apps: 1
+  app_dir: /config/appdaemon/apps
+  plugins:
+    HASS:
+      type: hass
+      ha_url: http://hassio/homeassistant
+      ha_key: ed8641b6ec61407f9ae93712caa3bbeb
+hadashboard:
+  dash_url: http://127.0.0.1:5050
+  dash_dir: /config/appdaemon/dashboards
+  dash_compile_on_start: 1

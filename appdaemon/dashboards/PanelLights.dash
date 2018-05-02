@@ -1,0 +1,221 @@
+#### Lights
+
+title: Lights
+widget_dimensions: [114, 114]
+widget_size: [1, 1]
+widget_margins: [5, 5]
+columns: 8
+global_parameters:
+    use_comma: 0
+    precision: 1
+    use_hass_icon: 1
+
+layout:
+    - clock(2x1), jmra_presence, lslma_presence, bama_presence, panel_label (3x1)
+    - spacer, lp_cozinha_bancada, action_lp_cozinha_on, spacer, spacer, spacer, lp_quarto_1, action_lp_quartos_on
+    - lp_tv_sala, lp_cozinha_mesa, action_lp_cozinha_nm_on, spacer, lp_corredor, spacer, lp_quarto_2, action_lp_quartos_off
+    - lp_candeeiro_pe_sala, spacer, action_lp_cozinha_off, spacer, vent_wc1, spacer, lp_quarto_3, candeeiro_quarto_3
+    - include: TemplateNavigation
+
+clock:
+  widget_type: clock
+  widget_style: "border-radius: 6px;"
+  time_format: 24hr
+  show_seconds: 1
+  time_style: "color: #00aaff !important"
+  date_format_country: "pt"
+  date_format_options:
+    weekday: "long"
+    day: "2-digit"
+    month: "2-digit"
+    year: "numeric"
+
+jmra_presence:
+  widget_type: device_tracker
+  widget_style: "border-radius: 6px;"
+  title: Jorge
+  device: jmra
+
+lslma_presence:
+  widget_type: device_tracker
+  widget_style: "border-radius: 6px;"
+  title: Lara
+  device: lslma
+
+bama_presence:
+  widget_type: device_tracker
+  widget_style: "border-radius: 6px;"
+  title: Bia
+  device: bama
+
+panel_label:
+  widget_type: label
+  widget_style: "border-radius: 6px;"
+  text: ILUMINAÇÃO
+  value_style: "margin-top: -10px;"
+
+####
+
+slider:
+  widget_type: new_input_slider
+  entity: input_number.start_hum_vent_wc1
+  title: slider
+  step: 1
+
+lp_corredor:
+  widget_type: switch
+  widget_style: "border-radius: 6px;"
+  entity: light.luz_de_presenca_corredor_estrelas
+  title: Corredor
+  state_text: 1
+  state_map:
+    "on": LIGADA
+    "off": DESLIGADA
+  icon_on: mdi-lightbulb-on
+  icon_off: mdi-lightbulb
+
+lp_cozinha_bancada:
+  widget_type: switch
+  widget_style: "border-radius: 6px;"
+  entity: light.luz_de_presenca_cozinha_1_bancada
+  title: Bancada da Cozinha
+  state_text: 1
+  state_map:
+    "on": LIGADA
+    "off": DESLIGADA
+  icon_on: mdi-lightbulb-on
+  icon_off: mdi-lightbulb
+
+lp_cozinha_mesa:
+  widget_type: light
+  widget_style: "border-radius: 6px;"
+  entity: light.luz_de_presenca_cozinha_2_mesa
+  title: Mesa da Cozinha
+  icon_on: mdi-lightbulb-on
+  icon_off: mdi-lightbulb
+
+lp_quarto_1:
+  widget_type: switch
+  widget_style: "border-radius: 6px;"
+  entity: light.luz_de_presenca_q1_biachaty
+  title: Quarto 1
+  state_text: 1
+  state_map:
+    "on": LIGADA
+    "off": DESLIGADA
+  icon_on: mdi-lightbulb-on
+  icon_off: mdi-lightbulb
+
+lp_quarto_2:
+  widget_type: switch
+  widget_style: "border-radius: 6px;"
+  entity: light.luz_de_presenca_q2_rafa
+  title: Quarto 2
+  state_text: 1
+  state_map:
+    "on": LIGADA
+    "off": DESLIGADA
+  icon_on: mdi-lightbulb-on
+  icon_off: mdi-lightbulb
+
+lp_quarto_3:
+  widget_type: switch
+  widget_style: "border-radius: 6px;"
+  entity: light.luz_de_presenca_q3_pike_e_mike
+  title: Quarto 3
+  state_text: 1
+  state_map:
+    "on": LIGADA
+    "off": DESLIGADA
+  icon_on: mdi-lightbulb-on
+  icon_off: mdi-lightbulb
+
+candeeiro_quarto_3:
+  widget_type: switch
+  widget_style: "border-radius: 6px;"
+  entity: light.candeeiro_de_tecto_q3_pike_e_mike
+  title: Luz Quarto 3
+  state_text: 1
+  state_map:
+    "on": LIGADA
+    "off": DESLIGADA
+  icon_on: mdi-ceiling-light
+  icon_off: mdi-ceiling-light
+
+lp_tv_sala:
+  widget_type: switch
+  widget_style: "border-radius: 6px;"
+  entity: light.luz_de_fundo_tv
+  title: Luz TV Sala
+  state_text: 1
+  state_map:
+    "on": LIGADA
+    "off": DESLIGADA
+  icon_on: mdi-lightbulb-on
+  icon_off: mdi-lightbulb
+
+lp_candeeiro_pe_sala:
+  widget_type: switch
+  widget_style: "border-radius: 6px;"
+  entity: light.candeeiro_de_pe
+  title: Candeeiro de Pé
+  state_text: 1
+  state_map:
+    "on": LIGADA
+    "off": DESLIGADA
+  icon_on: mdi-lightbulb-on
+  icon_off: mdi-lightbulb
+
+vent_wc1:
+  widget_type: switch
+  widget_style: "border-radius: 6px;"
+  entity: switch.extractor_wc1
+  title: Vent. WC1
+  state_text: 1
+  state_map:
+    "on": LIGADA
+    "off": DESLIGADA
+  icon_on: mdi-fan
+  icon_off: mdi-fan-off
+
+action_lp_cozinha_on:
+  widget_type: script
+  widget_style: "border-radius: 6px;"
+  entity: script.auto_lp_cozinha_weekday_on
+  title: Luz Cozinha ON
+  icon_on: mdi-radiobox-blank
+  icon_off: mdi-radiobox-marked
+
+action_lp_cozinha_nm_on:
+  widget_type: script
+  widget_style: "border-radius: 6px;"
+  entity: script.auto_lp_cozinha_weekend_night_mode_on
+  title: Modo Nocturno ON
+  icon_on: mdi-radiobox-blank
+  icon_off: mdi-radiobox-marked
+
+action_lp_cozinha_off:
+  widget_type: script
+  widget_style: "border-radius: 6px;"
+  entity: script.auto_lp_cozinha_weekday_off
+  title: Luz Cozinha OFF
+  icon_on: mdi-radiobox-blank
+  icon_off: mdi-radiobox-marked
+
+action_lp_quartos_on:
+  widget_type: script
+  widget_style: "border-radius: 6px;"
+  entity: script.auto_lp_quartos_on
+  title: Luz Quartos ON
+  icon_on: mdi-radiobox-blank
+  icon_off: mdi-radiobox-marked
+
+action_lp_quartos_off:
+  widget_type: script
+  widget_style: "border-radius: 6px;"
+  entity: script.auto_lp_quartos_off
+  title: Luz Quartos OFF
+  icon_on: mdi-radiobox-blank
+  icon_off: mdi-radiobox-marked
+
+####  ####  ####  ####

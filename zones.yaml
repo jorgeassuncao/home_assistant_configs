@@ -1,0 +1,55 @@
+################################################################################
+# TYPE: Zones
+# FILENAME: zones.yaml
+# NAME: Zones
+################################################################################
+
+#### Home (override)
+- name: Home
+  latitude: !secret zones_home_latitude
+  longitude: !secret zones_home_longitude
+  radius: 50
+  icon: mdi:home-assistant
+
+#### Trabalho Jorge
+- zone:
+  name: ETAR Chelas
+  latitude: !secret zones_etarchelas_latitude
+  longitude: !secret zones_etarchelas_longitude
+  radius: 270
+  icon: mdi:worker
+
+#### Trabalho Lara
+- zone:
+  name: EMEL
+  latitude: !secret zones_emel_latitude
+  longitude: !secret zones_emel_longitude
+  radius: 100
+  icon: mdi:worker
+
+#### Escola Beatriz
+- zone:
+  name: Escola
+  latitude: !secret zones_escola_latitude
+  longitude: !secret zones_escola_longitude
+  radius: 150
+  icon: mdi:school
+
+#### Casa Alto do Lagoal
+- zone:
+  name: Caxias
+  latitude: !secret zones_caxias_latitude
+  longitude: !secret zones_caxias_longitude
+  radius: 50
+  icon: mdi:account-multiple-outline
+
+#### Casa Alto do Lagoal
+- zone:
+  name: Ginásio
+  latitude: !secret zones_ginasio_latitude
+  longitude: !secret zones_ginasio_longitude
+  radius: 50
+  icon: mdi:dumbbell
+
+
+####  ####  ####  ####

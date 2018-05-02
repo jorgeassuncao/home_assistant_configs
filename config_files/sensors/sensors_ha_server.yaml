@@ -1,0 +1,40 @@
+################################################################################
+# TYPE: Sensor
+# FILENAME: sensors_ha-server.yaml
+# NAME: HA Server
+################################################################################
+
+#### HA SERVER
+- platform: systemmonitor
+  resources:
+    - type: disk_use_percent
+      arg: /
+    - type: disk_use_percent
+      arg: /home
+    - type: memory_free
+    - type: memory_use_percent
+    - type: swap_use_percent
+    - type: processor_use
+    - type: load_1m
+    - type: load_5m
+    - type: load_15m
+    - type: network_in
+      arg: eth0
+    - type: network_out
+      arg: eth0
+    - type: ipv4_address
+      arg: eth0
+    - type: ipv6_address
+      arg: eth0
+    - type: last_boot
+    - type: since_last_boot
+
+#### SERVER CPU TEMP
+- platform: command_line
+  name: 'CPU Temp'
+  command: "cat /sys/class/thermal/thermal_zone0/temp"
+  unit_of_measurement: "°C"
+  value_template: '{{ (value | multiply(0.001)) | round (1) }}'
+
+
+####  ####  ####  ####

@@ -1,0 +1,304 @@
+################################################################################
+# TYPE: Package
+# FILENAME: package_electrical_consumption.yaml
+# NAME: Electrical Consumption
+################################################################################
+
+#### ESP_Energy_Meter_01 started counting on 09/09/2017 @ 16h00
+
+################################################################################
+#### AUTOMATIONS
+################################################################################
+
+automation:
+
+#### SAVE DAILY TOTAL
+  - alias: 'Grava kWh Diário'
+    initial_state: 'on'
+    trigger:
+      - platform: time
+        seconds: '/5'
+    condition:
+      - condition: template
+        value_template: '{{ (as_timestamp( now() ) | timestamp_custom("%Y-%m-%d")) > (as_timestamp(states.sensor.consumo_datahora_diario.state) | timestamp_custom("%Y-%m-%d")) }}'
+    action:
+      - service: mqtt.publish
+        data_template:
+          topic: 'home/indoor/sensor/MAID-EM-01/kwh_at_midnight'
+          retain: true
+          payload_template: '{{ states.sensor.consumo_acumulado_kwh.state }}'
+      - service: mqtt.publish
+        data_template:
+          topic: 'home/indoor/sensor/MAID-EM-01/kwh_at_midnight_time'
+          retain: true
+          payload_template: '{{ now() }}'
+      - service: script.notify_save_to_file
+        data:
+          message: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }} - kWh Diários - GRAVADO'
+
+#### SAVE MONTHLY TOTAL
+  - alias: 'Grava kWh Mensal'
+    initial_state: 'on'
+    trigger:
+      - platform: time
+        seconds: '/5'
+    condition:
+      - condition: template
+        value_template: '{{ (as_timestamp( now() ) | timestamp_custom("%m")) != (as_timestamp(states.sensor.consumo_datahora_mensal.state) | timestamp_custom("%m")) }}'
+    action:
+      - service: mqtt.publish
+        data_template:
+          topic: 'home/indoor/sensor/MAID-EM-01/kwh_at_1st_day_month'
+          retain: true
+          payload_template: '{{ states.sensor.consumo_acumulado_kwh.state }}'
+      - service: mqtt.publish
+        data_template:
+          topic: 'home/indoor/sensor/MAID-EM-01/kwh_at_1st_day_month_time'
+          retain: true
+          payload_template: '{{ now() }}'
+      - service: script.notify_save_to_file
+        data:
+          message: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }} - kWh Mensais - GRAVADO'
+
+
+################################################################################
+#### SENSORS
+################################################################################
+
+sensor:
+
+#### READINGS
+  - platform: mqtt
+    name: "Potência (W)"
+    state_topic: "home/indoor/sensor/MAID-EM-01/watt"
+    unit_of_measurement: "W"
+  - platform: mqtt
+    name: "Consumo (kWh)"
+    state_topic: "home/indoor/sensor/MAID-EM-01/kwh"
+    unit_of_measurement: "kWh"
+  - platform: mqtt
+    name: "Consumo Acumulado (kWh)"
+    state_topic: "home/indoor/sensor/MAID-EM-01/pulse"
+    unit_of_measurement: "kWh"
+
+#### TOTALIZERS
+  - platform: mqtt
+    name: "Consumo dia (kWh)"
+    state_topic: "home/indoor/sensor/MAID-EM-01/kwh_at_midnight"
+    unit_of_measurement: "kWh"
+  - platform: mqtt
+    name: "Consumo mês (kWh)"
+    state_topic: "home/indoor/sensor/MAID-EM-01/kwh_at_1st_day_month"
+    unit_of_measurement: "kWh"
+  - platform: mqtt
+    name: "Consumo data/hora Diário"
+    state_topic: "home/indoor/sensor/MAID-EM-01/kwh_at_midnight_time"
+  - platform: mqtt
+    name: "Consumo data/hora Mensal"
+    state_topic: "home/indoor/sensor/MAID-EM-01/kwh_at_1st_day_month_time"
+
+
+################################################################################
+#### SENSOR TEMPLATES
+################################################################################
+
+#### ESCALÃO DE POTÊNCIA - 6,9 KVA (30A)
+
+#### ELECTRICAL CONSUMPTION
+  - platform: template
+    sensors:
+      energy_volt:
+        friendly_name: 'Tensão (fixo) '
+        value_template: '230'
+        unit_of_measurement: "V"
+      energy_hertz:
+        friendly_name: 'Frequência (fixo) '
+        value_template: '50'
+        unit_of_measurement: "Hz"
+      energy_amp:
+        friendly_name: 'Corrente (calc.) '
+        value_template: '{{ ((states.sensor.potencia_w.state | int ) / (states.sensor.energy_volt.state | int )) | round (2) }}'
+        unit_of_measurement: "A"
+      energy_watt:
+        friendly_name: 'Potência (real) '
+        value_template: '{{ states.sensor.potencia_w.state }}'
+        unit_of_measurement: "W"
+      energy_power_kwh:
+        friendly_name: 'Consumo (real) '
+        value_template: '{{ states.sensor.consumo_kwh.state }}'
+        unit_of_measurement: "kWh"
+      energy_power_wh:
+        friendly_name: 'Consumo (real) '
+        value_template: '{{ (states.sensor.consumo_kwh.state | round(3)) * 1000 }}'
+        unit_of_measurement: "Wh"
+      energy_apparent_power:
+        friendly_name: 'Potência Aparente (calc.) '
+        value_template: '{{ (((states.sensor.energy_amp.state | float) * (states.sensor.energy_volt.state | int)) / 1000) | round (3) }}'
+        unit_of_measurement: "kVA"
+
+#### DAILY CONSUMPTION
+      consumption_daily_total_kwh:
+        friendly_name: 'Total '
+        value_template: '{{ ((states.sensor.consumo_acumulado_kwh.state | float ) - ( states.sensor.consumo_dia_kwh.state | float )) | round(2) }}'
+        unit_of_measurement: "kWh"
+      consumption_daily_total_euro:
+        friendly_name: 'Total '
+        value_template: '{{ ((((states.sensor.consumption_daily_total_kwh.state | float) * 0.1997) + (0.3616)) | round (2)) }}'
+        unit_of_measurement: "€"
+      consumption_daily_total_kwh_fora_de_vazio:
+        friendly_name: 'Fora de Vazio '
+        value_template: '- - -'
+        unit_of_measurement: "kWh"
+      consumption_daily_total_kwh_vazio:
+        friendly_name: 'Vazio '
+        value_template: '- - -'
+        unit_of_measurement: "kWh"
+
+#### MONTHLY CONSUMPTION
+      consumption_monthly_total_kwh:
+        friendly_name: 'Total '
+        value_template: '{{ ((states.sensor.consumo_acumulado_kwh.state | float ) - ( states.sensor.consumo_mes_kwh.state | float )) | round(2) }}'
+        unit_of_measurement: "kWh"
+      consumption_monthly_total_euro:
+        friendly_name: 'Total '
+        value_template: '{{ ((((states.sensor.consumption_monthly_total_kwh.state | float) * 0.1997) + (0.3616)) | round (2)) }}'
+        unit_of_measurement: "€"
+      consumption_monthly_total_kwh_fora_de_vazio:
+        friendly_name: 'Fora de Vazio '
+        value_template: '- - -'
+        unit_of_measurement: "kWh"
+      consumption_monthly_total_kwh_vazio:
+        friendly_name: 'Vazio '
+        value_template: '- - -'
+        unit_of_measurement: "kWh"
+
+#### TOTALIZER
+      consumption_total_kwh:
+        friendly_name: 'Total '
+        value_template: '{{ states.sensor.consumo_acumulado_kwh.state }}'
+        unit_of_measurement: "kWh"
+      consumption_total_euro:
+        friendly_name: 'Total '
+        value_template: '{{ (((states.sensor.consumption_total_kwh.state | float) * (0.1997 )) | round(2)) }}'
+        unit_of_measurement: "€"
+      consumption_total_fora_de_vazio:
+        friendly_name: 'Fora de Vazio '
+        value_template: '- - -'
+        unit_of_measurement: "kWh"
+      consumption_total_vazio:
+        friendly_name: 'Vazio '
+        value_template: '- - -'
+        unit_of_measurement: "kWh"
+
+################################################################################
+#### GROUPS
+################################################################################
+
+group:
+
+#### ENERGY
+  energia:
+    name: 'Energia'
+    entities:
+      - sensor.energy_volt
+      - sensor.energy_hertz
+      - sensor.energy_amp
+      - sensor.energy_watt
+      - sensor.energy_power_wh
+      - sensor.energy_apparent_power
+
+#### DAILY CONSUMPTIONS
+  consumos_diarios:
+    name: 'Consumos Diários'
+    entities:
+      - sensor.consumption_daily_total_kwh
+      - sensor.consumption_daily_total_euro
+#      - sensor.consumption_daily_total_kwh_fora_de_vazio
+#      - sensor.consumption_daily_total_kwh_vazio
+      - history_graph.consumos_diarios
+
+#### MONTHLY CONSUMPTIONS
+  consumos_mensais:
+    name: 'Consumos Mensais'
+    entities:
+      - sensor.consumption_monthly_total_kwh
+      - sensor.consumption_monthly_total_euro
+#      - sensor.consumption_monthly_total_kwh_fora_de_vazio
+#      - sensor.consumption_monthly_total_kwh_vazio
+      - history_graph.consumos_mensais
+
+#### TOTALIZERS
+  totalizadores:
+    name: 'Totalizadores'
+    entities:
+      - sensor.consumption_total_kwh
+      - sensor.consumption_total_euro
+#      - sensor.consumption_total_fora_de_vazio
+#      - sensor.consumption_total_vazio
+      - history_graph.consumos_totais
+
+
+################################################################################
+#### CUSTOMIZE
+################################################################################
+
+homeassistant:
+
+  customize:
+
+#### ENERGIA
+    sensor.energy_volt:
+      icon: mdi:speedometer
+    sensor.energy_hertz:
+      icon: mdi:speedometer
+    sensor.energy_amp:
+      icon: mdi:speedometer
+      show_last_changed: true
+    sensor.energy_watt:
+      icon: mdi:speedometer
+      show_last_changed: true
+    sensor.energy_power_wh:
+      icon: mdi:speedometer
+      show_last_changed: true
+    sensor.energy_apparent_power:
+      icon: mdi:speedometer
+      show_last_changed: true
+
+#### CONSUMOS DIÁRIOS
+    sensor.consumption_daily_total_kwh:
+      icon: mdi:sigma
+      show_last_changed: true
+    sensor.consumption_daily_total_euro:
+      icon: mdi:currency-eur
+      show_last_changed: true
+    sensor.consumption_daily_total_kwh_fora_de_vazio:
+      icon: mdi:circle
+    sensor.consumption_daily_total_kwh_vazio:
+      icon: mdi:circle-outline
+
+#### CONSUMOS MENSAIS
+    sensor.consumption_monthly_total_kwh:
+      icon: mdi:sigma
+      show_last_changed: true
+    sensor.consumption_monthly_total_euro:
+      icon: mdi:currency-eur
+      show_last_changed: true
+    sensor.consumption_monthly_total_kwh_fora_de_vazio:
+      icon: mdi:circle
+    sensor.consumption_monthly_total_kwh_vazio:
+      icon: mdi:circle-outline
+
+#### TOTALIZADORES
+    sensor.consumption_total_kwh:
+      icon: mdi:sigma
+      show_last_changed: true
+    sensor.consumption_total_euro:
+      icon: mdi:currency-eur
+      show_last_changed: true
+    sensor.consumption_total_fora_de_vazio:
+      icon: mdi:circle
+    sensor.consumption_total_vazio:
+      icon: mdi:circle-outline
+
+
+####  ####  ####  ####

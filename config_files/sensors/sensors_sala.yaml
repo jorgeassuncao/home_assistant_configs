@@ -1,0 +1,46 @@
+################################################################################
+# TYPE: Sensor
+# FILENAME: sensors_badges.yaml
+# NAME: Sala
+################################################################################
+
+#### sensors - sensors_sala.yaml ####
+
+#### Sensores - 
+
+#### SONOFF_BASIC_B440BD (LUZ DE FUNDO (TV))
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_BASIC_B440BD/app"
+  name: "Firmware Luz de Fundo TV"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_BASIC_B440BD/version"
+  name: "Versão Luz de Fundo TV"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_BASIC_B440BD/host"
+  name: "Hostname Luz de Fundo TV"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_BASIC_B440BD/ip"
+  name: "IP Luz de Fundo TV"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_BASIC_B440BD/mac"
+  name: "MAC Luz de Fundo TV"
+
+#### SONOFF_BASIC_B43323 (CANDEEIRO DE PÉ)
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_BASIC_B43323/app"
+  name: "Firmware Candeeiro de Pé"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_BASIC_B43323/version"
+  name: "Versão Candeeiro de Pé"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_BASIC_B43323/host"
+  name: "Hostname Candeeiro de Pé"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_BASIC_B43323/ip"
+  name: "IP Candeeiro de Pé"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_BASIC_B43323/mac"
+  name: "MAC Candeeiro de Pé"
+
+
+####  ####  ####  ####

@@ -1,0 +1,13 @@
+################################################################################
+# TYPE: Sensor
+# FILENAME: sensors_templates_sistema.yaml
+# NAME: Sistema
+################################################################################
+
+#### VERSÃO HA
+- platform: command_line
+  name: "HA ver."
+  command: "cat .HA_VERSION"
+
+
+####  ####  ####  ####

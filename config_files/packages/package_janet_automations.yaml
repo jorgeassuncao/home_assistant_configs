@@ -1,0 +1,70 @@
+################################################################################
+# TYPE: Package
+# FILENAME: package_janet_automations.yaml
+# NAME: Janet Automations (Skills)
+################################################################################
+
+#### https://github.com/Lentron/Janet---Home-Assistant
+
+################################################################################
+#### AUTOMATIONS
+################################################################################
+
+automation:
+
+####  NEW DEVICE HAS CONNECTED TO THE NETWORK
+  - alias: "Janet New Device Connected"
+    trigger:
+      - platform: event
+        event_type: device_tracker_new_device
+    action:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.alert_mode
+      - service: script.janet_speech_engine
+        data:
+          call_greeting: 1
+          call_new_device: 1
+        data_template:
+          person: >-
+            {{ trigger.event.data.name }}
+
+#### SHUTDOWN
+  - alias: "Janet Shut Down"
+    trigger:
+      - event: shutdown
+        platform: homeassistant
+      - event_type: homeassistant.restart
+        platform: event
+    action:
+      - service: script.janet_speech_engine
+        data:
+          call_bye: 1
+          call_shut_down: 1
+
+#### STARTUP
+  - alias: "Janet Start Up"
+    trigger:
+      - event: start
+        platform: homeassistant
+    action:
+      - service: script.janet_speech_engine
+        data:
+          call_greeting: 1
+          call_introduction: 1
+
+### UPDATE AVAILABLE
+  - alias: "Janet Update Available"
+    trigger:
+      - platform: state
+        entity_id: sensor.up_to_date
+        from: 'true'
+        to: 'false'
+    action:
+      - service: script.janet_speech_engine
+        data:
+          call_greeting: 1
+          call_update: 1
+
+
+####  ####  ####  ####

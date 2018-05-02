@@ -1,0 +1,28 @@
+################################################################################
+# TYPE: SubGroup
+# FILENAME: subgroups_wcs.yaml
+# NAME: Casas de Banho
+################################################################################
+
+#### WC 1
+wc1:
+  name: WC1
+  entities:
+    - switch.extractor_wc1
+    - sensor.temperatura_wc1_extractor
+    - sensor.humidade_wc1_extractor
+
+#### WC 2
+wc2:
+  name: WC2
+  entities:
+#    - 
+
+#### TODOS OS WCS
+wcs:
+  name: WCs
+  entities:
+    - switch.extractor_wc1
+
+
+####  ####  ####  ####

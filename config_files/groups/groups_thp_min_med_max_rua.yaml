@@ -1,0 +1,22 @@
+################################################################################
+# TYPE: Group
+# FILENAME: groups_thp_min_med_max_rua.yaml
+# NAME: Temperatura, Humidade e Pressão da Rua - Min. Méd. e Max.
+################################################################################
+
+#### THP MIN. MÉD. E MAX. DA RUA
+grp_thp_min_med_max_rua:
+  name: THP Min. Méd. e Max. - Rua (24h)
+  entities:
+    - sensor.temperatura_maxima_rua
+    - sensor.temperatura_media_rua
+    - sensor.temperatura_minima_rua
+    - sensor.humidade_maxima_rua
+    - sensor.humidade_media_rua
+    - sensor.humidade_minima_rua
+    - sensor.pressao_maxima_rua
+    - sensor.pressao_media_rua
+    - sensor.pressao_minima_rua
+
+
+####  ####  ####  ####

@@ -1,0 +1,80 @@
+####
+
+load_main_panel:
+  widget_type: navigate
+  widget_style: "border-radius: 6px;"
+  title: ENTRADA
+  icon_inactive: fa-home
+  dashboard: PanelMain
+
+load_energy_panel:
+  widget_type: navigate
+  widget_style: "border-radius: 6px;"
+  title: ENERGIA
+  icon_inactive: fa-bolt
+  dashboard: PanelEnergy
+  args:
+    timeout: 120
+    return: PanelMain
+
+load_weather_panel:
+  widget_type: navigate
+  widget_style: "border-radius: 6px;"
+  title: METEO
+  icon_inactive: fa-cloud
+  dashboard: PanelWeather
+  args:
+    timeout: 120
+    return: PanelMain
+
+load_lights_panel:
+  widget_type: navigate
+  widget_style: "border-radius: 6px;"
+  title: ILUMINAÇÃO
+  icon_inactive: fa-lightbulb-o
+  dashboard: PanelLights
+  args:
+    timeout: 600
+    return: PanelMain
+
+load_temperatures_panel:
+  widget_type: navigate
+  widget_style: "border-radius: 6px;"
+  title: TEMP.
+  icon_inactive: fa-thermometer-3
+  dashboard: PanelTemperatures
+  args:
+    timeout: 120
+    return: PanelMain
+
+load_cameras_panel:
+  widget_type: navigate
+  widget_style: "border-radius: 6px;"
+  title: CAMERAS
+  icon_inactive: fa-video-camera
+  dashboard: PanelCameras
+  args:
+    timeout: 120
+    return: PanelMain
+
+load_alarm_panel:
+  widget_type: navigate
+  widget_style: "border-radius: 6px;"
+  title: ALARME
+  icon_inactive: mdi-security-home
+  dashboard: PanelAlarm
+  args:
+    timeout: 120
+    return: PanelMain
+
+reload_dash:
+  widget_type: reload
+  widget_style: "border-radius: 6px;"
+  title: RELOAD
+  icon_inactive: fa-refresh
+
+layout: 
+    - load_main_panel, load_weather_panel, load_energy_panel, load_lights_panel,load_temperatures_panel, load_cameras_panel, load_alarm_panel, reload_dash
+
+
+####  ####  ####  ####

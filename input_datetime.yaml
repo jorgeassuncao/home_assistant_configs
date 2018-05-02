@@ -1,0 +1,28 @@
+################################################################################
+# TYPE: Input Date/Time
+# FILENAME: input_datetime.yaml
+# NAME: Input Date/Time
+################################################################################
+
+####
+time_liga_arvore_natal:
+  name: 'Acende às'
+  has_date: false
+  has_time: true
+  initial: '19:00'
+
+####
+time_desliga_arvore_natal:
+  name: 'Apaga às'
+  has_date: false
+  has_time: true
+  initial: '23:00'
+
+####
+teste_de_data:
+  name: 'teste de data'
+  has_date: true
+  has_time: false
+
+
+####  ####  ####  ####

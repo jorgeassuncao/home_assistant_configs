@@ -1,0 +1,78 @@
+#### Cameras
+
+title: Cameras
+widget_dimensions: [114, 114]
+widget_size: [1, 1]
+widget_margins: [5, 5]
+columns: 8
+global_parameters:
+    use_comma: 0
+    precision: 1
+    use_hass_icon: 1
+
+layout:
+    - clock(2x1), jmra_presence, lslma_presence, bama_presence, panel_label (3x1)
+    - spacer, spacer, spacer, spacer, spacer, cam_rafa(3x2)
+    - cam02_entrada(2x2), cam01_hall(2x2)
+    - 
+    - include: TemplateNavigation
+
+clock:
+  widget_type: clock
+  widget_style: "border-radius: 6px;"
+  time_format: 24hr
+  show_seconds: 1
+  time_style: "color: #00aaff !important"
+  date_format_country: "pt"
+  date_format_options:
+    weekday: "long"
+    day: "2-digit"
+    month: "2-digit"
+    year: "numeric"
+
+jmra_presence:
+  widget_type: device_tracker
+  widget_style: "border-radius: 6px;"
+  title: Jorge
+  device: jmra
+
+lslma_presence:
+  widget_type: device_tracker
+  widget_style: "border-radius: 6px;"
+  title: Lara
+  device: lslma
+
+bama_presence:
+  widget_type: device_tracker
+  widget_style: "border-radius: 6px;"
+  title: Bia
+  device: bama
+
+panel_label:
+  widget_type: label
+  widget_style: "border-radius: 6px;"
+  text: CAMERAS
+  value_style: "margin-top: -10px;"
+
+####
+
+cam_rafa:
+  widget_type: camera
+  widget_style: "border-radius: 6px;"
+  entity_picture: https://192.168.1.200:8123/api/camera_proxy/camera.quarto_3?token=5249927504c0bc415aa52232738b6392afb84942a8cacfd277124d3dea4a621e&api_password=2105
+  refresh: 10
+
+cam01_hall:
+  widget_type: camera
+  widget_style: "border-radius: 6px;"
+  entity_picture: https://192.168.1.200:8123/api/camera_proxy/camera.hall_de_entrada?token=ca66cbf33affcb521144192b00992c9c1daa43e6568fa910f0f2e862f1c20e4e&api_password=2105
+  refresh: 10
+
+cam02_entrada:
+  widget_type: camera
+  widget_style: "border-radius: 6px;"
+  entity_picture: https://192.168.1.200:8123/api/camera_proxy/camera.porta_da_rua?token=06825c177f11f21aef4e0cadf81713d56637dd89a04586b836ddcbd193b775e8&api_password=2105
+  refresh: 10
+
+
+####  ####  ####  ####

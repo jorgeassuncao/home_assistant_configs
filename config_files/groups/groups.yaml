@@ -1,0 +1,178 @@
+################################################################################
+# TYPE: Group
+# FILENAME: groups.yaml
+# NAME: Separadores 
+################################################################################
+
+#### HOME
+default_view:
+  view: yes
+  icon: mdi:home
+  entities:
+    - display.kiosk_entrada
+    - device_tracker.jmra
+    - device_tracker.lslma
+    - device_tracker.bama
+    - alarm_control_panel.house
+    - sensor.time
+    - sensor.sun_state
+    - sensor.season
+    - sensor.ha_ver
+    - binary_sensor.workdays
+    - sensor.cpu_temp
+    - sensor.jorge_status
+    - sensor.lara_status
+    - sensor.bia_status
+    - group.people_status
+    - group.grp_main_configs
+#    - group.grp_beacon_teste
+    - group.grp_last_notifications
+    - group.porta_da_rua
+
+#### ELECTRICIDADE
+tab_electricity:
+  name: Electricidade
+  view: yes
+  icon: mdi:flash
+  entities:
+    - sensor.energy_volt
+    - sensor.energy_hertz
+    - sensor.energy_amp
+    - sensor.energy_watt
+    - sensor.energy_power_wh
+    - sensor.energy_apparent_power
+    - group.consumos_diarios
+    - group.consumos_mensais
+    - group.totalizadores
+
+#### ILUMINAÇÃO
+tab_iluminacao:
+  name: Iluminação
+  view: yes
+  icon: mdi:lightbulb-on-outline
+  entities:
+    - group.sala
+    - group.cozinha
+    - group.corredor
+    - group.q1
+    - group.q2
+    - group.q3
+#    - group.lp_quartos
+    - group.wcs
+#    - group.grp_natal
+
+#### TEMPERATURAS
+tab_temperaturas:
+  name: Temperaturas
+  view: yes
+  icon: mdi:oil-temperature
+  entities:
+    - group.th_q1_biachaty
+    - group.th_q2_rafa
+    - group.th_q3_pikemike
+    - group.th_wc1
+    - history_graph.temperatura_interior
+    - history_graph.humidade_interior
+
+#### METEO
+tab_meteo:
+  name: Meteorologia
+  view: yes
+  icon: mdi:cloud
+  entities:
+    - group.grp_meteo
+    - camera.satelite
+    - camera.satelite_ir
+    - group.grp_thp_min_med_max_casa
+    - group.grp_thp_min_med_max_rua
+
+#### MULTIMÉDIA
+tab_multimedia:
+  name: Multimédia
+  view: yes
+  icon: mdi:television-classic
+  entities:
+    - group.tvs
+    - group.boxs
+    - group.spotify
+    - group.kodi
+
+#### RADIO
+tab_radio:
+  name: Rádio
+  view: yes
+  icon: mdi:radio
+  entities:
+    - group.radio
+    - group.players
+
+#### PRESENÇAS
+tab_pessoas:
+  name: Presenças
+  view: yes
+  icon: mdi:account-multiple
+  entities:
+    - group.jorge_jmra
+    - group.lara_lslma
+    - group.bia_bama
+
+#### REDE INTERNA
+tab_rede_interna:
+  name: Rede Interna
+  view: yes
+  icon: mdi:server-network
+  entities:
+    - group.grp_pessoas
+    - group.grp_ha_server
+    - group.grp_servidores
+    - group.grp_computadores
+    - group.grp_tablets
+    - group.grp_telemoveis
+    - group.grp_telefones_ip
+    - group.grp_cameras
+    - group.grp_impressoras
+    - group.grp_multimedia
+    - group.grp_homeautomation
+    - group.grp_diversos
+
+#### AUTOMAÇÃO
+tab_automations:
+  name: Automação
+  view: yes
+  icon: mdi:home-automation
+  entities:
+    - group.temporizador_lp_quartos
+    - group.actions_lp_quartos
+    - group.temporizador_lp_cozinha
+    - group.actions_lp_cozinha_weekday
+    - group.actions_lp_cozinha_weekend
+    - group.escolha_do_tema
+
+#### HOMECAMS
+tab_homecams:
+  name: Cameras
+  view: yes
+  icon: mdi:cctv
+  entities:
+    - group.cameras
+    - group.hidden_cameras
+
+#### EQUIPAMENTOS WI-FI
+tab_equipamentos_wifi:
+  name: Equipamentos Wi-Fi
+  view: yes
+  icon: mdi:access-point-network
+  entities:
+#    - group.grp_kiosk_displays
+    - group.grp_eqp_sala
+    - group.grp_lp_cozinha1
+    - group.grp_lp_cozinha2
+    - group.grp_eqp_corredor
+    - group.grp_lp_q1
+    - group.grp_lp_q2
+    - group.grp_lp_q3
+    - group.grp_eqp_wc1
+    - group.grp_eqp_wc2
+
+
+####  ####  ####  ####

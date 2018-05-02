@@ -1,0 +1,20 @@
+################################################################################
+# TYPE: Sensor
+# FILENAME: sensors_presence_beacons.yaml
+# NAME: Presence Beacons
+################################################################################
+
+#### (A)
+- platform: mqtt
+  state_topic: 'home/indoor/BTtoMQTT/C111DF98F749' # if the default MQTT topic was updated then this need to be reflected here; replace AA... with id of your device
+  name: 'keys_car_state' 
+  expire_after: 300 # modify this to desired value (measurement is in seconds)
+
+#### (C)
+- platform: statistics
+  entity_id: 'sensor.keys_car' # this is the name of the sensor from step B
+  name: 'keys_car_stats' #again, different id
+  sampling_size: 10 # the default sample size is 20; can be modified to one's desires; 
+
+
+####  ####  ####  ####

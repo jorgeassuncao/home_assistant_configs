@@ -1,0 +1,13 @@
+################################################################################
+# TYPE: SubGroup
+# FILENAME: subgroups_luzes_presenca.yaml
+# NAME: Luzes de Presença
+################################################################################
+
+#### CORREDOR
+lp_corredor:
+  entities:
+    - light.luz_de_presenca_corredor_estrelas
+
+
+####  ####  ####  ####

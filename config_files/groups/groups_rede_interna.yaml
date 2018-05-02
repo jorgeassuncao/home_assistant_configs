@@ -1,0 +1,118 @@
+################################################################################
+# TYPE: Group
+# FILENAME: groups_rede_interna.yaml
+# NAME: Rede Interna
+################################################################################
+
+#### PESSOAS
+grp_pessoas:
+  name: Zanzito Tracker 
+  entities:
+    - binary_sensor.device_tracker_jmra
+    - binary_sensor.device_tracker_lslma
+    - binary_sensor.device_tracker_bama
+
+#### SERVIDORES
+grp_servidores:
+  name: Servidores e Rede
+  entities:
+    - binary_sensor.device_tracker_router_vodafone
+    - binary_sensor.device_tracker_ha_server
+    - binary_sensor.device_tracker_home_pbx
+    - binary_sensor.device_tracker_homecctv
+    - binary_sensor.device_tracker_cisco2950
+    - binary_sensor.device_tracker_smc_ap
+
+#### COMPUTADORES
+grp_computadores:
+  name: Computadores
+  entities:
+    - binary_sensor.device_tracker_neptune
+    - binary_sensor.device_tracker_phobos
+    - binary_sensor.device_tracker_venus
+    - binary_sensor.device_tracker_asus_k56c
+
+#### TABLETS
+grp_tablets:
+  name: Tablets
+  entities:
+    - binary_sensor.device_tracker_tablet_ja
+    - binary_sensor.device_tracker_tablet_bia
+    - binary_sensor.device_tracker_tablet_rafa
+    - binary_sensor.device_tracker_tablet_wallpanel_entrada
+
+#### TELEMÓVEIS
+grp_telemoveis:
+  name: Telemóveis
+  entities:
+    - binary_sensor.device_tracker_galaxys8
+    - binary_sensor.device_tracker_note4
+    - binary_sensor.device_tracker_lg_bello
+    - binary_sensor.device_tracker_motorola
+
+#### TELEFONES IP
+grp_telefones_ip:
+  name: Telefones IP
+  entities:
+    - binary_sensor.device_tracker_cisco7942
+
+#### CAMERAS
+grp_cameras:
+  name: Cameras
+  entities:
+    - binary_sensor.device_tracker_homecam01
+    - binary_sensor.device_tracker_homecam02
+
+#### IMPRESSORAS
+grp_impressoras:
+  name: Impressoras
+  entities:
+    - binary_sensor.device_tracker_lexmark_x201n
+
+#### MULTIMÉDIA
+grp_multimedia:
+  name: Multimédia
+  entities:
+    - binary_sensor.device_tracker_tvbox_sala
+    - binary_sensor.device_tracker_tv_sala
+    - binary_sensor.device_tracker_kodi_player_sala
+    - binary_sensor.device_tracker_nintendo_wii
+
+#### HOME AUTOMATION
+grp_homeautomation:
+  name: Equipamento Automação
+  entities:
+    - binary_sensor.device_tracker_esp_energy_monitor_01
+    - binary_sensor.device_tracker_esp_frontdoor
+    - binary_sensor.device_tracker_sonoff3c1bdc
+    - binary_sensor.device_tracker_sonoff1aaf41
+    - binary_sensor.device_tracker_sonoffb43740
+    - binary_sensor.device_tracker_sonoffb440bd
+    - binary_sensor.device_tracker_sonoff3c3169
+    - binary_sensor.device_tracker_sonoff3b5864
+    - binary_sensor.device_tracker_sonoff3b9b97
+    - binary_sensor.device_tracker_sonoff3b963b
+    - binary_sensor.device_tracker_sonoffb45548
+    - binary_sensor.device_tracker_sonoff4285ec
+    - binary_sensor.device_tracker_sonoff8cb88c
+    - binary_sensor.device_tracker_sonoffb43323
+
+#### DIVERSOS
+grp_diversos:
+  name: Diversos
+  entities:
+    - binary_sensor.device_tracker_esp32_30aea427d7f0
+    - binary_sensor.device_tracker_08fd0eff7ddc
+    - binary_sensor.device_tracker_0cbd511dd8cf
+    - binary_sensor.device_tracker_000ed1011fb5
+    - binary_sensor.device_tracker_0025cf441bd8
+    - binary_sensor.device_tracker_dcefcaba3675
+    - binary_sensor.device_tracker_b827ebb43e41
+    - binary_sensor.device_tracker_5ccf7f4c5874
+    - binary_sensor.device_tracker_5ccf7fb55ab7
+    - binary_sensor.device_tracker_5ccf7f53d01d
+    - binary_sensor.device_tracker_18fe341aaf41
+    - binary_sensor.device_tracker_78c3e9dd0da0
+
+
+####  ####  ####  ####

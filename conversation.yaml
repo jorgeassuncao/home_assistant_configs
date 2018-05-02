@@ -1,0 +1,20 @@
+################################################################################
+# TYPE: Conversation
+# FILENAME: conversation.yaml
+# NAME: Conversation
+################################################################################
+
+#### https://home-assistant.io/components/conversation/
+
+#### VOICE COMMANDS
+intents:
+
+## LIGA CANDEEIRO DO QUARTO 3
+  LuzQuarto3On:
+    - Liga candeeiro do quarto 3
+
+## DESLIGA CANDEEIRO DO QUARTO 3
+  LuzQuarto3Off:
+    - Desliga candeeiro do quarto 3
+
+####  ####  ####  ####

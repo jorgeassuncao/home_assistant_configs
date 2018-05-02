@@ -1,0 +1,51 @@
+################################################################################
+# TYPE: Notify
+# FILENAME: notify.yaml
+# NAME: Notify
+################################################################################
+
+#### Zanzito
+## Jorge
+- name: Jorge Zanzito
+  platform: zanzito
+  device-name: jmra
+## Lara
+- name: Lara Zanzito
+  platform: zanzito
+  device-name: lslma
+## Bia
+- name: Bia Zanzito
+  platform: zanzito
+  device-name: bama
+## Todos
+- name: Todos Zanzito
+  platform: group
+  services:
+    - service: jorge_zanzito
+    - service: lara_zanzito
+    - service: bia_zanzito
+## Adultos
+- name: Adultos Zanzito
+  platform: group
+  services:
+    - service: jorge_zanzito
+    - service: lara_zanzito
+
+#### HTML5
+- name: Browser Alerts
+  platform: html5
+  gcm_api_key: !secret html5_gcm_api_key
+  gcm_sender_id: !secret html5_gcm_sender_id
+
+#### TELEGRAM
+- name: telegram_ha_info
+  platform: telegram
+  chat_id: !secret telegrambot_chat_id01
+
+#### FILE
+- name: Save to File
+  platform: file
+  filename: notifications.txt
+
+
+####  ####  ####  ####

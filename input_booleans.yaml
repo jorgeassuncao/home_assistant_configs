@@ -1,0 +1,48 @@
+################################################################################
+# TYPE: Input Boolean
+# FILENAME: input_boolean.yaml
+# NAME: Input Boolean
+################################################################################
+
+#### MODO FÉRIAS  
+modo_ferias:
+  name: Modo Férias
+  icon: mdi:beach
+
+#### NOTIFICAÇÕES HTML  
+notification_html5:
+  name: Notificações HTML5
+  icon: mdi:account-location
+
+#### NOTIFICAÇÕES TELEGRAM  
+notification_telegram:
+  name: Notificações Telegram
+  icon: mdi:telegram
+
+#### NOTIFICAÇÕES ZANZITO JORGE
+notification_zanzito_jorge:
+  name: Notificações Zanzito (Jorge)
+  icon: mdi:account-location
+
+#### NOTIFICAÇÕES ZANZITO ADULTOS
+notification_zanzito_adultos:
+  name: Notificações Zanzito (Adultos)
+  icon: mdi:account-location
+
+#### NOTIFICAÇÕES ZANZITO TODOS
+notification_zanzito_todos:
+  name: Notificações Zanzito (Todos)
+  icon: mdi:account-location
+
+#### NOTIFICAÇÕES SAVE TO FILE
+notification_save_to_file:
+  name: Grava Últimas Notificações
+  icon: mdi:account-location
+
+#### EXTRACTOR AUTO
+extractor_auto:
+  name: Automático
+  icon: mdi:auto-fix
+
+
+####  ####  ####  ####

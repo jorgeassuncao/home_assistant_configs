@@ -1,0 +1,28 @@
+################################################################################
+# TYPE: Sensor
+# FILENAME: sensors_presencas.yaml
+# NAME: Presenças
+################################################################################
+
+#### LOCALIZAÇÃO
+
+## JORGE
+- platform: mqtt
+  state_topic: "zanzito/jmra/location"
+  name: "jmra gps"
+  retain: true
+
+## LARA
+- platform: mqtt
+  state_topic: "zanzito/lslma/location"
+  name: "lslma gps"
+  retain: true
+
+## BIA
+- platform: mqtt
+  state_topic: "zanzito/bama/location"
+  name: "bama gps"
+  retain: true
+
+
+####  ####  ####  ####

@@ -1,0 +1,22 @@
+################################################################################
+# TYPE: Sensor
+# FILENAME: sensors_badges.yaml
+# NAME: Data e Hora
+################################################################################
+
+#### DATA E HORA
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date'
+
+#### ÉPOCA DO ANO
+- platform: season
+  name: 'Época (astronomica)'
+  type: astronomical
+
+####
+- platform: alarm_control_panel
+  name: 'Alarme'
+
+####  ####  ####  ####

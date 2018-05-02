@@ -1,0 +1,29 @@
+################################################################################
+# TYPE: Sensor
+# FILENAME: sensors_bateria_telemoveis.yaml
+# NAME: Bateria dos Telemóveis
+################################################################################
+
+#### PIKE - BATERIA
+- platform: mqtt
+  state_topic: "zanzito/jmra/battery_level"
+  name: "Pike - Bateria"
+  unit_of_measurement: '%'
+  retain: true
+
+#### MIKE - BATERIA
+- platform: mqtt
+  state_topic: "zanzito/lslma/battery_level"
+  name: "Mike - Bateria"
+  unit_of_measurement: '%'
+  retain: true
+
+#### BIA - BATERIA
+- platform: mqtt
+  state_topic: "zanzito/bama/battery_level"
+  name: "Bia - Bateria"
+  unit_of_measurement: '%'
+  retain: true
+
+
+####  ####  ####  ####

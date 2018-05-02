@@ -1,0 +1,66 @@
+#### Automations
+
+title: Automations
+widget_dimensions: [114, 114]
+widget_size: [1, 1]
+widget_margins: [5, 5]
+columns: 8
+global_parameters:
+    use_comma: 0
+    precision: 1
+    use_hass_icon: 1
+
+layout:
+    - clock(2x1), jmra_presence, lslma_presence, bama_presence, panel_label (3x1)
+    - alarm(8x3)
+    - spacer
+    - spacer
+    - include: TemplateNavigation
+
+clock:
+  widget_type: clock
+  widget_style: "border-radius: 6px;"
+  time_format: 24hr
+  show_seconds: 1
+  time_style: "color: #00aaff !important"
+  date_format_country: "pt"
+  date_format_options:
+    weekday: "long"
+    day: "2-digit"
+    month: "2-digit"
+    year: "numeric"
+
+jmra_presence:
+  widget_type: device_tracker
+  widget_style: "border-radius: 6px;"
+  title: Jorge
+  device: jmra
+
+lslma_presence:
+  widget_type: device_tracker
+  widget_style: "border-radius: 6px;"
+  title: Lara
+  device: lslma
+
+bama_presence:
+  widget_type: device_tracker
+  widget_style: "border-radius: 6px;"
+  title: Bia
+  device: bama
+
+panel_label:
+  widget_type: label
+  widget_style: "border-radius: 6px;"
+  text: AUTOMAÇÕES
+  value_style: "margin-top: -10px;"
+
+####
+
+alarm:
+  widget_type: iframe
+  title: Alarm
+  refresh: 60
+  url_list:
+    - https://192.168.1.200:8123/alarm
+
+####  ####  ####  ####

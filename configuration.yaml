@@ -1,0 +1,258 @@
+################################################################################
+# TYPE: Configuration
+# FILENAME: configuration.yaml
+# NAME: Configuration
+################################################################################
+
+################################################################################
+#### HOME ASSISTANT
+################################################################################
+
+homeassistant:
+## NAME OF LOCATION
+  name: Casa
+## LOCATION COORDINATES
+  latitude: !secret ha_latitude
+  longitude: !secret ha_longitude
+## ALTITUDE ABOVE SEA LEVEL (IN METERS)
+  elevation: 150
+## METRIC, IMPERIAL FOR IMPERIAL
+  unit_system: metric
+## C FOR CELCIUS, F FOR FAHRENHEIT
+  temperature_unit: C
+## TIME_ZONES
+  time_zone: Europe/Lisbon
+## WHITELIST
+  whitelist_external_dirs:
+    - /config/cam_snapshots
+    - /share/motion
+## CUSTOMIZE
+  customize: !include customize.yaml
+## CUSTOMIZE GLOB
+  customize_glob:
+    light.*:
+      custom_ui_state_card: state-card-custom-ui
+    sensor.*:
+      custom_ui_state_card: state-card-custom-ui
+    switch.*:
+      custom_ui_state_card: state-card-custom-ui
+    binary-sensor.*:
+      custom_ui_state_card: state-card-custom-ui
+    input_boolean.*:
+      custom_ui_state_card: state-card-custom-ui
+
+## PACKAGES
+  packages: !include_dir_named config_files/packages/
+
+#### CUSTOMIZER
+customizer:
+  custom_ui: local
+
+#### FRONTEND
+frontend:
+  themes: !include themes.yaml
+  extra_html_url:
+    - /local/custom_ui/state-card-custom-ui.html
+  extra_html_url_es5:
+    - /local/custom_ui/state-card-custom-ui-es5.html
+
+#### SIDEBAR ITEMS
+panel_iframe:
+  router_wifi:
+    title: 'Router'
+    url: 'http://192.168.1.1'
+    icon: mdi:router-wireless
+  dashboard:
+    title: 'HADashboard'
+    url: 'http://192.168.1.200:5050/PanelMain?skin=all_black'
+    icon: mdi:apps
+
+#### CONFIGURATION UI
+config:
+
+#### MAP
+map:
+
+#### HASS.IO MENU
+hassio:
+
+#### HTTP ACCESS
+http:
+  api_password: !secret http_api_password
+  base_url: !secret http_base_url
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+  trusted_networks:
+    - 127.0.0.1
+    - 192.168.1.0/24
+#  cors_allowed_origins:
+#    - https://192.168.1.200:7080
+
+#### CHECKS FOR AVAILABLE UPDATES
+updater:
+  include_used_components: true
+
+#### Discover some devices automatically
+discovery:
+
+#### Allows you to issue voice commands from the frontend in enabled browsers
+conversation: !include conversation.yaml
+
+intent_script: !include intent_script.yaml
+
+#### Enables support for tracking state changes over time.
+history:
+  include:
+    domains:
+      - sensor
+
+#### LOGGER
+# tail -f /config/home-assistant.log
+logger:
+  default: error
+#  logs:
+#    pymediaroom: debug
+#    homeassistant.components.media_player.mediaroom: debug
+#    custom_components.media_player.mediaroom: debug
+
+#### LOGBOOK
+logbook:
+
+#### KU
+sun:
+
+#### TEXT TO SPEECH
+tts:
+  - platform: voicerss
+    api_key: !secret tts_voicerss_api_key
+    language: 'pt-pt'
+    codec: mp3
+    format: '16khz_16bit_mono'
+
+#### MQTT
+mqtt:
+  broker: 192.168.1.200
+  port: 1883
+  keepalive: 30
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  birth_message:
+    topic: 'hass/status'
+    payload: 'online'
+  will_message:
+    topic: 'hass/status'
+    payload: 'offline'
+  client_id: ha_ui_client
+  discovery: true
+  discovery_prefix: homeassistant
+
+#### INFLUXDB
+influxdb:
+  host: 192.168.1.200
+  port: 8086
+  database: !secret influxdb_database
+  username: !secret influxdb_username
+  password: !secret influxdb_password
+
+#### ANDROID IP WEBCAM
+android_ip_webcam:
+- name: 'HomeCAM01 (Porta Rua)'
+  host: !secret androidipwebcam_host
+  username: !secret androidipwebcam_username
+  password: !secret androidipwebcam_password
+
+#### WEBLINKS
+weblink:
+  entities:
+  - name: Multi-Room Player
+    url: https://universe-network.ddns.net:6581/moped/
+
+#### TELEGRAM BOT
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegrambot_api_key
+    allowed_chat_ids:
+      - 535187254
+
+
+################################################################################
+#### SPLIT-UP CONFIGURATION
+################################################################################
+
+## ALARM - CONTROL PANEL
+alarm_control_panel: !include alarm.yaml
+
+## ALARM - CUSTOM PANEL
+panel_custom: !include panel_custom.yaml
+
+## AUTOMATION
+automation: !include_dir_merge_list config_files/automations/
+
+## DEVICE TRACKER
+device_tracker: !include device_tracker.yaml
+
+## GROUPS
+group: !include_dir_merge_named config_files/groups/
+
+## SENSORS
+sensor: !include_dir_merge_list config_files/sensors/
+
+## BINARY SENSORS
+binary_sensor: !include_dir_merge_list config_files/binary_sensors/
+
+## SWITCHES
+switch: !include switches.yaml
+
+## LIGHTS
+light: !include lights.yaml
+
+## ZONES
+zone: !include zones.yaml
+
+## REST 
+rest_command: !include rest_commands.yaml
+
+## SCRIPTS
+script: !include_dir_merge_named config_files/scripts/
+
+## INPUT TEXT
+input_text: !include input_text.yaml
+
+## INPUT BOOLEAN
+input_boolean: !include input_booleans.yaml
+
+## INPUT NUMBER
+input_number: !include input_numbers.yaml
+
+## INPUT SELECT
+input_select: !include input_select.yaml
+
+## INPUT DATE TIME
+input_datetime: !include input_datetime.yaml
+
+## SHELL COMMAND
+shell_command: !include shell_commands.yaml
+
+## RECORDER
+recorder: !include recorder.yaml
+
+## MEDIA PLAYERS
+media_player: !include media_players.yaml
+
+## CAMERAS
+camera: !include cameras.yaml
+
+## HISTORY GRAPH
+history_graph: !include history_graphs.yaml
+
+## NOTIFY
+notify:  !include notify.yaml
+
+## ALERT
+alert:  !include alerts.yaml
+
+## DYSPLAYS
+display: !include displays.yaml
+
+
+####  ####  ####  ####

@@ -1,0 +1,17 @@
+################################################################################
+# TYPE: Group
+# FILENAME: groups_wallpanels.yaml
+# NAME: Wallpanels
+################################################################################
+
+#### ENTRADA
+grp_wallpanel_entrada:
+  name: WallPanel Entrada
+  entities:
+    - binary_sensor.pir_entrada
+    - sensor.wallpanel_battery
+    - sensor.wallpanel_brightness
+    - sensor.wallpanel_pressure
+
+
+####  ####  ####  ####

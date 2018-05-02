@@ -1,0 +1,44 @@
+################################################################################
+# TYPE: Sensor
+# FILENAME: sensors_wc1.yaml
+# NAME: WC1
+################################################################################
+
+#### SONOFF_TH10_3B963B (EXTRACTOR WC1)
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_TH10_3B963B/app"
+  name: "Firmware Extractor WC1"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_TH10_3B963B/version"
+  name: "Versão Extractor WC1"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_TH10_3B963B/host"
+  name: "Hostname Extractor WC1"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_TH10_3B963B/ip"
+  name: "IP Extractor WC1"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_TH10_3B963B/mac"
+  name: "MAC Extractor WC1"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_TH10_3B963B/temperature"
+  name: "Temperatura Extractor WC1"
+  unit_of_measurement: °C
+  retain: true
+  force_update: true
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_TH10_3B963B/humidity"
+  name: "Humidade Extractor WC1"
+  unit_of_measurement: '%'
+  retain: true
+  force_update: true
+
+- platform: template
+  sensors:
+    switch_extractor_wc1_state:
+      friendly_name: 'Estado actual '
+      icon_template: mdi:apple-keyboard-option
+      value_template: '{{ states.switch.extractor_wc1.state }}'
+
+
+####  ####  ####  ####

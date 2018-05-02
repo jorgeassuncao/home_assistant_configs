@@ -1,0 +1,59 @@
+################################################################################
+# TYPE: Automation
+# FILENAME: automation_teste.yaml
+# NAME: Testes
+################################################################################
+
+#### SYSTEM CHECK
+- alias: 'teste'
+  initial_state: 'on'
+  trigger:
+    platform: time
+    at: '12:00:00'
+  action:
+    - service: script.notify_zanzito_jorge
+      data:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'The system is up and running!'
+    - service: script.notify_html5
+      data_template:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'The system is up and running!'
+        data:
+          renotify: '1'
+    - service: script.notify_save_to_file
+      data:
+        message: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }} - The system is up and running!'
+
+#### PREVISÃO MATINAL
+- alias: 'Previsão Matinal'
+  initial_state: 'on'
+  trigger:
+    platform: time
+    at: '07:05:00'
+  condition:
+    condition: state
+    entity_id: input_boolean.modo_ferias
+    state: 'on'
+  action:
+    - service: script.notify_zanzito_jorge
+      data:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: '{{ states.sensor.morning_meteo.state }}'
+    - service: tts.microsoft_say
+      entity_id: media_player.kodi_servidor
+      data_template:
+        message: '{{ states.sensor.morning_meteo.state }}'
+        cache: false
+    - service: script.notify_html5
+      data_template:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'Bom dia! {{ states.sensor.morning_meteo.state }}'
+        data:
+          renotify: '1'
+    - service: script.notify_save_to_file
+      data:
+        message: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }} - Bom dia! {{ states.sensor.morning_meteo.state }}'
+
+
+####  ####  ####  ####

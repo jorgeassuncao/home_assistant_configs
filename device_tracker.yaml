@@ -1,0 +1,39 @@
+################################################################################
+# TYPE: Device Trackers
+# FILENAME: device_tracker.yaml
+# NAME: Device Trackers
+################################################################################
+
+### Bluetooth
+#- platform: bluetooth_tracker
+
+### Bluetooth LE
+#- platform: bluetooth_le_tracker
+
+### TELEMOVEIS
+- platform: mqtt_json
+  devices:
+    jmra: zanzito/jmra/location
+    lslma: zanzito/lslma/location
+    bama: zanzito/bama/location
+  track_new_devices: True
+  interval_seconds: 20
+  consider_home: 20
+
+#### ROUTER VODAFONE
+- platform: huawei_router
+  host: 192.168.1.1
+  username: !secret routervodafone_username
+  password: !secret routervodafone_password
+  track_new_devices: True
+  interval_seconds: 20
+  consider_home: 20
+
+- platform: nmap_tracker
+  hosts: 192.168.1.1/24
+  track_new_devices: True
+  interval_seconds: 20
+  consider_home: 20
+
+
+####  ####  ####  ####

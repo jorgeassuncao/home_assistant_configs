@@ -1,0 +1,101 @@
+title: HA Main Panel
+widget_dimensions: [100, 100]
+widget_size: [1, 1]
+widget_margins: [5, 5]
+columns: 8
+global_parameters:
+    use_comma: 0
+    precision: 1
+    use_hass_icon: 1
+
+#### Layout
+layout:
+    - clock(200x200)
+    - temp_out(100x100), temp_in(100x100), spacer(100x100), jmra_presence(100x100), lslma_presence(100x100), bama_presence(100x100)
+    - weather_widget(200x200)
+    - 
+    - porta_rua(100x100), consumption_w(100x100)
+    - include: TemplateNavigation
+
+
+#### Widgets
+clock:
+  widget_type: clock
+  widget_style: "border-radius: 6px;"
+  time_format: 24hr
+  show_seconds: 1
+  time_style: "color: #00aaff !important"
+  date_format_country: "pt"
+  date_format_options:
+    weekday: "long"
+    day: "2-digit"
+    month: "2-digit"
+    year: "numeric"
+
+porta_rua:
+  widget_type: binary_sensor
+  widget_style: "border-radius: 6px;"
+  entity: binary_sensor.porta_da_rua
+  title: Porta da Rua
+  state_text: 1
+  state_map:
+    "on": Aberta
+    "off": Fechada
+  icon_on: mdi-lock-open-outline
+  icon_off: mdi-lock-outline
+  icon_style_active: "color: red"
+  icon_style_inactive: "color: green"
+
+weather_widget:
+  widget_type: weather
+  widget_style: "border-radius: 6px;"
+  units: "&deg;C"
+
+jmra_presence:
+  widget_type: device_tracker
+  widget_style: "border-radius: 6px;"
+  title: Jorge
+  device: jmra
+
+lslma_presence:
+  widget_type: device_tracker
+  widget_style: "border-radius: 6px;"
+  title: Lara
+  device: lslma
+
+bama_presence:
+  widget_type: device_tracker
+  widget_style: "border-radius: 6px;"
+  title: Bia
+  device: bama
+
+temp_out:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.dark_sky_temperature
+  title: Temp. Rua
+  sub_entity: sensor.dark_sky_humidity
+
+temp_in:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.temperatura_media_casa
+  title: Temp. Casa
+  sub_entity: sensor.humidade_media_casa
+
+alarm:
+  widget_type: alarm
+  widget_style: "border-radius: 6px;"
+  entity: alarm_control_panel.house
+  title: Alarme
+
+consumption_w:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.energy_watt
+  precision: 0
+  title: Consumo (W)
+  sub_entity: sensor.consumption_daily_total_kwh
+
+
+####  ####  ####  ####

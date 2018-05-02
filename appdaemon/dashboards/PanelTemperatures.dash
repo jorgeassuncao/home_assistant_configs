@@ -1,0 +1,132 @@
+#### Temperatures
+
+title: Temperatures
+widget_dimensions: [114, 114]
+widget_size: [1, 1]
+widget_margins: [5, 5]
+columns: 8
+global_parameters:
+    use_comma: 0
+    precision: 1
+    use_hass_icon: 1
+
+layout:
+    - clock(2x1), jmra_presence, lslma_presence, bama_presence, panel_label (3x1)
+    - temp_q1, hum_q1, spacer, temp_wc1, hum_wc1, spacer, spacer, spacer
+    - temp_q2, hum_q2, spacer, spacer, spacer, spacer, spacer, spacer
+    - temp_q3, hum_q3, spacer, temp_out, hum_out, spacer, temp_in, hum_in
+    - include: TemplateNavigation
+
+clock:
+  widget_type: clock
+  widget_style: "border-radius: 6px;"
+  time_format: 24hr
+  show_seconds: 1
+  time_style: "color: #00aaff !important"
+  date_format_country: "pt"
+  date_format_options:
+    weekday: "long"
+    day: "2-digit"
+    month: "2-digit"
+    year: "numeric"
+
+jmra_presence:
+  widget_type: device_tracker
+  widget_style: "border-radius: 6px;"
+  title: Jorge
+  device: jmra
+
+lslma_presence:
+  widget_type: device_tracker
+  widget_style: "border-radius: 6px;"
+  title: Lara
+  device: lslma
+
+bama_presence:
+  widget_type: device_tracker
+  widget_style: "border-radius: 6px;"
+  title: Bia
+  device: bama
+
+panel_label:
+  widget_type: label
+  widget_style: "border-radius: 6px;"
+  text: TEMPERATURAS
+  value_style: "margin-top: -10px;"
+
+####
+
+temp_q1:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.temperatura_q1__biachaty
+  title: Temperatura Q1
+
+hum_q1:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.humidade_q1__biachaty
+  title: Humidade Q1
+
+temp_q2:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.temperatura_q2__rafa
+  title: Temperatura Q2
+
+hum_q2:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.humidade_q2__rafa
+  title: Humidade Q2
+
+temp_q3:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.temperatura_q3__pike_e_mike
+  title: Temperatura Q3
+
+hum_q3:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.humidade_q3__pike_e_mike
+  title: Humidade Q3
+
+temp_wc1:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.temperatura_extractor_wc1
+  title: Temperatura WC1
+
+hum_wc1:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.humidade_extractor_wc1
+  title: Humidade WC1
+
+temp_out:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.dark_sky_temperature
+  title: Temp. Rua
+
+hum_out:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.dark_sky_humidity
+  title: Hum. Rua
+
+temp_in:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.temperatura_media_casa
+  title: Temperatura Média Casa
+
+hum_in:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.humidade_media_casa
+  title: Humidade Média Casa
+
+
+####  ####  ####  ####

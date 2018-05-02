@@ -1,0 +1,37 @@
+################################################################################
+# TYPE: Sensor
+# FILENAME: sensors_quarto2.yaml
+# NAME: Quarto 2
+################################################################################
+
+#### SONOFF_TH10_3B5864 (LUZ DE PRESENÇA DO Q2 - RAFA)
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_TH10_3B5864/app"
+  name: "Firmware Q2 - Rafa"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_TH10_3B5864/version"
+  name: "Versão Q2 - Rafa"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_TH10_3B5864/host"
+  name: "Hostname Q2 - Rafa"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_TH10_3B5864/ip"
+  name: "IP Q2 - Rafa"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_TH10_3B5864/mac"
+  name: "MAC Q2 - Rafa"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_TH10_3B5864/temperature"
+  name: "Temperatura Q2 - Rafa"
+  unit_of_measurement: °C
+  retain: true
+  force_update: true
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_TH10_3B5864/humidity"
+  name: "Humidade Q2 - Rafa"
+  unit_of_measurement: '%'
+  retain: true
+  force_update: true
+
+
+####  ####  ####  ####

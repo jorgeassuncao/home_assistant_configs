@@ -1,0 +1,14 @@
+################################################################################
+# TYPE: Binary Sensors
+# FILENAME: binary_sensors_workdays.yaml
+# NAME: Workdays
+################################################################################
+
+#### WORKDAYS
+- platform: workday
+  name: 'Workdays'
+  country: PTE
+  workdays: [ mon, tue, wed, thu, fri ]
+
+
+####  ####  ####  ####

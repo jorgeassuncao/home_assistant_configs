@@ -1,0 +1,32 @@
+################################################################################
+# TYPE: Sensor
+# FILENAME: sensors_real_feel.yaml
+# NAME: Real Feel
+################################################################################
+
+#### REAL FEEL
+- platform: template
+  sensors:
+#### Q1
+    real_feel_q1:
+      friendly_name: "Real Feel Q1"
+      value_template: '{{ (((-42.379 + (2.04901523*(((states.sensor.temperatura_q1__biachaty.state|float)*1.8)+32)) + (10.14333127*(states.sensor.humidade_q1__biachaty.state|float)) - (0.22475541*(((states.sensor.temperatura_q1__biachaty.state|float)*1.8)+32)*(states.sensor.humidade_q1__biachaty.state|float)) - (6.83783 * (10**(-3))*((((states.sensor.temperatura_q1__biachaty.state|float)*1.8)+32)**2)) - (5.481717 * (10**(-2))*((states.sensor.humidade_q1__biachaty.state|float)**2)) + (1.22874 * (10**(-3))*((((states.sensor.temperatura_q1__biachaty.state|float)*1.8)+32)**2*(states.sensor.humidade_q1__biachaty.state|float))) + (8.5282 * (10**(-4))*((((states.sensor.temperatura_q1__biachaty.state|float)*1.8)+32)*(states.sensor.humidade_q1__biachaty.state|float)**2)) - (1.99 * (10**(-6))*((((states.sensor.temperatura_q1__biachaty.state|float)*1.8)+32)**2)*((states.sensor.humidade_q1__biachaty.state|float)**2)))-32)/1.8)|round(1) }}'
+      unit_of_measurement: "°C"
+## Q2
+    real_feel_q2:
+      friendly_name: "Real Feel Q2"
+      value_template: '{{ (((-42.379 + (2.04901523*(((states.sensor.temperatura_q2__rafa.state|float)*1.8)+32)) + (10.14333127*(states.sensor.humidade_q2__rafa.state|float)) - (0.22475541*(((states.sensor.temperatura_q2__rafa.state|float)*1.8)+32)*(states.sensor.humidade_q2__rafa.state|float)) - (6.83783 * (10**(-3))*((((states.sensor.temperatura_q2__rafa.state|float)*1.8)+32)**2)) - (5.481717 * (10**(-2))*((states.sensor.humidade_q2__rafa.state|float)**2)) + (1.22874 * (10**(-3))*((((states.sensor.temperatura_q2__rafa.state|float)*1.8)+32)**2*(states.sensor.humidade_q2__rafa.state|float))) + (8.5282 * (10**(-4))*((((states.sensor.temperatura_q2__rafa.state|float)*1.8)+32)*(states.sensor.humidade_q2__rafa.state|float)**2)) - (1.99 * (10**(-6))*((((states.sensor.temperatura_q2__rafa.state|float)*1.8)+32)**2)*((states.sensor.humidade_q2__rafa.state|float)**2)))-32)/1.8)|round(1) }}'
+      unit_of_measurement: "°C"
+## Q3
+    real_feel_q3:
+      friendly_name: "Real Feel Q3"
+      value_template: '{{ (((-42.379 + (2.04901523*(((states.sensor.temperatura_q3__pike_e_mike.state|float)*1.8)+32)) + (10.14333127*(states.sensor.humidade_q3__pike_e_mike.state|float)) - (0.22475541*(((states.sensor.temperatura_q3__pike_e_mike.state|float)*1.8)+32)*(states.sensor.humidade_q3__pike_e_mike.state|float)) - (6.83783 * (10**(-3))*((((states.sensor.temperatura_q3__pike_e_mike.state|float)*1.8)+32)**2)) - (5.481717 * (10**(-2))*((states.sensor.humidade_q3__pike_e_mike.state|float)**2)) + (1.22874 * (10**(-3))*((((states.sensor.temperatura_q3__pike_e_mike.state|float)*1.8)+32)**2*(states.sensor.humidade_q3__pike_e_mike.state|float))) + (8.5282 * (10**(-4))*((((states.sensor.temperatura_q3__pike_e_mike.state|float)*1.8)+32)*(states.sensor.humidade_q3__pike_e_mike.state|float)**2)) - (1.99 * (10**(-6))*((((states.sensor.temperatura_q3__pike_e_mike.state|float)*1.8)+32)**2)*((states.sensor.humidade_q3__pike_e_mike.state|float)**2)))-32)/1.8)|round(1) }}'
+      unit_of_measurement: "°C"
+## WC1
+    real_feel_wc1:
+      friendly_name: "Real Feel WC1"
+      value_template: '{{ (((-42.379 + (2.04901523*(((states.sensor.temperatura_extractor_wc1.state|float)*1.8)+32)) + (10.14333127*(states.sensor.humidade_extractor_wc1.state|float)) - (0.22475541*(((states.sensor.temperatura_extractor_wc1.state|float)*1.8)+32)*(states.sensor.humidade_extractor_wc1.state|float)) - (6.83783 * (10**(-3))*((((states.sensor.temperatura_extractor_wc1.state|float)*1.8)+32)**2)) - (5.481717 * (10**(-2))*((states.sensor.humidade_extractor_wc1.state|float)**2)) + (1.22874 * (10**(-3))*((((states.sensor.temperatura_extractor_wc1.state|float)*1.8)+32)**2*(states.sensor.humidade_extractor_wc1.state|float))) + (8.5282 * (10**(-4))*((((states.sensor.temperatura_extractor_wc1.state|float)*1.8)+32)*(states.sensor.humidade_extractor_wc1.state|float)**2)) - (1.99 * (10**(-6))*((((states.sensor.temperatura_extractor_wc1.state|float)*1.8)+32)**2)*((states.sensor.humidade_extractor_wc1.state|float)**2)))-32)/1.8)|round(1) }}'
+      unit_of_measurement: "°C"
+
+
+####  ####  ####  ####

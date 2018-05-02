@@ -1,0 +1,75 @@
+################################################################################
+# TYPE: Automation
+# FILENAME: automation_notificacoes_temp_elevada.yaml
+# NAME: Notificação de Temperaturas elevadas
+################################################################################
+
+#### TEMPERATURA ELEVADA - Q1 (BIA E CHATY)
+- alias: 'Temperaturas elevadas Q1'
+  initial_state: 'on'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.temperatura_q1__biachaty
+    above: 30.0
+    below: 35.0
+  action:
+    - service: script.notify_zanzito_todos
+      data:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'Temperatura elevada no quarto da Bia e Chaty(30-35ºC)!'
+    - service: script.notify_html5
+      data_template:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'Temperatura elevada no quarto da Bia e Chaty(30-35ºC)!'
+        data:
+          renotify: '1'
+    - service: script.notify_save_to_file
+      data:
+        message: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }} - Temperatura elevada no quarto da Bia e Chaty(30-35ºC)!'
+
+#### TEMPERATURA ELEVADA - Q2 (RAFA)
+- alias: 'Temperaturas elevadas Q2'
+  initial_state: 'on'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.temperatura_q2__rafa
+    above: 35.0
+  action:
+    - service: script.notify_zanzito_todos
+      data:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'Temperatura elevada no quarto do Rafa (30-35ºC)!'
+    - service: script.notify_html5
+      data_template:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'Temperatura elevada no quarto do Rafa (30-35ºC)!'
+        data:
+          renotify: '1'
+    - service: script.notify_save_to_file
+      data:
+        message: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }} - Temperatura elevada no quarto do Rafa (30-35ºC)!'
+
+#### TEMPERATURA ELEVADA - Q3 (PIKE E MIKE)
+- alias: 'Temperaturas elevadas Q3'
+  initial_state: 'on'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.temperatura_q3__pike_e_mike
+    above: 35.0
+  action:
+    - service: script.notify_zanzito_todos
+      data:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'Temperatura elevada no quarto do Pike e da Mike (30-35ºC)!'
+    - service: script.notify_html5
+      data_template:
+        title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+        message: 'Temperatura elevada no quarto do Pike e da Mike (30-35ºC)!'
+        data:
+          renotify: '1'
+    - service: script.notify_save_to_file
+      data:
+        message: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }} - Temperatura elevada no quarto do Pike e da Mike (30-35ºC)!'
+
+
+####  ####  ####  ####

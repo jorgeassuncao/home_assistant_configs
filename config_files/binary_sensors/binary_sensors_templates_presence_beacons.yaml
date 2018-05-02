@@ -1,0 +1,16 @@
+################################################################################
+# TYPE: Binary Sensors
+# FILENAME: binary_sensors_templates_presence_beacons.yaml
+# NAME: Presence Beacons
+################################################################################
+
+#### (E)
+- platform: template
+  sensors:
+    bt_car_keys_threshold:
+      friendly_name: 'bt_car_keys_threshold'
+      value_template: '{{ states.sensor.keys_car_stats_mean.attributes["average_change"] | float > 0 }}' 
+      #"key_car_stats" is the name from C; mean is used but could be also other statistics (median, change, variation, count, etc)
+
+
+####  ####  ####  ####

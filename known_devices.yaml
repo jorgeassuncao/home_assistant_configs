@@ -1,0 +1,558 @@
+################################################################################
+# TYPE: Known Devices
+# FILENAME: known_devices.yaml
+# NAME: Known Devices
+################################################################################
+
+#### Known Devices
+jmra:
+  hide_if_away: false
+  name: Pike
+  picture: "https://universe-network.duckdns.org/local/jorge_assuncao_480x480.jpg"
+  track: true
+  vendor: Samsung
+
+bama:
+  hide_if_away: false
+  name: Bia
+  picture: "https://universe-network.duckdns.org/local/beatriz_assuncao_480x480.jpg"
+  track: true
+  vendor: LG
+
+lslma:
+  hide_if_away: false
+  name: Mike
+  picture: "https://universe-network.duckdns.org/local/lara_assuncao_480x480.jpg"
+  track: true
+  vendor: Samsung
+
+homecam01:
+  hide_if_away: false
+  icon:
+  mac: 00:7E:56:A3:36:B5
+  name: HomeCam 01 (Q3)
+  picture:
+  track: true
+  vendor: China Dragon Technology Limited
+
+tablet_wallpanel_entrada:
+  hide_if_away: false
+  icon:
+  mac: CC:D2:9B:69:FF:25
+  name: Wallpanel - Entrada
+  picture:
+  track: true
+  vendor: Shenzhen Bopengfa Elec&Technology CO.,Ltd
+
+note4:
+  hide_if_away: false
+  icon: mdi:cellphone-basic
+  mac: 48:5A:3F:76:76:01
+  name: Note 4 (LA)
+  picture:
+  track: true
+  vendor: WISOL
+
+homecam02:
+  hide_if_away: false
+  icon:
+  mac: B4:07:F9:71:3C:9F
+  name: HomeCam 02 (Hall)
+  picture:
+  track: true
+  vendor: SAMSUNG ELECTRO MECHANICS CO., LTD.
+
+neptune:
+  hide_if_away: false
+  icon: mdi:desktop-classic
+  mac: 90:E6:BA:92:E8:17
+  name: NEPTUNE (JA)
+  picture:
+  track: true
+  vendor: ASUSTek COMPUTER INC.
+
+lg_bello:
+  hide_if_away: false
+  icon: mdi:cellphone-basic
+  mac: C4:9A:02:41:1A:A5
+  name: LG (BA)
+  picture:
+  track: true
+  vendor: LG Electronics (Mobile Communications)
+
+home_pbx:
+  hide_if_away: false
+  icon:
+  mac: 00:19:DB:39:DB:CC
+  name: Servidor FreePBX
+  picture:
+  track: true
+  vendor: MICRO-STAR INTERNATIONAL CO., LTD.
+
+ha_server:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:F1:16:3D
+  name: Servidor HA
+  picture:
+  track: true
+  vendor: Raspberry Pi Foundation
+
+sonoffb45548:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:B4:55:48
+  name: Reserva
+  picture:
+  track: true
+  vendor: Espressif Inc.
+
+sonoff3c3169:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:3C:31:69
+  name: Luz de Presença (Q1)
+  picture:
+  track: true
+  vendor: Espressif Inc.
+
+sonoff3c1bdc:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:3C:1B:DC
+  name: Luz de Presença Bancada (Cozinha)
+  picture:
+  track: true
+  vendor: Espressif Inc.
+
+smc_ap:
+  hide_if_away: false
+  icon:
+  mac: 00:22:2D:8D:01:8D
+  name: SMC AP
+  picture:
+  track: true
+  vendor: SMC Networks Inc.
+
+lexmark_x201n:
+  hide_if_away: false
+  icon:
+  mac: 00:21:B7:50:00:01
+  name: Lexmark X210n
+  picture:
+  track: true
+  vendor: Lexmark International Inc.
+
+sonoffb43740:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:B4:37:40
+  name: Luz de Presença Estrelas (Corredor)
+  picture:
+  track: true
+  vendor: Espressif Inc.
+
+sonoffb440bd:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:B4:40:BD
+  name: Luz de Presença TV (Sala)
+  picture:
+  track: true
+  vendor: Espressif Inc.
+
+sonoff4285ec:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:42:85:EC
+  name: Reserva
+  picture:
+  track: true
+  vendor: Espressif Inc.
+
+sonoff3b5864:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:3B:58:64
+  name: Luz de Presença (Q2)
+  picture:
+  track: true
+  vendor: Espressif Inc.
+
+cisco2950:
+  hide_if_away: false
+  icon:
+  mac: 00:14:1C:BF:EA:C0
+  name: Switch Cisco 2950-24
+  picture:
+  track: true
+  vendor: Cisco Systems, Inc
+
+tvbox_sala:
+  hide_if_away: false
+  icon:
+  mac: 38:6B:BB:F9:26:21
+  name: TVBox - Sala
+  picture:
+  track: true
+  vendor: unknown
+
+tv_sala:
+  hide_if_away: false
+  icon:
+  mac: F8:77:B8:D8:F9:76
+  name: TV - Sala
+  picture:
+  track: true
+  vendor: Samsung Electronics Co.,Ltd
+
+venus:
+  hide_if_away: false
+  icon: mdi:desktop-classic
+  mac: 7C:E9:D3:54:57:9A
+  name: VENUS (BA)
+  picture:
+  track: true
+  vendor: Hon Hai Precision Ind. Co.,Ltd.
+
+galaxys8:
+  hide_if_away: false
+  icon: mdi:cellphone-basic
+  mac: 30:07:4D:2E:31:CF
+  name: Galaxy S8+ (JA)
+  picture:
+  track: true
+  vendor: SAMSUNG ELECTRO-MECHANICS(THAILAND)
+
+phobos:
+  hide_if_away: false
+  icon: mdi:desktop-classic
+  mac: 10:C3:7B:5C:2C:8B
+  name: PHOBOS (JA)
+  picture:
+  track: true
+  vendor: ASUSTek COMPUTER INC.
+
+tablet_rafa:
+  hide_if_away: false
+  icon:
+  mac: B8:5E:7B:AF:4C:CD
+  name: Tablet (RA)
+  picture:
+  track: true
+  vendor: Samsung Electronics Co.,Ltd
+
+tablet_bia:
+  hide_if_away: false
+  icon:
+  mac: 00:90:4C:C5:12:38
+  name: Tablet (BA)
+  picture:
+  track: true
+  vendor: 
+  
+kodi_player_sala:
+  hide_if_away: false
+  icon:
+  mac: 58:91:CF:5A:2B:B6
+  name: Kodi Player (Sala)
+  picture:
+  track: true
+  vendor: Intel Corporate
+
+sonoff3b9b97:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:3B:9B:97
+  name: Luz de Presença (Q3)
+  picture:
+  track: true
+  vendor: Espressif Inc.
+
+homecctv:
+  hide_if_away: false
+  icon:
+  mac: 44:87:FC:13:6E:C4
+  name: Servidor CCTV
+  picture:
+  track: true
+  vendor: unknown
+
+sonoff3b963b:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:3B:96:3B
+  name: Extractor (WC1)
+  picture:
+  track: true
+  vendor: Espressif Inc.
+
+router_vodafone:
+  hide_if_away: false
+  icon:
+  mac: F8:BF:09:C0:F0:C2
+  name: Router Vodafone
+  picture:
+  track: true
+  vendor: HUAWEI TECHNOLOGIES CO.,LTD
+
+cisco7942:
+  hide_if_away: false
+  icon:
+  mac: 00:23:EB:52:D9:7E
+  name: Cisco 7942 - Principal
+  picture:
+  track: true
+  vendor: Cisco Systems, Inc
+
+esp_frontdoor:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:B1:97:CF
+  name: MAID-DWS 01
+  picture:
+  track: true
+  vendor: Espressif Inc.
+
+esp_energy_monitor_01:
+  hide_if_away: false
+  icon:
+  mac: 2C:3A:E8:0E:A3:8F
+  name: MAID-EM 01
+  picture:
+  track: true
+  vendor: Espressif Inc.
+
+78c3e9dd0da0:
+  hide_if_away: false
+  icon:
+  mac: 78:C3:E9:DD:0D:A0
+  name: X 78c3e9dd0da0
+  picture:
+  track: true
+  vendor: Samsung Electronics Co.,Ltd
+
+18fe341aaf41:
+  hide_if_away: false
+  icon:
+  mac: 18:FE:34:1A:AF:41
+  name: X 18fe341aaf41
+  picture:
+  track: true
+  vendor: Espressif Inc.
+
+sonoff1aaf41:
+  hide_if_away: false
+  icon:
+  mac: A0:20:A6:1A:AF:41
+  name: Luz de Presença Mesa (Cozinha)
+  picture:
+  track: true
+  vendor: Espressif Inc.
+
+motorola:
+  hide_if_away: false
+  icon: mdi:cellphone-basic
+  mac: CC:61:E5:A0:BE:27
+  name: Motorola (CA)
+  picture:
+  track: true
+  vendor: Motorola Mobility LLC, a Lenovo Company
+
+asus_k56c:
+  hide_if_away: false
+  icon:
+  mac: 6C:71:D9:82:30:EE
+  name: Asus K56C
+  picture:
+  track: true
+  vendor: AzureWave Technology Inc.
+
+5ccf7f53d01d:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:53:D0:1D
+  name: X 5ccf7f53d01d
+  picture:
+  track: true
+  vendor: Espressif Inc.
+
+nintendo_wii:
+  hide_if_away: false
+  icon:
+  mac: A4:5C:27:C1:0B:D1
+  name: Nintendo Wii (Sala)
+  picture:
+  track: true
+  vendor: Nintendo Co., Ltd.
+
+5ccf7fb55ab7:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:B5:5A:B7
+  name: X 5ccf7fb55ab7
+  picture:
+  track: true
+  vendor: Espressif Inc.
+
+5ccf7f4c5874:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:4C:58:74
+  name: X 5ccf7f4c5874
+  picture:
+  track: true
+  vendor: Espressif Inc.
+
+b827ebb43e41:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:B4:3E:41
+  name: X b827ebb43e41
+  picture:
+  track: true
+  vendor: Raspberry Pi Foundation
+
+tablet_ja:
+  hide_if_away: false
+  icon:
+  mac: D4:28:D5:FA:0F:37
+  name: Tablet (JA)
+  picture:
+  track: true
+  vendor: TCT mobile ltd
+
+dcefcaba3675:
+  hide_if_away: false
+  icon:
+  mac: DC:EF:CA:BA:36:75
+  name: X dcefcaba3675
+  picture:
+  track: true
+  vendor: Murata Manufacturing Co., Ltd.
+
+0025cf441bd8:
+  hide_if_away: false
+  icon:
+  mac: 00:25:CF:44:1B:D8
+  name: X 0025cf441bd8
+  picture:
+  track: true
+  vendor: Nokia Danmark A/S
+
+sonoffb43323:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:B4:33:23
+  name: Candeeiro de pé (Sala)
+  picture:
+  track: true
+  vendor: Espressif Inc.
+
+000ed1011fb5:
+  hide_if_away: false
+  icon:
+  mac: 00:0E:D1:01:1F:B5
+  name: X 000ed1011fb5
+  picture:
+  track: true
+  vendor: Osaka Micro Computer.
+
+0cbd511dd8cf:
+  hide_if_away: false
+  icon:
+  mac: 0C:BD:51:1D:D8:CF
+  name: X 0cbd511dd8cf
+  picture:
+  track: true
+  vendor: TCT mobile ltd
+
+sonoff8cb88c:
+  hide_if_away: false
+  icon:
+  mac: 60:01:94:8C:B8:8C
+  name: Candeeiro de Tecto (Q3)
+  picture:
+  track: true
+  vendor: Espressif Inc.
+
+08fd0eff7ddc:
+  hide_if_away: false
+  icon:
+  mac: 08:FD:0E:FF:7D:DC
+  name: X 08fd0eff7ddc
+  picture:
+  track: true
+  vendor: unknown
+
+esp32_30aea427d7f0:
+  hide_if_away: false
+  icon:
+  mac: 30:AE:A4:27:D7:F0
+  name: ESP32 (TEST)
+  picture:
+  track: true
+  vendor: unknown
+
+androidb038cd59e7489544:
+  hide_if_away: false
+  icon:
+  mac: BC:0F:2B:68:3E:2C
+  name: android-b038cd59e7489544
+  picture:
+  track: true
+  vendor: FORTUNE TECHGROUP CO.,LTD
+
+e4db6b0a2017:
+  hide_if_away: false
+  icon:
+  mac: E4:DB:6B:0A:20:17
+  name: e4db6b0a2017
+  picture:
+  track: true
+  vendor: unknown
+
+000413486201:
+  hide_if_away: false
+  icon:
+  mac: 00:04:13:48:62:01
+  name: 000413486201
+  picture:
+  track: true
+  vendor: snom technology GmbH
+
+c8f7330a2bc0:
+  hide_if_away: false
+  icon:
+  mac: C8:F7:33:0A:2B:C0
+  name: c8f7330a2bc0
+  picture:
+  track: true
+  vendor: Intel Corporate
+
+848f69f86f85:
+  hide_if_away: false
+  icon:
+  mac: 84:8F:69:F8:6F:85
+  name: 848f69f86f85
+  picture:
+  track: true
+  vendor: Dell Inc.
+
+007f0e06a53b:
+  hide_if_away: false
+  icon:
+  mac: 00:7F:0E:06:A5:3B
+  name: 007f0e06a53b
+  picture:
+  track: true
+  vendor: unknown
+
+001e64653dc6:
+  hide_if_away: false
+  icon:
+  mac: 00:1E:64:65:3D:C6
+  name: 001e64653dc6
+  picture:
+  track: true
+  vendor: Intel Corporate

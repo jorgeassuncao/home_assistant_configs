@@ -1,0 +1,59 @@
+################################################################################
+# TYPE: Sensor
+# FILENAME: sensors_meteorologia.yaml
+# NAME: Meteorologia
+################################################################################
+
+#### WEATHER UNDERGROUND
+- platform: wunderground
+  entity_namespace: ext_meteo
+  lang: BR
+  api_key: !secret wunderground_api_key
+  monitored_conditions:
+#    - temp_high_1d_c
+    - temp_c
+#    - temp_low_1d_c
+#    - relative_humidity
+#    - precip_1d
+#    - wind_kph
+#    - wind_1d_kph
+#    - UV
+#    - alerts
+    - weather_1d_metric
+#    - weather_1n_metric
+#    - weather_2d_metric
+#    - weather_2n_metric
+#    - weather_3d_metric
+#    - weather_3n_metric
+#    - weather_4d_metric
+#    - weather_4n_metric
+
+#### DARKSKY
+- platform: darksky
+  api_key: !secret darksky_api_key
+  latitude: 38.782539
+  longitude: -9.322645
+  lang: pt
+  monitored_conditions:
+    - humidity
+    - dew_point
+    - pressure
+    - summary
+    - daily_summary
+    - hourly_summary
+    - temperature
+    - temperature_max
+    - temperature_min
+    - apparent_temperature
+    - icon
+    - wind_speed
+    - wind_bearing
+    - precip_intensity
+    - precip_probability
+    - ozone
+    - uv_index
+    - cloud_cover
+  units: si
+
+
+####  ####  ####  ####

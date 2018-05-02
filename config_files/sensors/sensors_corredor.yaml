@@ -1,0 +1,25 @@
+################################################################################
+# TYPE: Sensor
+# FILENAME: sensors_corredor.yaml
+# NAME: Corredor
+################################################################################
+
+#### SONOFF_BASIC_B43740 (LUZ DE PRESENÇA CORREDOR (ESTRELAS))
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_BASIC_B43740/app"
+  name: "Firmware Corredor - Estrelas"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_BASIC_B43740/version"
+  name: "Versão Corredor - Estrelas"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_BASIC_B43740/host"
+  name: "Hostname Corredor - Estrelas"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_BASIC_B43740/ip"
+  name: "IP Corredor - Estrelas"
+- platform: mqtt
+  state_topic: "home/indoor/switch/SONOFF_BASIC_B43740/mac"
+  name: "MAC Corredor - Estrelas"
+
+
+####  ####  ####  ####

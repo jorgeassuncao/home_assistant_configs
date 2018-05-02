@@ -1,0 +1,16 @@
+################################################################################
+# TYPE: Binary Sensors
+# FILENAME: binary_sensors_presence_beacons.yaml
+# NAME: Presence Beacons
+################################################################################
+
+#### BEACON TESTE
+- platform: mqtt
+  state_topic: 'home/OpenMQTTGateway_teste/LWT'
+  name: 'Beacon - Teste'
+  payload_on: 'Online'
+  payload_off: 'Offline'
+  device_class: "connectivity"
+
+
+####  ####  ####  ####

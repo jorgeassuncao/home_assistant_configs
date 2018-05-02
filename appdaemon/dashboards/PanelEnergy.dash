@@ -1,0 +1,116 @@
+#### Energy
+
+title: Energy
+widget_dimensions: [114, 114]
+widget_size: [1, 1]
+widget_margins: [5, 5]
+columns: 8
+global_parameters:
+    use_comma: 0
+    precision: 1
+    use_hass_icon: 1
+
+layout:
+    - clock(2x1), jmra_presence, lslma_presence, bama_presence, panel_label (3x1)
+    - energy_volt(2x1), spacer, energy_watt(2x1), spacer, energy_daily_total_kwh(2x1)
+    - energy_hertz(2x1), spacer, energy_wh(2x1), spacer, energy_monthly_total_kwh(2x1)
+    - energy_amp(2x1), spacer, energy_app_power(2x1), spacer, energy_total_kwh(2x1)
+    - include: TemplateNavigation
+
+clock:
+  widget_type: clock
+  widget_style: "border-radius: 6px;"
+  time_format: 24hr
+  show_seconds: 1
+  time_style: "color: #00aaff !important"
+  date_format_country: "pt"
+  date_format_options:
+    weekday: "long"
+    day: "2-digit"
+    month: "2-digit"
+    year: "numeric"
+
+jmra_presence:
+  widget_type: device_tracker
+  widget_style: "border-radius: 6px;"
+  title: Jorge
+  device: jmra
+
+lslma_presence:
+  widget_type: device_tracker
+  widget_style: "border-radius: 6px;"
+  title: Lara
+  device: lslma
+
+bama_presence:
+  widget_type: device_tracker
+  widget_style: "border-radius: 6px;"
+  title: Bia
+  device: bama
+
+panel_label:
+  widget_type: label
+  widget_style: "border-radius: 6px;"
+  text: ENERGIA
+  value_style: "margin-top: -10px;"
+
+####
+
+energy_volt:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.energy_volt
+  title: Tensão
+
+energy_hertz:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.energy_hertz
+  title: Frequência
+
+energy_amp:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.energy_amp
+  title: Corrente
+
+energy_watt:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.energy_watt
+  title: Potência
+
+energy_wh:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.energy_power_wh
+  title: Consumo
+
+energy_app_power:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.energy_apparent_power
+  title: Potência Aparente
+
+energy_daily_total_kwh:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.consumption_daily_total_kwh
+  title: Consumo Diário
+  sub_entity: sensor.consumption_daily_total_euro
+
+energy_monthly_total_kwh:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.consumption_monthly_total_kwh
+  title: Consumo Mensal
+  sub_entity: sensor.consumption_monthly_total_euro
+
+energy_total_kwh:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.consumption_total_kwh
+  title: Consumo Total
+  sub_entity: sensor.consumption_total_euro
+
+####  ####  ####  ####

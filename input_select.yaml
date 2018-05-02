@@ -1,0 +1,64 @@
+################################################################################
+# TYPE: Input Select
+# FILENAME: input_select.yaml
+# NAME: Input Select
+################################################################################
+
+#### Escolha da cor dos temas
+hass_template:
+  name: Escolha um tema
+  options:
+    - escuro_azul
+    - claro_laranja
+    - default
+  initial: escuro_azul
+  icon: mdi:theme-light-dark
+
+#### Novos Estados de presença - Jorge
+jorge_status_dropdown:
+  name: Jorge
+  options:
+    - Home
+    - Just Arrived
+    - Just Left
+    - Away
+    - Extended Away
+    - ETAR Chelas
+    - EMEL
+    - Escola
+    - Caxias
+    - Ginásio
+#  initial: Casa
+
+lara_status_dropdown:
+  name: Lara
+  options:
+    - Home
+    - Just Arrived
+    - Just Left
+    - Away
+    - Extended Away
+    - ETAR Chelas
+    - EMEL
+    - Escola
+    - Caxias
+    - Ginásio
+#  initial: Casa
+
+bia_status_dropdown:
+  name: Bia
+  options:
+    - Home
+    - Just Arrived
+    - Just Left
+    - Away
+    - Extended Away
+    - ETAR Chelas
+    - EMEL
+    - Escola
+    - Caxias
+    - Ginásio
+#  initial: '{{ states.device_tracker.bama.state }}'
+
+
+####  ####  ####  ####

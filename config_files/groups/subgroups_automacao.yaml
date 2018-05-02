@@ -1,0 +1,82 @@
+################################################################################
+# TYPE: SubGroup
+# FILENAME: subgroups_automacao.yaml
+# NAME: Automação
+################################################################################
+
+#### TEMPORIZADOR DAS LUZES DE PRESENÇA DOS QUARTOS
+temporizador_lp_quartos:
+  name: Luzes de Presença dos Quartos
+  control: hidden
+  entities:
+  - sensor.time
+  - sensor.auto_lp_quartos_light_group_state
+  - automation.apagar_automatico
+  - sensor.sunrise_time
+  - input_number.auto_lp_quartos_light_offset_off
+  - sensor.auto_lp_quartos_light_minutes_stop_offset
+  - sensor.auto_lp_quartos_light_stop
+  - sensor.auto_lp_quartos_light_stop_offset
+  - automation.acender_automatico
+  - sensor.sunset_time
+  - input_number.auto_lp_quartos_light_offset_on
+  - sensor.auto_lp_quartos_light_minutes_start_offset
+  - sensor.auto_lp_quartos_light_start
+  - sensor.auto_lp_quartos_light_start_offset
+
+#### TEMPORIZADOR DAS LUZES DE PRESENÇA DA COZINHA
+temporizador_lp_cozinha:
+  name: Luzes de Presença da Cozinha
+  control: hidden
+  entities:
+  - sensor.time
+  - sensor.auto_lp_cozinha_light_group_state
+  - group.sub_group_cozinha_auto_on
+  - group.sub_group_cozinha_auto_off
+  - sensor.sunset_time
+  - input_number.auto_lp_cozinha_light_offset_on
+  - sensor.auto_lp_cozinha_light_minutes_start_offset
+  - sensor.auto_lp_cozinha_light_start
+  - sensor.auto_lp_cozinha_light_start_offset
+  - input_datetime.time_inicio_modo_nocturno_cozinha
+  - input_datetime.time_fim_modo_nocturno_cozinha
+  - input_datetime.time_desliga_cozinha_semana
+  - input_datetime.time_desliga_cozinha_fds
+
+#### ACÇÕES PARA AS LUZES DE PRESENÇA DOS QUARTOS
+actions_lp_quartos:
+  name: LP Quartos
+  control: hidden
+  entities:
+    - script.auto_lp_quartos_on
+    - script.auto_lp_quartos_off
+
+#### ACÇÕES PARA AS LUZES DE PRESENÇA DA COZINHA - WEEKDAY
+actions_lp_cozinha_weekday:
+  name: LP Cozinha (weekday)
+  control: hidden
+  entities:
+    - script.auto_lp_cozinha_weekday_on
+    - script.auto_lp_cozinha_weekday_night_mode_on
+    - script.auto_lp_cozinha_weekday_night_mode_off
+    - script.auto_lp_cozinha_weekday_ofF
+
+#### ACÇÕES PARA AS LUZES DE PRESENÇA DA COZINHA - WEEKEND
+actions_lp_cozinha_weekend:
+  name: LP Cozinha (weekend)
+  control: hidden
+  entities:
+    - script.auto_lp_cozinha_weekend_on
+    - script.auto_lp_cozinha_weekend_night_mode_on
+    - script.auto_lp_cozinha_weekend_night_mode_off
+
+#### ESCOLHA DO TEMA
+escolha_do_tema:
+  name: Escolha do Tema
+  control: hidden
+  entities:
+    - automation.temas
+    - input_select.hass_template
+
+
+####  ####  ####  ####

@@ -1,0 +1,44 @@
+################################################################################
+# TYPE: Group
+# FILENAME: groups_temperaturas.yaml
+# NAME: Temperaturas
+################################################################################
+
+#### QUARTO 1 - BIA E CHATY
+th_q1_biachaty:
+  name: Temp./Hum. Q1 (Bia e Chaty)
+  entities:
+    - sensor.temperatura_q1__biachaty
+    - sensor.real_feel_q1
+    - sensor.humidade_q1__biachaty
+
+#### QUARTO 2 - RAFA
+th_q2_rafa:
+  name: Temp./Hum. Q2 (Rafa)
+  entities:
+    - sensor.temperatura_q2__rafa
+    - sensor.real_feel_q2
+    - sensor.humidade_q2__rafa
+
+#### QUARTO 3 - PIKE E MIKE
+th_q3_pikemike:
+  name: Temp./Hum. Q3 (Pike e Mike)
+  entities:
+    - sensor.temperatura_q3__pike_e_mike
+    - sensor.real_feel_q3
+    - sensor.humidade_q3__pike_e_mike
+
+#### WC1
+th_wc1:
+  name: Temp./Hum. WC1
+  entities:
+    - sensor.switch_extractor_wc1_state
+    - sensor.temperatura_extractor_wc1
+    - sensor.real_feel_wc1
+    - sensor.humidade_extractor_wc1
+    - input_boolean.extractor_auto
+    - input_number.start_hum_vent_wc1
+    - input_number.stop_hum_vent_wc1
+
+
+####  ####  ####  ####
