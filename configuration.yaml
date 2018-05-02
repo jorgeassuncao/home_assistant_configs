@@ -57,11 +57,11 @@ frontend:
     - /local/custom_ui/state-card-custom-ui-es5.html
 
 #### SIDEBAR ITEMS
-panel_iframe:
-  router_wifi:
-    title: 'Router'
-    url: 'http://192.168.1.1'
-    icon: mdi:router-wireless
+#panel_iframe:
+#  router_wifi:
+#    title: 'Router'
+#    url: 'http://192.168.1.1'
+#    icon: mdi:router-wireless
   dashboard:
     title: 'HADashboard'
     url: 'http://192.168.1.200:5050/PanelMain?skin=all_black'
@@ -172,7 +172,7 @@ telegram_bot:
   - platform: polling
     api_key: !secret telegrambot_api_key
     allowed_chat_ids:
-      - 535187254
+      - !secret telegrambot_chat_id01
 
 
 ################################################################################

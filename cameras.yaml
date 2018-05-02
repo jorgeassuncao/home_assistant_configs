@@ -26,17 +26,17 @@
 #### Motion Eye snapshot URLs
 - platform: generic
   name: Hall de Entrada
-  still_image_url: http://192.168.1.6:8765/picture/1/current/?_username=admin&_signature=95595de740f95c9b054506dd2e4b342070d3bed6
+  still_image_url: !secret cam_hall_entrada
 
 #### IPcam VLC stream
 - platform: generic
   name: Quarto 3
-  still_image_url: http://192.168.1.81/tmpfs/snap.jpg?usr=admin&pwd=J%2F2508ca
+  still_image_url: !secret cam_quarto_3
 
 #### Entrada
 - platform: generic
   name: Kiosk Entrada
-  still_image_url: http://192.168.1.120:2323/?cmd=getCamshot&password=JA2508ca
+  still_image_url: !secret cam_kiosk_entrada
 
 #### LOCAL USB CAM
 - platform: local_file
