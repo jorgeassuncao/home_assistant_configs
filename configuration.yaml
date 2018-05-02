@@ -57,7 +57,7 @@ frontend:
     - /local/custom_ui/state-card-custom-ui-es5.html
 
 #### SIDEBAR ITEMS
-#panel_iframe:
+panel_iframe:
 #  router_wifi:
 #    title: 'Router'
 #    url: 'http://192.168.1.1'
