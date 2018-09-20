@@ -7,7 +7,7 @@
 ## DELETE FROM `states` WHERE `entity_id` = ''
 
 #### Recorder
-purge_keep_days: 366
+purge_keep_days: 60
 db_url: !secret recorder_db_url
 include:
   domains:
@@ -40,6 +40,15 @@ include:
     - sensor.humidade_q3__pike_e_mike
     - sensor.temperatura_extractor_wc1
     - sensor.humidade_extractor_wc1
+    - sensor.temperatura_sala
+    - sensor.humidade_sala
+    - sensor.pressao_sala
+    - sensor.temperatura_cozinha
+    - sensor.humidade_cozinha
+    - sensor.pressao_cozinha
+    - sensor.temperatura_corredor
+    - sensor.humidade_corredor
+    - sensor.pressao_corredor
 ## Temp./Hum. Médias de Casa
     - sensor.temperatura_media_casa
     - sensor.humidade_media_casa
@@ -60,10 +69,16 @@ include:
     - sensor.pressao_maxima_rua
     - sensor.pressao_minima_rua
 ## Energia
-    - sensor.energy_amp
-    - sensor.energy_watt
-    - sensor.energy_power_wh
-    - sensor.energy_apparent_power
+    - sensor.tensao_v
+    - sensor.corrente_a
+    - sensor.potencia_w
+    - sensor.potencia_aparente_activa_va
+    - sensor.potencia_aparente_reactiva_var
+    - sensor.factor_de_potencia_pf
+    - sensor.frequencia_hz
+    - sensor.energia_activa_importada
+    - sensor.energia_activa_exportada
+    - sensor.energia_activa_total
 ## Consumos
     - sensor.consumption_daily_total_kwh
     - sensor.consumption_daily_total_euro
@@ -83,6 +98,20 @@ include:
     - sensor.bama_gps
 ## SISTEMA
     - sensor.cpu_temp
+## 3D PRINTER
+    - switch.anet_a8
+    - sensor.3d_printer_current_state
+    - sensor.3d_printer_job_percentage
+    - sensor.3d_printer_actual_tool0_temp
+    - sensor.3d_printer_target_tool0_temp
+    - sensor.3d_printer_actual_bed_temp
+    - sensor.3d_printer_target_bed_temp
+    - sensor.3d_printer_corrente
+    - sensor.3d_printer_tensao
+    - sensor.3d_printer_factor_de_potencia
+    - sensor.3d_printer_potencia_reactiva
+    - sensor.3d_printer_potencia_aparente
+    - sensor.3d_printer_energia_total
 
 exclude:
     domains:

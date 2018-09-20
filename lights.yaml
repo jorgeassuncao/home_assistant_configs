@@ -7,9 +7,9 @@
 #### Switch Luz de Fundo - TV
 - platform: mqtt
   name: "Luz de Fundo (TV)"
-  state_topic: "home/indoor/switch/SONOFF_BASIC_B440BD/relay/0"
-  command_topic: "home/indoor/switch/SONOFF_BASIC_B440BD/relay/0"
-  availability_topic: "home/indoor/switch/SONOFF_BASIC_B440BD/status"
+  state_topic: "home/indoor/switch/SONOFF-BASIC-4285EC/relay/0"
+  command_topic: "home/indoor/switch/SONOFF-BASIC-4285EC/relay/0/set"
+  availability_topic: "home/indoor/switch/SONOFF-BASIC-4285EC/status"
   qos: 1
   payload_on: 1
   payload_off: 0
@@ -21,54 +21,86 @@
 #### Switch Candeeiro de Pé
 - platform: mqtt
   name: "Candeeiro de Pé"
-  state_topic: "home/indoor/switch/SONOFF_BASIC_B43323/relay/0"
-  command_topic: "home/indoor/switch/SONOFF_BASIC_B43323/relay/0/set"
+  state_topic: "home/indoor/switch/SONOFF-BASIC-B43323/relay/0"
+  command_topic: "home/indoor/switch/SONOFF-BASIC-B43323/relay/0/set"
+  availability_topic: "home/indoor/switch/SONOFF-BASIC-B43323/status"
   qos: 1
   payload_on: 1
   payload_off: 0
+  payload_available: 1
+  payload_not_available: 0
   optimistic: false
   retain: true
 
 #### Switch Cozinha 1 - Bancada
 - platform: mqtt
   name: "Luz de Presença Cozinha 1 (Bancada)"
-  state_topic: "home/indoor/switch/SONOFF_BASIC_3C1BDC/relay/0"
-  command_topic: "home/indoor/switch/SONOFF_BASIC_3C1BDC/relay/0/set"
+  state_topic: "home/indoor/switch/SONOFF-BASIC-3C1BDC/relay/0"
+  command_topic: "home/indoor/switch/SONOFF-BASIC-3C1BDC/relay/0/set"
+  availability_topic: "home/indoor/switch/SONOFF-BASIC-3C1BDC/status"
   qos: 1
   payload_on: 1
   payload_off: 0
+  payload_available: 1
+  payload_not_available: 0
   optimistic: false
   retain: true
 
 #### Luz Cozinha 2 - Mesa
 - platform: mqtt
   name: "Luz de Presença Cozinha 2 (Mesa)"
-  state_topic: "home/indoor/switch/H801_1AAF41/relay/0"
-  command_topic: "home/indoor/switch/H801_1AAF41/relay/0/set"
-  brightness_state_topic: "home/indoor/switch/H801_1AAF41/channel/4"
-  brightness_command_topic: "home/indoor/switch/H801_1AAF41/channel/4/set"
+  state_topic: "home/indoor/switch/H801-1AAF41/relay/0"
+  command_topic: "home/indoor/switch/H801-1AAF41/relay/0/set"
+  brightness_state_topic: "home/indoor/switch/H801-1AAF41/channel/4"
+  brightness_command_topic: "home/indoor/switch/H801-1AAF41/channel/4/set"
   qos: 1
   payload_on: 1
   payload_off: 0
   optimistic: false
   retain: true
 
-#### Switch Corredor - Estrelas
+#### Corredor - Estrelas
 - platform: mqtt
   name: "Luz de Presença Corredor (Estrelas)"
-  state_topic: "home/indoor/switch/SONOFF_BASIC_B43740/relay/0"
-  command_topic: "home/indoor/switch/SONOFF_BASIC_B43740/relay/0/set"
+  state_topic: "home/indoor/switch/SONOFF-BASIC-B43740/relay/0"
+  command_topic: "home/indoor/switch/SONOFF-BASIC-B43740/relay/0/set"
   qos: 1
   payload_on: 1
   payload_off: 0
+  optimistic: false
+  retain: true
+
+#### Corredor - Rua
+- platform: mqtt
+  name: "Luz da Rua"
+  state_topic: home/indoor/switch/SONOFF-TOUCH-2CH-CA8BE8/relay/0
+  command_topic: home/indoor/switch/SONOFF-TOUCH-2CH-CA8BE8/relay/0/set
+  payload_on: 1
+  payload_off: 0
+  availability_topic: home/indoor/switch/SONOFF-TOUCH-2CH-CA8BE8/status
+  payload_available: 1
+  payload_not_available: 0
+  optimistic: false
+  retain: true
+
+#### Corredor - Luz da Entrada
+- platform: mqtt
+  name: "Candeeiro de Tecto da Entrada"
+  state_topic: home/indoor/switch/SONOFF-TOUCH-2CH-CA8BE8/relay/1
+  command_topic: home/indoor/switch/SONOFF-TOUCH-2CH-CA8BE8/relay/1/set
+  payload_on: 1
+  payload_off: 0
+  availability_topic: home/indoor/switch/SONOFF-TOUCH-2CH-CA8BE8/status
+  payload_available: 1
+  payload_not_available: 0
   optimistic: false
   retain: true
 
 #### Switch Q1 - Bia/Chaty
 - platform: mqtt
   name: "Luz de Presença Q1 (Bia/Chaty)"
-  state_topic: "home/indoor/switch/SONOFF_TH16_3C3169/relay/0"
-  command_topic: "home/indoor/switch/SONOFF_TH16_3C3169/relay/0/set"
+  state_topic: "home/indoor/switch/SONOFF-TH16-3C3169/relay/0"
+  command_topic: "home/indoor/switch/SONOFF-TH16-3C3169/relay/0/set"
   qos: 1
   payload_on: 1
   payload_off: 0
@@ -78,8 +110,8 @@
 #### Switch Q2 - Rafa
 - platform: mqtt
   name: "Luz de Presença Q2 (Rafa)"
-  state_topic: "home/indoor/switch/SONOFF_TH10_3B5864/relay/0"
-  command_topic: "home/indoor/switch/SONOFF_TH10_3B5864/relay/0/set"
+  state_topic: "home/indoor/switch/SONOFF-TH10-3B5864/relay/0"
+  command_topic: "home/indoor/switch/SONOFF-TH10-3B5864/relay/0/set"
   qos: 1
   payload_on: 1
   payload_off: 0
@@ -89,8 +121,8 @@
 #### Switch Q3 - Pike e Mike
 - platform: mqtt
   name: "Luz de Presença Q3 (Pike e Mike)"
-  state_topic: "home/indoor/switch/SONOFF_TH10_3B9B97/relay/0"
-  command_topic: "home/indoor/switch/SONOFF_TH10_3B9B97/relay/0/set"
+  state_topic: "home/indoor/switch/SONOFF-TH10-3B9B97/relay/0"
+  command_topic: "home/indoor/switch/SONOFF-TH10-3B9B97/relay/0/set"
   qos: 1
   payload_on: 1
   payload_off: 0
@@ -100,8 +132,8 @@
 #### Light Switch Q3 - Pike e Mike
 - platform: mqtt
   name: "Candeeiro de Tecto Q3 (Pike e Mike)"
-  state_topic: "home/indoor/switch/SONOFF_TOUCH_8CB88C/relay/0"
-  command_topic: "home/indoor/switch/SONOFF_TOUCH_8CB88C/relay/0/set"
+  state_topic: "home/indoor/switch/SONOFF-TOUCH-1CH-8CB88C/relay/0"
+  command_topic: "home/indoor/switch/SONOFF-TOUCH-1CH-8CB88C/relay/0/set"
   qos: 1
   payload_on: 1
   payload_off: 0

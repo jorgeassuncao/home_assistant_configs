@@ -17,7 +17,7 @@ script:
     sequence:
       - service: mqtt.publish
         data_template:
-          topic: 'home/indoor/switch/H801_1AAF41/channel/4/set'
+          topic: 'home/indoor/switch/H801-1AAF41/channel/4/set'
           payload_template: '255'
       - service: light.turn_on
         entity_id: group.lp_cozinha
@@ -237,7 +237,7 @@ automation:
             - thu
             - fri
         - condition: template
-          value_template: '{{ (states.input_datetime.time_inicio_modo_nocturno_cozinha.attributes.timestamp | timestamp_custom("%H:%M")) <= ((as_timestamp (now())) | timestamp_custom("%H:%M")) <= (states.input_datetime.time_inicio_modo_nocturno_cozinha.attributes.timestamp | timestamp_custom("%H:%M")) }}'
+          value_template: '{{ (states.input_datetime.time_inicio_modo_nocturno_cozinha.attributes.timestamp | timestamp_custom("%H:%M",false)) <= ((as_timestamp (now())) | timestamp_custom("%H:%M")) <= (states.input_datetime.time_inicio_modo_nocturno_cozinha.attributes.timestamp | timestamp_custom("%H:%M",false)) }}'
         - condition: state
           entity_id: input_boolean.modo_ferias
           state: 'off'
@@ -259,7 +259,7 @@ automation:
             - sat
             - sun
         - condition: template
-          value_template: '{{ (states.input_datetime.time_inicio_modo_nocturno_cozinha.attributes.timestamp | timestamp_custom("%H:%M")) <= ((as_timestamp (now())) | timestamp_custom("%H:%M")) <= (states.input_datetime.time_inicio_modo_nocturno_cozinha.attributes.timestamp | timestamp_custom("%H:%M")) }}'
+          value_template: '{{ (states.input_datetime.time_inicio_modo_nocturno_cozinha.attributes.timestamp | timestamp_custom("%H:%M",false)) <= ((as_timestamp (now())) | timestamp_custom("%H:%M")) <= (states.input_datetime.time_inicio_modo_nocturno_cozinha.attributes.timestamp | timestamp_custom("%H:%M",false)) }}'
         - condition: state
           entity_id: input_boolean.modo_ferias
           state: 'off'
@@ -284,7 +284,7 @@ automation:
             - thu
             - fri
         - condition: template
-          value_template: '{{ (states.input_datetime.time_fim_modo_nocturno_cozinha.attributes.timestamp | timestamp_custom("%H:%M")) <= ((as_timestamp (now())) | timestamp_custom("%H:%M")) <= (states.input_datetime.time_fim_modo_nocturno_cozinha.attributes.timestamp | timestamp_custom("%H:%M")) }}'
+          value_template: '{{ (states.input_datetime.time_fim_modo_nocturno_cozinha.attributes.timestamp | timestamp_custom("%H:%M",false)) <= ((as_timestamp (now())) | timestamp_custom("%H:%M")) <= (states.input_datetime.time_fim_modo_nocturno_cozinha.attributes.timestamp | timestamp_custom("%H:%M",false)) }}'
         - condition: state
           entity_id: input_boolean.modo_ferias
           state: 'off'
@@ -309,7 +309,7 @@ automation:
             - thu
             - fri
         - condition: template
-          value_template: '{{ (states.input_datetime.time_desliga_cozinha_semana.attributes.timestamp | timestamp_custom("%H:%M")) <= ((as_timestamp (now())) | timestamp_custom("%H:%M")) <= (states.input_datetime.time_desliga_cozinha_semana.attributes.timestamp | timestamp_custom("%H:%M")) }}'
+          value_template: '{{ (states.input_datetime.time_desliga_cozinha_semana.attributes.timestamp | timestamp_custom("%H:%M",false)) <= ((as_timestamp (now())) | timestamp_custom("%H:%M")) <= (states.input_datetime.time_desliga_cozinha_semana.attributes.timestamp | timestamp_custom("%H:%M",false)) }}'
     action:
       - service: script.kitchen_night_lights_off
 
@@ -328,7 +328,7 @@ automation:
             - sat
             - sun
         - condition: template
-          value_template: '{{ (states.input_datetime.time_desliga_cozinha_fds.attributes.timestamp | timestamp_custom("%H:%M")) <= ((as_timestamp (now())) | timestamp_custom("%H:%M")) <= (states.input_datetime.time_desliga_cozinha_fds.attributes.timestamp | timestamp_custom("%H:%M")) }}'
+          value_template: '{{ (states.input_datetime.time_desliga_cozinha_fds.attributes.timestamp | timestamp_custom("%H:%M",false)) <= ((as_timestamp (now())) | timestamp_custom("%H:%M")) <= (states.input_datetime.time_desliga_cozinha_fds.attributes.timestamp | timestamp_custom("%H:%M",false)) }}'
         - condition: state
           entity_id: input_boolean.modo_ferias
           state: 'off'

@@ -93,5 +93,17 @@
       data:
         name: escuro_azul
 
+#### CHANGE LOG LEVEL
+- alias: 'Nivel de Log'
+  initial_state: 'on'  
+  trigger:
+  - entity_id: input_select.log_level
+    platform: state
+  action:
+  - service: logger.set_level
+    data: {}
+    data_template:
+      homeassistant.components: '{{ trigger.to_state.state }}'
+
 
 ####  ####  ####  ####

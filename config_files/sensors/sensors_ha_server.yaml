@@ -36,5 +36,53 @@
   unit_of_measurement: "°C"
   value_template: '{{ (value | multiply(0.001)) | round (1) }}'
 
+#### CHARGER SENSOR
+- platform: command_line
+  name: 'System: number of undervoltage messages'
+  command: "dmesg | grep Under-voltage | wc -l"
+  unit_of_measurement: 'times'
+  scan_interval: 120
+
+- platform: command_line
+  name: 'System: undervoltage status'
+  command: vcgencmd get_throttled
+  scan_interval: 120
+
+- platform: template
+  sensors:
+    check_charger:
+      friendly_name: "System: Charger"
+      value_template: >
+        {% if is_state("sensor.system_undervoltage_status", "throttled=0x0") -%}
+           No throttling detected
+        {% elif regex_match(states("sensor.system_undervoltage_status"), "throttled=0x4", ignorecase=FALSE) -%}
+           Throttling detected {{ states("sensor.system_number_of_undervoltage_messages") }} times 
+        {% elif regex_match(states("sensor.system_undervoltage_status"), "throttled=0x5", ignorecase=FALSE) -%}
+           Throttling detected {{ states("sensor.system_number_of_undervoltage_messages") }} times 
+        {% else %}
+           There is a problem with your power supply or system, state {{ states("sensor.system_undervoltage_status") }} reported
+        {%- endif %}
+
+- platform: command_line
+  name: db_size
+  command: "sudo du -m /var/lib/mysql/hass_db/ | cut -f1"
+  unit_of_measurement: 'MB'
+  value_template: '{{ value | int - 1 }}'
+  #valor em segundos
+  scan_interval : 21600
+  
+- platform: mqtt
+  state_topic: 'ha/size_db'
+  name: 'DB Ontem'
+  unit_of_measurement: 'MB'
+  value_template: '{{ value_json.day_1 }}' 
+  
+- platform: template
+  sensors:
+    db_grow:
+      value_template: '{%- if not (is_state("sensor.db_size","unknown") or is_state("sensor.db_size_yesterday","unknown") )-%}  {{ ((states.sensor.db_size.state | float)) - (states.sensor.db_size_yesterday.state | float) | max (0) | round(1) }} {%- endif -%}'
+      friendly_name: 'DB Hoje'
+      unit_of_measurement: 'MB'
+
 
 ####  ####  ####  ####

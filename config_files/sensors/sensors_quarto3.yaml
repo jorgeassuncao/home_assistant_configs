@@ -4,30 +4,30 @@
 # NAME: Quarto 3
 ################################################################################
 
-#### SONOFF_TH10_3B9B97 (LUZ DE PRESENÇA DO Q3 - PIKE E MIKE)
+#### SONOFF-TH10-3B9B97 (LUZ DE PRESENÇA DO Q3 - PIKE E MIKE)
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_TH10_3B9B97/app"
+  state_topic: "home/indoor/switch/SONOFF-TH10-3B9B97/app"
   name: "Firmware Q3 - Pike e Mike"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_TH10_3B9B97/version"
+  state_topic: "home/indoor/switch/SONOFF-TH10-3B9B97/version"
   name: "Versão Q3 - Pike e Mike"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_TH10_3B9B97/host"
+  state_topic: "home/indoor/switch/SONOFF-TH10-3B9B97/host"
   name: "Hostname Q3 - Pike e Mike"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_TH10_3B9B97/ip"
+  state_topic: "home/indoor/switch/SONOFF-TH10-3B9B97/ip"
   name: "IP Q3 - Pike e Mike"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_TH10_3B9B97/mac"
+  state_topic: "home/indoor/switch/SONOFF-TH10-3B9B97/mac"
   name: "MAC Q3 - Pike e Mike"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_TH10_3B9B97/temperature"
+  state_topic: "home/indoor/switch/SONOFF-TH10-3B9B97/temperature"
   name: "Temperatura Q3 - Pike e Mike"
   unit_of_measurement: °C
   retain: true
   force_update: true
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_TH10_3B9B97/humidity"
+  state_topic: "home/indoor/switch/SONOFF-TH10-3B9B97/humidity"
   name: "Humidade Q3 - Pike e Mike"
   unit_of_measurement: '%'
   retain: true

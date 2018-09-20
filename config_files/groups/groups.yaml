@@ -23,11 +23,12 @@ default_view:
     - sensor.jorge_status
     - sensor.lara_status
     - sensor.bia_status
+    - sensor.bridge_state
     - group.people_status
     - group.grp_main_configs
 #    - group.grp_beacon_teste
     - group.grp_last_notifications
-    - group.porta_da_rua
+    - group.grp_porta_da_rua
 
 #### ELECTRICIDADE
 tab_electricity:
@@ -35,12 +36,16 @@ tab_electricity:
   view: yes
   icon: mdi:flash
   entities:
-    - sensor.energy_volt
-    - sensor.energy_hertz
-    - sensor.energy_amp
-    - sensor.energy_watt
-    - sensor.energy_power_wh
-    - sensor.energy_apparent_power
+    - sensor.tensao_v
+    - sensor.corrente_a
+    - sensor.potencia_w
+    - sensor.potencia_aparente_activa_va
+    - sensor.potencia_aparente_reactiva_var
+    - sensor.factor_de_potencia_pf
+    - sensor.frequencia_hz
+    - sensor.energia_activa_importada
+    - sensor.energia_activa_exportada
+    - sensor.energia_activa_total
     - group.consumos_diarios
     - group.consumos_mensais
     - group.totalizadores
@@ -67,12 +72,25 @@ tab_temperaturas:
   view: yes
   icon: mdi:oil-temperature
   entities:
+    - group.tph_sala
+    - group.tph_cozinha
+    - group.tph_corredor
     - group.th_q1_biachaty
     - group.th_q2_rafa
     - group.th_q3_pikemike
-    - group.th_wc1
     - history_graph.temperatura_interior
     - history_graph.humidade_interior
+    - group.th_wc1
+
+#### SEGURANÇA
+tab_seguranca:
+  name: Segurança
+  view: yes
+  icon: mdi:security-home
+  entities:
+    - group.grp_porta_da_rua
+    - group.grp_motion_sensors
+    - group.grp_sensor_tamper
 
 #### METEO
 tab_meteo:
@@ -80,11 +98,20 @@ tab_meteo:
   view: yes
   icon: mdi:cloud
   entities:
+    - weather.lisboa__jardim_botanico
     - group.grp_meteo
     - camera.satelite
     - camera.satelite_ir
     - group.grp_thp_min_med_max_casa
     - group.grp_thp_min_med_max_rua
+
+#### BATERIAS
+tab_battery:
+  name: Baterias
+  view: yes
+  icon: mdi:battery-50
+  entities:
+    - group.battery_thp_sensors
 
 #### MULTIMÉDIA
 tab_multimedia:
@@ -92,10 +119,20 @@ tab_multimedia:
   view: yes
   icon: mdi:television-classic
   entities:
-    - group.tvs
+    - group.grp_spotify_player
+    - group.grp_spotify_controls
     - group.boxs
-    - group.spotify
+    - group.tvs
     - group.kodi
+
+#### OCTOPRINT
+tab_octoprint:
+  name: Octoprint
+  view: yes
+  icon: mdi:printer-3d
+  entities:
+    - group.grp_octoprint
+    - camera.octocam
 
 #### RADIO
 tab_radio:
@@ -124,6 +161,7 @@ tab_rede_interna:
   entities:
     - group.grp_pessoas
     - group.grp_ha_server
+    - group.grp_database
     - group.grp_servidores
     - group.grp_computadores
     - group.grp_tablets
@@ -141,6 +179,7 @@ tab_automations:
   view: yes
   icon: mdi:home-automation
   entities:
+    - group.grp_zigbee
     - group.temporizador_lp_quartos
     - group.actions_lp_quartos
     - group.temporizador_lp_cozinha

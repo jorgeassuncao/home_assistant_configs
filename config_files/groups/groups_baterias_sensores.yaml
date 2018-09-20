@@ -1,0 +1,16 @@
+################################################################################
+# TYPE: Group
+# FILENAME: groups_baterias_sensores.yaml
+# NAME: Baterias
+################################################################################
+
+#### SALA
+battery_thp_sensors:
+  name: Sensores THP
+  entities:
+    - sensor.thp_sala
+    - sensor.thp_cozinha
+    - sensor.thp_corredor
+
+
+####  ####  ####  ####

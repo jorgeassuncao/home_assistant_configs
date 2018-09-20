@@ -12,6 +12,7 @@ grp_main_configs:
   entities:
     - input_boolean.modo_ferias
     - input_boolean.admin_mode
+    - input_select.log_level
     - input_boolean.notification_html5
     - input_boolean.notification_telegram
     - input_boolean.notification_zanzito_jorge

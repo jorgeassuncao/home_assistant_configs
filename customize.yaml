@@ -131,6 +131,39 @@ sensor.ip_q1__biachaty:
 sensor.mac_q1__biachaty:
   friendly_name: 'MAC'
   icon: mdi:network
+sensor.temperatura_sala:
+  friendly_name: 'Temp. Sala'
+  show_last_changed: true
+sensor.humidade_sala:
+  friendly_name: 'Hum. Sala'
+  show_last_changed: true
+  icon: mdi:water-percent
+sensor.pressao_sala:
+  friendly_name: 'Press. Sala'
+  show_last_changed: true
+
+sensor.temperatura_cozinha:
+  friendly_name: 'Temp. Cozinha'
+  show_last_changed: true
+sensor.humidade_cozinha:
+  friendly_name: 'Hum. Cozinha'
+  show_last_changed: true
+  icon: mdi:water-percent
+sensor.pressao_cozinha:
+  friendly_name: 'Press. Cozinha'
+  show_last_changed: true
+
+sensor.temperatura_corredor:
+  friendly_name: 'Temp. Corredor'
+  show_last_changed: true
+sensor.humidade_corredor:
+  friendly_name: 'Hum. Corredor'
+  show_last_changed: true
+  icon: mdi:water-percent
+sensor.pressao_corredor:
+  friendly_name: 'Press. Corredor'
+  show_last_changed: true
+  
 sensor.temperatura_q1__biachaty:
   friendly_name: 'Temp. Q1'
   show_last_changed: true

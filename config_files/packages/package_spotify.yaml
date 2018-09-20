@@ -1,0 +1,319 @@
+################################################################################
+# TYPE: Package
+# FILENAME: package_spotify.yaml
+# NAME: Spotify
+################################################################################
+
+#### website
+
+################################################################################
+#### SCRIPTS
+################################################################################
+
+script:
+
+#### 
+  spotify_music:
+    alias: "Play selected spotify playlist"
+    sequence:
+      - service: media_player.select_source
+        data_template: 
+          entity_id: media_player.spotify
+          source: >
+            {% if is_state("input_select.spotify_source", "Servidor") %} Kodi Servidor
+            {% elif is_state("input_select.spotify_source", "Sala") %} Kodi Sala
+            {% elif is_state("input_select.spotify_source", "Earth") %} EARTH
+            {% elif is_state("input_select.spotify_source", "Galaxy S8+") %} Galaxy S8+
+            {% elif is_state("input_select.spotify_source", "Web Player - Chrome") %} Web Player (Chrome)
+            {% elif is_state("input_select.spotify_source", "TV Sala") %} TV Sala
+            {% endif %}
+      - service: media_player.play_media
+        data_template:
+          entity_id: media_player.spotify
+          media_content_type: playlist
+          media_content_id: >
+            {% if is_state("input_select.spotify_playlist", "Heavy Metal") %} spotify:user:j.assuncao:playlist:6W19uLXw9i2AETST8tdt3N
+            {% elif is_state("input_select.spotify_playlist", "Rock Tuga") %} spotify:user:j.assuncao:playlist:0UiFSd76iYrPh0TPL5rEQC
+            {% endif %}
+
+
+################################################################################
+## SHELL COMMAND
+################################################################################
+
+#shell_command: 
+
+#### 
+
+
+
+################################################################################
+#### AUTOMATIONS
+################################################################################
+
+automation:
+
+#### VOLUME SET
+  - alias: 'Spotify Volume (Set)'
+    trigger:
+      platform: state
+      entity_id: input_number.spotify_volume
+    action:
+      service: media_player.volume_set
+      data_template:
+        entity_id: media_player.spotify
+        volume_level: '{{  states.input_number.spotify_volume.state | int / 100  }}'
+
+#### VOLUME SYNC
+  - alias: 'Spotify Volume (Sync)'
+    trigger:
+      - platform: homeassistant
+        event: start
+      - platform: state
+        entity_id: sensor.spotify_volume
+    action:
+      - delay:
+          seconds: 5
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.spotify_volume
+          value: '{{ states.sensor.spotify_volume.state | float | round(2) * 100 }}'
+
+#### SHUFFLE SET
+  - alias: 'Spotify Shuffle (Set)'
+    trigger:
+      platform: state
+      entity_id: input_boolean.spotify_shuffle
+    action:
+      service: media_player.shuffle_set
+      data_template:
+        entity_id: media_player.spotify
+        shuffle: >
+          {% if is_state('input_boolean.spotify_shuffle', 'off') %} 
+          false
+          {% elif is_state('input_boolean.spotify_shuffle', 'on') %}
+          true
+          {% endif %}
+
+#### SHUFFLE SYNC
+  - alias: 'Spotify Shuffle (Sync)'
+    trigger:
+      - platform: homeassistant
+        event: start
+      - platform: state
+        entity_id: sensor.spotify_shuffle
+    action:
+      - delay:
+          seconds: 5
+      - service_template: >
+          {% if states.sensor.spotify_shuffle.state == 'False' %}
+            input_boolean.turn_off
+          {% else %}
+            input_boolean.turn_on
+          {% endif %}
+        data:
+          entity_id: input_boolean.spotify_shuffle
+
+#### SOURCE SYNC
+  - alias: 'Spotify Source (Sync)'
+    trigger:
+      - platform: homeassistant
+        event: start
+      - platform: state
+        entity_id: sensor.spotify_source
+    action:
+      service: input_select.select_option
+      entity_id: input_select.spotify_source
+      data_template:
+        option: '{{ states.sensor.spotify_source.state }}'
+
+
+################################################################################
+## INPUT TEXT
+################################################################################
+
+#input_text:
+
+#### 
+
+
+
+################################################################################
+#### INPUT SELECT
+################################################################################
+
+input_select:
+
+#### PLAYLIST
+  spotify_playlist:
+    name: 'Playlist:'
+    options:
+      - Heavy Metal
+      - Rock Tuga
+    icon: mdi:spotify
+
+#### ZONA
+  spotify_source:
+    name: 'Zona:'
+    options:
+      - Servidor
+      - Sala
+      - Earth
+      - Galaxy S8+
+      - Web Player - Chrome
+      - TV Sala
+    initial: Servidor
+    icon: mdi:speaker-wireless
+
+
+################################################################################
+#### INPUT BOOLEANS
+################################################################################
+
+input_boolean:
+
+#### SHUFFLE
+  spotify_shuffle:
+    name: Shuffle
+    icon: mdi:shuffle-variant
+
+
+################################################################################
+#### INPUT NUMBER
+################################################################################
+
+input_number:
+
+#### VOLUME
+  spotify_volume:
+    name: Volume
+    icon: mdi:volume-high
+    min: 0
+    max: 100
+    step: 1
+
+
+################################################################################
+#### INPUT DATE TIME
+################################################################################
+
+#input_datetime:
+
+#### 
+
+
+
+################################################################################
+#### REST COMMANDS
+################################################################################
+
+#rest_command:
+
+#### 
+
+
+
+################################################################################
+#### SENSORS
+################################################################################
+
+sensor:
+
+#### 
+
+
+
+################################################################################
+#### SENSOR TEMPLATES
+################################################################################
+
+#### VOLUME
+  - platform: template
+    sensors:
+      spotify_volume:
+        friendly_name: "Spotify Volume"
+        value_template: "{{ states.media_player.spotify.attributes.volume_level }}"
+
+#### SHUFFLE
+  - platform: template
+    sensors:
+      spotify_shuffle:
+        friendly_name: "Spotify Shuffle"
+        value_template: "{{ states.media_player.spotify.attributes.shuffle }}"
+
+#### SOURCE
+  - platform: template
+    sensors:
+      spotify_source:
+        friendly_name: "Spotify Source"
+        value_template: "{{ states.media_player.spotify.attributes.source }}"
+
+
+################################################################################
+## BINARY SENSORS
+################################################################################
+
+#binary_sensor:
+
+#### 
+
+
+
+################################################################################
+## SWITCHES
+################################################################################
+
+#switch:
+
+#### 
+
+
+################################################################################
+## ALERTS
+################################################################################
+
+#alert:
+
+#### 
+
+
+
+################################################################################
+#### GROUPS
+################################################################################
+
+group:
+
+#### SPOTIFY PLAYER
+  grp_spotify_player:
+    name: Spotify Player
+    entities:
+      - media_player.spotify
+
+#### SPOTIFY CONTROLS
+  grp_spotify_controls:
+    name: Spotify Controls
+    control: hidden
+    entities:
+      - input_select.spotify_playlist
+      - input_select.spotify_source
+      - script.spotify_music
+      - input_number.spotify_volume
+      - input_boolean.spotify_shuffle
+
+
+################################################################################
+#### CUSTOMIZE
+################################################################################
+
+homeassistant:
+
+  customize:
+
+#### 
+    script.spotify_music:
+      friendly_name: 'Play'
+      icon: mdi:play
+
+
+####  ####  ####  ####

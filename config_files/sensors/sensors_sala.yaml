@@ -8,39 +8,75 @@
 
 #### Sensores - 
 
-#### SONOFF_BASIC_B440BD (LUZ DE FUNDO (TV))
+#### SONOFF-BASIC-B440BD (LUZ DE FUNDO (TV))
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_BASIC_B440BD/app"
+  state_topic: "home/indoor/switch/SONOFF-BASIC-B440BD/app"
   name: "Firmware Luz de Fundo TV"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_BASIC_B440BD/version"
+  state_topic: "home/indoor/switch/SONOFF-BASIC-B440BD/version"
   name: "Versão Luz de Fundo TV"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_BASIC_B440BD/host"
+  state_topic: "home/indoor/switch/SONOFF-BASIC-B440BD/host"
   name: "Hostname Luz de Fundo TV"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_BASIC_B440BD/ip"
+  state_topic: "home/indoor/switch/SONOFF-BASIC-B440BD/ip"
   name: "IP Luz de Fundo TV"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_BASIC_B440BD/mac"
+  state_topic: "home/indoor/switch/SONOFF-BASIC-B440BD/mac"
   name: "MAC Luz de Fundo TV"
 
-#### SONOFF_BASIC_B43323 (CANDEEIRO DE PÉ)
+#### SONOFF-BASIC-B43323 (CANDEEIRO DE PÉ)
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_BASIC_B43323/app"
+  state_topic: "home/indoor/switch/SONOFF-BASIC-B43323/app"
   name: "Firmware Candeeiro de Pé"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_BASIC_B43323/version"
+  state_topic: "home/indoor/switch/SONOFF-BASIC-B43323/version"
   name: "Versão Candeeiro de Pé"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_BASIC_B43323/host"
+  state_topic: "home/indoor/switch/SONOFF-BASIC-B43323/host"
   name: "Hostname Candeeiro de Pé"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_BASIC_B43323/ip"
+  state_topic: "home/indoor/switch/SONOFF-BASIC-B43323/ip"
   name: "IP Candeeiro de Pé"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_BASIC_B43323/mac"
+  state_topic: "home/indoor/switch/SONOFF-BASIC-B43323/mac"
   name: "MAC Candeeiro de Pé"
+
+#### 
+- platform: "mqtt"
+  name: "Temperatura Sala"
+  state_topic: "zigbee2mqtt/xiaomi_tph_sala"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "°C"
+  icon: "mdi:thermometer"
+  value_template: "{{ value_json.temperature }}"
+
+#### 
+- platform: "mqtt"
+  name: "Humidade Sala"
+  state_topic: "zigbee2mqtt/xiaomi_tph_sala"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  icon: "mdi:water-percent"
+  value_template: "{{ value_json.humidity }}"
+
+#### 
+- platform: "mqtt"
+  name: "Pressão Sala"
+  state_topic: "zigbee2mqtt/xiaomi_tph_sala"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "Pa"
+  icon: "mdi:speedometer"
+  value_template: "{{ value_json.pressure }}"
+
+#### 
+- platform: "mqtt"
+  name: "THP Sala"
+  state_topic: "zigbee2mqtt/xiaomi_tph_sala"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  icon: "mdi:battery-charging-wireless-50"
+  value_template: "{{ value_json.battery }}"
 
 
 ####  ####  ####  ####

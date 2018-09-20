@@ -4,30 +4,30 @@
 # NAME: Quarto 1
 ################################################################################
 
-#### SONOFF_TH16_3C3169 (LUZ DE PRESENÇA DO Q1 - BIA/CHATY)
+#### SONOFF-TH16-3C3169 (LUZ DE PRESENÇA DO Q1 - BIA/CHATY)
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_TH16_3C3169/app"
+  state_topic: "home/indoor/switch/SONOFF-TH16-3C3169/app"
   name: "Firmware Q1 - Bia/Chaty"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_TH16_3C3169/version"
+  state_topic: "home/indoor/switch/SONOFF-TH16-3C3169/version"
   name: "Versão Q1 - Bia/Chaty"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_TH16_3C3169/host"
+  state_topic: "home/indoor/switch/SONOFF-TH16-3C3169/host"
   name: "Hostname Q1 - Bia/Chaty"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_TH16_3C3169/ip"
+  state_topic: "home/indoor/switch/SONOFF-TH16-3C3169/ip"
   name: "IP Q1 - Bia/Chaty"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_TH16_3C3169/mac"
+  state_topic: "home/indoor/switch/SONOFF-TH16-3C3169/mac"
   name: "MAC Q1 - Bia/Chaty"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_TH16_3C3169/temperature"
+  state_topic: "home/indoor/switch/SONOFF-TH16-3C3169/temperature"
   name: "Temperatura Q1 - Bia/Chaty"
   unit_of_measurement: °C
   retain: true
   force_update: true
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_TH16_3C3169/humidity"
+  state_topic: "home/indoor/switch/SONOFF-TH16-3C3169/humidity"
   name: "Humidade Q1 - Bia/Chaty"
   unit_of_measurement: '%'
   retain: true

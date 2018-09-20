@@ -7,8 +7,8 @@
 #### Switch WC1 - Extractor
 - platform: mqtt
   name: "Extractor WC1"
-  state_topic: "home/indoor/switch/SONOFF_TH10_3B963B/relay/0"
-  command_topic: "home/indoor/switch/SONOFF_TH10_3B963B/relay/0/set"
+  state_topic: "home/indoor/switch/SONOFF-TH10-3B963B/relay/0"
+  command_topic: "home/indoor/switch/SONOFF-TH10-3B963B/relay/0/set"
   qos: 1
   payload_on: 1
   payload_off: 0
@@ -17,12 +17,15 @@
 
 
 #### Switch Arvore de Natal
-- platform: mqtt
-  name: "Arvore de Natal"
-  state_topic: "home/indoor/switch/SONOFF_BASIC_4285EC/relay/0"
-  command_topic: "home/indoor/switch/SONOFF_BASIC_4285EC/relay/0/set"
-  qos: 1
-  payload_on: 1
-  payload_off: 0
-  optimistic: false
-  retain: true
+#- platform: mqtt
+#  name: "Arvore de Natal"
+#  state_topic: "home/indoor/switch/SONOFF_BASIC_4285EC/relay/0"
+#  command_topic: "home/indoor/switch/SONOFF_BASIC_4285EC/relay/0/set"
+#  qos: 1
+#  payload_on: 1
+#  payload_off: 0
+#  optimistic: false
+#  retain: true
+
+
+####  ####  ####  ####

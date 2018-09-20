@@ -12,8 +12,8 @@ global_parameters:
 
 layout:
     - clock(2x1), jmra_presence, lslma_presence, bama_presence, panel_label (3x1)
-    - temp_q1, hum_q1, spacer, temp_wc1, hum_wc1, spacer, spacer, spacer
-    - temp_q2, hum_q2, spacer, spacer, spacer, spacer, spacer, spacer
+    - temp_q1, hum_q1, spacer, temp_sala, hum_sala, spacer, temp_wc1, hum_wc1
+    - temp_q2, hum_q2, spacer, spacer, spacer, press_sala, spacer, spacer
     - temp_q3, hum_q3, spacer, temp_out, hum_out, spacer, temp_in, hum_in
     - include: TemplateNavigation
 
@@ -55,6 +55,24 @@ panel_label:
   value_style: "margin-top: -10px;"
 
 ####
+
+temp_sala:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.temperatura_sala
+  title: Temperatura Sala
+
+hum_sala:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.humidade_sala
+  title: Humidade Sala
+
+press_sala:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.pressao_sala
+  title: Pressão Sala
 
 temp_q1:
   widget_type: sensor

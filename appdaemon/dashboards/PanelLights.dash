@@ -12,9 +12,9 @@ global_parameters:
 
 layout:
     - clock(2x1), jmra_presence, lslma_presence, bama_presence, panel_label (3x1)
-    - spacer, lp_cozinha_bancada, action_lp_cozinha_on, spacer, spacer, spacer, lp_quarto_1, action_lp_quartos_on
-    - lp_tv_sala, lp_cozinha_mesa, action_lp_cozinha_nm_on, spacer, lp_corredor, spacer, lp_quarto_2, action_lp_quartos_off
-    - lp_candeeiro_pe_sala, spacer, action_lp_cozinha_off, spacer, vent_wc1, spacer, lp_quarto_3, candeeiro_quarto_3
+    - luz_rua, spacer, lp_cozinha_bancada, action_lp_cozinha_on, spacer, spacer, lp_quarto_1, action_lp_quartos_on
+    - candeeiro_hall_entrada, lp_tv_sala, lp_cozinha_mesa, action_lp_cozinha_nm_on, spacer, spacer, lp_quarto_2, action_lp_quartos_off
+    - lp_corredor, lp_candeeiro_pe_sala, spacer, action_lp_cozinha_off, vent_wc1, spacer, lp_quarto_3, candeeiro_quarto_3
     - include: TemplateNavigation
 
 clock:
@@ -55,6 +55,30 @@ panel_label:
   value_style: "margin-top: -10px;"
 
 ####
+
+luz_rua:
+  widget_type: switch
+  widget_style: "border-radius: 6px;"
+  entity: light.luz_da_rua
+  title: Luz Rua
+  state_text: 1
+  state_map:
+    "on": LIGADA
+    "off": DESLIGADA
+  icon_on: mdi-lightbulb-on
+  icon_off: mdi-lightbulb
+
+candeeiro_hall_entrada:
+  widget_type: switch
+  widget_style: "border-radius: 6px;"
+  entity: light.candeeiro_de_tecto_da_entrada
+  title: Luz Entrada
+  state_text: 1
+  state_map:
+    "on": LIGADA
+    "off": DESLIGADA
+  icon_on: mdi-lightbulb-on
+  icon_off: mdi-lightbulb
 
 slider:
   widget_type: new_input_slider

@@ -167,8 +167,7 @@ group:
   cameras:
     name: Cameras
     entities:
-      - camera.porta_da_rua
-      - camera.hall_de_entrada
+      - camera.homecam01_porta_rua
       - camera.quarto_3
     
 #### HIDDEN CAMERAS

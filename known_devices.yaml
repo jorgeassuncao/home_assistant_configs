@@ -556,3 +556,155 @@ c8f7330a2bc0:
   picture:
   track: true
   vendor: Intel Corporate
+
+788a20268abe:
+  hide_if_away: false
+  icon:
+  mac: 78:8A:20:26:8A:BE
+  name: 788a20268abe
+  picture:
+  track: true
+
+40d28a32d64c:
+  hide_if_away: false
+  icon:
+  mac: 40:D2:8A:32:D6:4C
+  name: 40d28a32d64c
+  picture:
+  track: true
+
+9c2ea108b913:
+  hide_if_away: false
+  icon:
+  mac: 9C:2E:A1:08:B9:13
+  name: 9c2ea108b913
+  picture:
+  track: true
+
+fcc73438a2a3:
+  hide_if_away: false
+  icon:
+  mac: FC:C7:34:38:A2:A3
+  name: fcc73438a2a3
+  picture:
+  track: true
+
+5c77763265d5:
+  hide_if_away: false
+  icon:
+  mac: 5C:77:76:32:65:D5
+  name: 5c77763265d5
+  picture:
+  track: true
+
+5ccf7f1c9249:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:1C:92:49
+  name: 5ccf7f1c9249
+  picture:
+  track: true
+
+5ccf7f6e27f3:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:6E:27:F3
+  name: 5ccf7f6e27f3
+  picture:
+  track: true
+
+843497176b9a:
+  hide_if_away: false
+  icon:
+  mac: 84:34:97:17:6B:9A
+  name: 843497176b9a
+  picture:
+  track: true
+
+a89fecfae5d3:
+  hide_if_away: false
+  icon:
+  mac: A8:9F:EC:FA:E5:D3
+  name: a89fecfae5d3
+  picture:
+  track: true
+
+f40e833e57cf:
+  hide_if_away: false
+  icon:
+  mac: F4:0E:83:3E:57:CF
+  name: f40e833e57cf
+  picture:
+  track: true
+
+80b23403ca03:
+  hide_if_away: false
+  icon:
+  mac: 80:B2:34:03:CA:03
+  name: 80b23403ca03
+  picture:
+  track: true
+
+5ccf7f53c25c:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:53:C2:5C
+  name: 5ccf7f53c25c
+  picture:
+  track: true
+
+dc4f22ca8be8:
+  hide_if_away: false
+  icon:
+  mac: DC:4F:22:CA:8B:E8
+  name: dc4f22ca8be8
+  picture:
+  track: true
+
+d8a01d6358d0:
+  hide_if_away: false
+  icon:
+  mac: D8:A0:1D:63:58:D0
+  name: d8a01d6358d0
+  picture:
+  track: true
+
+b827ebfd85b2:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:FD:85:B2
+  name: b827ebfd85b2
+  picture:
+  track: true
+
+dc4f22c72aea:
+  hide_if_away: false
+  icon:
+  mac: DC:4F:22:C7:2A:EA
+  name: dc4f22c72aea
+  picture:
+  track: true
+
+60019451b59f:
+  hide_if_away: false
+  icon:
+  mac: 60:01:94:51:B5:9F
+  name: 60019451b59f
+  picture:
+  track: true
+
+b827eb5a9b55:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:5A:9B:55
+  name: b827eb5a9b55
+  picture:
+  track: true
+
+dc4f224bdba9:
+  hide_if_away: false
+  icon:
+  mac: DC:4F:22:4B:DB:A9
+  name: dc4f224bdba9
+  picture:
+  track: true

@@ -14,6 +14,20 @@ hass_template:
   initial: escuro_azul
   icon: mdi:theme-light-dark
 
+#### NIVEL DE LOG
+log_level:
+ name: Log Level
+ options:
+  - critical
+  - fatal
+  - error
+  - warning
+  - warn
+  - info
+  - debug
+  - notset
+ initial: error
+
 #### Novos Estados de presença - Jorge
 jorge_status_dropdown:
   name: Jorge

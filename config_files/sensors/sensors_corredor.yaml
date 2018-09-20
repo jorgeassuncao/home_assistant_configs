@@ -4,22 +4,55 @@
 # NAME: Corredor
 ################################################################################
 
-#### SONOFF_BASIC_B43740 (LUZ DE PRESENÇA CORREDOR (ESTRELAS))
+#### SONOFF-BASIC-B43740 (LUZ DE PRESENÇA CORREDOR (ESTRELAS))
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_BASIC_B43740/app"
+  state_topic: "home/indoor/switch/SONOFF-BASIC-B43740/app"
   name: "Firmware Corredor - Estrelas"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_BASIC_B43740/version"
+  state_topic: "home/indoor/switch/SONOFF-BASIC-B43740/version"
   name: "Versão Corredor - Estrelas"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_BASIC_B43740/host"
+  state_topic: "home/indoor/switch/SONOFF-BASIC-B43740/host"
   name: "Hostname Corredor - Estrelas"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_BASIC_B43740/ip"
+  state_topic: "home/indoor/switch/SONOFF-BASIC-B43740/ip"
   name: "IP Corredor - Estrelas"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_BASIC_B43740/mac"
+  state_topic: "home/indoor/switch/SONOFF-BASIC-B43740/mac"
   name: "MAC Corredor - Estrelas"
+
+#### TPH Corredor
+- platform: "mqtt"
+  name: "Temperatura Corredor"
+  state_topic: "zigbee2mqtt/xiaomi_tph_corredor"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "°C"
+  icon: "mdi:thermometer"
+  value_template: "{{ value_json.temperature }}"
+  
+- platform: "mqtt"
+  name: "Humidade Corredor"
+  state_topic: "zigbee2mqtt/xiaomi_tph_corredor"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  icon: "mdi:water-percent"
+  value_template: "{{ value_json.humidity }}"
+
+- platform: "mqtt"
+  name: "Pressão Corredor"
+  state_topic: "zigbee2mqtt/xiaomi_tph_corredor"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "Pa"
+  icon: "mdi:speedometer"
+  value_template: "{{ value_json.pressure }}"
+
+- platform: "mqtt"
+  name: "THP Corredor"
+  state_topic: "zigbee2mqtt/xiaomi_tph_corredor"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  icon: "mdi:battery-charging-wireless-50"
+  value_template: "{{ value_json.battery }}"
 
 
 ####  ####  ####  ####

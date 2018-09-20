@@ -7,7 +7,7 @@
 ## KIOSK ENTRADA
 - platform: fully_kiosk
   name: Kiosk Entrada
-  host: 192.168.1.120
+  host: 192.168.1.222
   password: !secret fully_display_entrada_password
 
 

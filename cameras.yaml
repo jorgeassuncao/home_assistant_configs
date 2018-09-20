@@ -23,25 +23,20 @@
   still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.bama.attributes.latitude }},{{ states.device_tracker.bama.attributes.longitude }}&zoom=16&size=500x500&maptype=roadmap&markers=color:purple%7Clabel:BA%7C{{ states.device_tracker.bama.attributes.latitude }},{{ states.device_tracker.bama.attributes.longitude }}
   limit_refetch_to_url_change: true
 
-#### Motion Eye snapshot URLs
-- platform: generic
-  name: Hall de Entrada
-  still_image_url: !secret cam_hall_entrada
-
 #### IPcam VLC stream
 - platform: generic
-  name: Quarto 3
-  still_image_url: !secret cam_quarto_3
+  name: HomeCAM01 (Porta Rua)
+  still_image_url: !secret cam_hall_entrada
 
 #### Entrada
 - platform: generic
   name: Kiosk Entrada
   still_image_url: !secret cam_kiosk_entrada
 
-#### LOCAL USB CAM
-- platform: local_file
-  name: Porta da Rua
-  file_path: /share/motion/lastsnap.jpg
+#### OCTOPRINT
+- platform: mjpeg
+  name: OctoCam
+  mjpeg_url: !secret octoprint_cam_url
 
 #### SATELITE
 - platform: generic

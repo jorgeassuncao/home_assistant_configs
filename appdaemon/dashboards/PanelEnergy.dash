@@ -12,9 +12,9 @@ global_parameters:
 
 layout:
     - clock(2x1), jmra_presence, lslma_presence, bama_presence, panel_label (3x1)
-    - energy_volt(2x1), spacer, energy_watt(2x1), spacer, energy_daily_total_kwh(2x1)
-    - energy_hertz(2x1), spacer, energy_wh(2x1), spacer, energy_monthly_total_kwh(2x1)
-    - energy_amp(2x1), spacer, energy_app_power(2x1), spacer, energy_total_kwh(2x1)
+    - energy_volt(2x1), energy_watt(2x1), energy_pf(2x1), energy_daily_total_kwh(2x1)
+    - energy_hertz(2x1), energy_act_app_power(2x1), energy_act_imp(2x1), energy_monthly_total_kwh(2x1)
+    - energy_amp(2x1), energy_react_app_power(2x1), energy_act_exp(2x1), energy_total_kwh(2x1)
     - include: TemplateNavigation
 
 clock:
@@ -59,38 +59,62 @@ panel_label:
 energy_volt:
   widget_type: sensor
   widget_style: "border-radius: 6px;"
-  entity: sensor.energy_volt
+  entity: sensor.tensao_v
   title: Tensão
 
 energy_hertz:
   widget_type: sensor
   widget_style: "border-radius: 6px;"
-  entity: sensor.energy_hertz
+  entity: sensor.frequencia_hz
   title: Frequência
 
 energy_amp:
   widget_type: sensor
   widget_style: "border-radius: 6px;"
-  entity: sensor.energy_amp
+  entity: sensor.corrente_a
   title: Corrente
 
 energy_watt:
   widget_type: sensor
   widget_style: "border-radius: 6px;"
-  entity: sensor.energy_watt
+  entity: sensor.potencia_w
   title: Potência
 
-energy_wh:
+energy_pf:
   widget_type: sensor
   widget_style: "border-radius: 6px;"
-  entity: sensor.energy_power_wh
-  title: Consumo
+  entity: sensor.factor_de_potencia_pf
+  title: Factor de Potência
 
 energy_app_power:
   widget_type: sensor
   widget_style: "border-radius: 6px;"
   entity: sensor.energy_apparent_power
   title: Potência Aparente
+
+energy_act_app_power:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.potencia_aparente_activa_va
+  title: Potência Aparente Activa
+
+energy_react_app_power:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.potencia_aparente_reactiva_var
+  title: Potência Aparente Reactiva
+
+energy_act_imp:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.energia_activa_importada
+  title: Energia Activa Importada
+
+energy_act_exp:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.energia_activa_exportada
+  title: Energia Activa Exportada
 
 energy_daily_total_kwh:
   widget_type: sensor

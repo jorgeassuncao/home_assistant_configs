@@ -25,6 +25,8 @@ corredor:
   name: Corredor
   control: hidden
   entities:
+    - light.luz_da_rua
+    - light.candeeiro_de_tecto_da_entrada
     - light.luz_de_presenca_corredor_estrelas
 
 

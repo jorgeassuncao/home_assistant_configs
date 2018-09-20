@@ -1,0 +1,300 @@
+################################################################################
+# TYPE: Package
+# FILENAME: package_.yaml
+# NAME: ??
+################################################################################
+
+#### website
+
+################################################################################
+#### SCRIPTS
+################################################################################
+
+#script:
+
+#### 
+
+
+
+################################################################################
+## SHELL COMMAND
+################################################################################
+
+#shell_command: 
+
+#### 
+
+
+
+################################################################################
+#### AUTOMATIONS
+################################################################################
+
+#automation:
+
+#### 
+
+
+
+################################################################################
+## INPUT TEXT
+################################################################################
+
+#input_text:
+
+#### 
+
+
+
+################################################################################
+#### INPUT SELECT
+################################################################################
+
+#input_select:
+
+#### 
+
+
+
+################################################################################
+#### INPUT BOOLEANS
+################################################################################
+
+#input_boolean:
+
+#### 
+
+
+
+################################################################################
+#### INPUT NUMBER (OLD INPUT_SLIDER)
+################################################################################
+
+#input_number:
+
+#### 
+
+
+################################################################################
+#### INPUT DATE TIME
+################################################################################
+
+#input_datetime:
+
+#### 
+
+
+
+################################################################################
+#### REST COMMANDS
+################################################################################
+
+#rest_command:
+
+#### 
+
+
+
+################################################################################
+#### SENSORS
+################################################################################
+
+sensor:
+
+#### 
+  - name: 3D Printer Corrente
+    platform: mqtt
+    state_topic: home/indoor/switch/SONOFF-POW-B45548/current
+    unit_of_measurement: A
+#### 
+  - name: 3D Printer Tensão
+    platform: mqtt
+    state_topic: home/indoor/switch/SONOFF-POW-B45548/voltage
+    unit_of_measurement: V
+#### 
+  - name: 3D Printer Potência
+    platform: mqtt
+    state_topic: home/indoor/switch/SONOFF-POW-B45548/power
+    unit_of_measurement: W
+#### 
+  - name: 3D Printer Potência Reactiva
+    platform: mqtt
+    state_topic: home/indoor/switch/SONOFF-POW-B45548/reactive
+    unit_of_measurement: W
+#### 
+  - name: 3D Printer Potência Aparente
+    platform: mqtt
+    state_topic: home/indoor/switch/SONOFF-POW-B45548/apparent
+    unit_of_measurement: W
+#### 
+  - name: 3D Printer Factor de Potência
+    platform: mqtt
+    state_topic: home/indoor/switch/SONOFF-POW-B45548/factor
+    unit_of_measurement: "%"
+#### 
+  - name: 3D Printer Energia Total
+    platform: mqtt
+    state_topic: home/indoor/switch/SONOFF-POW-B45548/energy
+    unit_of_measurement: kWh
+#### 
+  - platform: octoprint
+    name: 3D Printer
+    monitored_conditions:
+      - Current State
+      - Temperatures
+      - Job Percentage
+####
+  - platform: "mqtt"
+    name: "3D Printer Remote Address"
+    state_topic: "octoprint/event/ClientOpened"
+    icon: "mdi:ip-network"
+    value_template: "{{ value_json.remoteAddress }}"
+####
+  - platform: "mqtt"
+    name: "3D Printer Port"
+    state_topic: "octoprint/event/Connected"
+    icon: "mdi:arrow-decision"
+    value_template: "{{ value_json.port }}"
+####
+  - platform: "mqtt"
+    name: "3D Printer Baudrate"
+    state_topic: "octoprint/event/Connected"
+    icon: "mdi:speedometer"
+    value_template: "{{ value_json.baudrate }}"
+####
+  - platform: "mqtt"
+    name: "3D Printer Filename"
+    state_topic: "octoprint/event/PrintStarted"
+    icon: "mdi:file-xml"
+    value_template: "{{ value_json.filename }}"
+
+
+
+################################################################################
+#### SENSOR TEMPLATES
+################################################################################
+
+####
+
+
+
+################################################################################
+## BINARY SENSORS
+################################################################################
+
+#binary_sensor:
+
+#### 
+
+
+
+################################################################################
+## SWITCHES
+################################################################################
+
+switch:
+
+#### 
+  - name: Anet A8
+    platform: mqtt
+    state_topic: home/indoor/switch/SONOFF-POW-B45548/relay/0
+    command_topic: home/indoor/switch/SONOFF-POW-B45548/relay/0/set
+    payload_on: 1
+    payload_off: 0
+    availability_topic: home/indoor/switch/SONOFF-POW-B45548/status
+    payload_available: 1
+    payload_not_available: 0
+
+################################################################################
+## ALERTS
+################################################################################
+
+#alert:
+
+#### 
+
+
+
+################################################################################
+#### GROUPS
+################################################################################
+
+group:
+
+#### REDE INTERNA
+  grp_octoprint:
+    name: Octoprint
+    control: hidden
+    icon: mdi:printer-3d
+    entities:
+      - switch.anet_a8
+      - sensor.3d_printer_remote_address
+      - sensor.3d_printer_port
+      - sensor.3d_printer_baudrate
+      - sensor.3d_printer_filename
+      - sensor.3d_printer_current_state
+      - sensor.3d_printer_job_percentage
+      - sensor.3d_printer_actual_tool0_temp
+      - sensor.3d_printer_target_tool0_temp
+      - sensor.3d_printer_actual_bed_temp
+      - sensor.3d_printer_target_bed_temp
+      - sensor.3d_printer_corrente
+      - sensor.3d_printer_tensao
+      - sensor.3d_printer_factor_de_potencia
+      - sensor.3d_printer_potencia_reactiva
+      - sensor.3d_printer_potencia_aparente
+      - sensor.3d_printer_energia_total
+
+
+################################################################################
+#### CUSTOMIZE
+################################################################################
+
+homeassistant:
+
+  customize:
+
+#### 
+    sensor.3d_printer_remote_address:
+      icon: mdi:ip-network
+      friendly_name: 'Endereço'
+    sensor.3d_printer_port:
+      icon: mdi:arrow-decision
+      friendly_name: 'Porta'
+    sensor.3d_printer_baudrate:
+      friendly_name: 'Velocidade'
+    sensor.3d_printer_filename:
+      friendly_name: 'Ficheiro'
+    sensor.3d_printer_current_state:
+      icon: mdi:printer-3d
+      friendly_name: 'Estado'
+    sensor.3d_printer_job_percentage:
+      icon: mdi:speedometer
+      friendly_name: 'Andamento'
+    sensor.3d_printer_actual_tool0_temp:
+      icon: mdi:oil-temperature
+      friendly_name: 'Temp. Extrusor (actual)'
+    sensor.3d_printer_target_tool0_temp:
+      icon: mdi:oil-temperature
+      friendly_name: 'Temp. Extrusor (esperado)'
+    sensor.3d_printer_actual_bed_temp:
+      icon: mdi:oil-temperature
+      friendly_name: 'Temp. Cama (actual)'
+    sensor.3d_printer_target_bed_temp:
+      icon: mdi:oil-temperature
+      friendly_name: 'Temp. Cama (esperado)'
+    sensor.3d_printer_corrente:
+      friendly_name: 'Corrente'
+    sensor.3d_printer_tensao:
+      friendly_name: 'Tensão'
+    sensor.3d_printer_factor_de_potencia:
+      friendly_name: 'Factor de Potência'
+    sensor.3d_printer_potencia_reactiva:
+      friendly_name: 'Potência Reactiva'
+    sensor.3d_printer_potencia_aparente:
+      friendly_name: 'Potência Aparente'
+    sensor.3d_printer_energia_total:
+      friendly_name: 'Consumo Total'
+
+
+####  ####  ####  ####

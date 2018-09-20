@@ -4,30 +4,30 @@
 # NAME: WC1
 ################################################################################
 
-#### SONOFF_TH10_3B963B (EXTRACTOR WC1)
+#### SONOFF-TH10-3B963B (EXTRACTOR WC1)
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_TH10_3B963B/app"
+  state_topic: "home/indoor/switch/SONOFF-TH10-3B963B/app"
   name: "Firmware Extractor WC1"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_TH10_3B963B/version"
+  state_topic: "home/indoor/switch/SONOFF-TH10-3B963B/version"
   name: "Versão Extractor WC1"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_TH10_3B963B/host"
+  state_topic: "home/indoor/switch/SONOFF-TH10-3B963B/host"
   name: "Hostname Extractor WC1"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_TH10_3B963B/ip"
+  state_topic: "home/indoor/switch/SONOFF-TH10-3B963B/ip"
   name: "IP Extractor WC1"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_TH10_3B963B/mac"
+  state_topic: "home/indoor/switch/SONOFF-TH10-3B963B/mac"
   name: "MAC Extractor WC1"
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_TH10_3B963B/temperature"
+  state_topic: "home/indoor/switch/SONOFF-TH10-3B963B/temperature"
   name: "Temperatura Extractor WC1"
   unit_of_measurement: °C
   retain: true
   force_update: true
 - platform: mqtt
-  state_topic: "home/indoor/switch/SONOFF_TH10_3B963B/humidity"
+  state_topic: "home/indoor/switch/SONOFF-TH10-3B963B/humidity"
   name: "Humidade Extractor WC1"
   unit_of_measurement: '%'
   retain: true

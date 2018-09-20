@@ -23,6 +23,14 @@ grp_servidores:
     - binary_sensor.device_tracker_cisco2950
     - binary_sensor.device_tracker_smc_ap
 
+#### DATABASE
+grp_database:
+  name: Base de Dados
+  entities:
+    - sensor.db_size
+    - sensor.db_ontem
+    - sensor.db_grow
+
 #### COMPUTADORES
 grp_computadores:
   name: Computadores

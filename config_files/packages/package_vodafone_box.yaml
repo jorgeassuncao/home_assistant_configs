@@ -953,6 +953,7 @@ group:
 #### 
   boxs:
     name: Boxs Vodafone
+    control: hidden
     entities:
       - sensor.boxsvodafone
       - input_select.zona_da_box

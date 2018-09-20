@@ -7,11 +7,16 @@ appdaemon:
   threads: 10
   disable_apps: 1
   app_dir: /config/appdaemon/apps
+  time_zone: Europe/Lisbon
+  latitude: !secret ha_latitude
+  longitude: !secret ha_longitude
+  elevation: 150
   plugins:
     HASS:
       type: hass
       ha_url: !secret appdaemon_ha_url
       ha_key: !secret appdaemon_ha_key
+      
 hadashboard:
   dash_url: http://127.0.0.1:5050
   dash_dir: /config/appdaemon/dashboards

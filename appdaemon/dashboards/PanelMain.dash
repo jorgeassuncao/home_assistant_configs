@@ -11,7 +11,7 @@ global_parameters:
 #### Layout
 layout:
     - clock(2x1), temp_out, temp_in, alarm, jmra_presence, lslma_presence, bama_presence
-    - weather_widget(2x2)
+    - weather_widget(2x2), space, space, space, weather_summary(2x1)
     - 
     - porta_rua, consumption_w
     - include: TemplateNavigation
@@ -50,6 +50,11 @@ weather_widget:
   widget_style: "border-radius: 6px;"
   prefer_icons: 1
   units: "&deg;C"
+
+weather_summary:
+  widget_type: weather_summary
+  title: Previsão
+  entity: sensor.dark_sky_hourly_summary
 
 jmra_presence:
   widget_type: device_tracker
@@ -92,9 +97,9 @@ alarm:
 consumption_w:
   widget_type: sensor
   widget_style: "border-radius: 6px;"
-  entity: sensor.energy_watt
+  entity: sensor.potencia_w
   precision: 0
-  title: Consumo (W)
+  title: Consumo
   sub_entity: sensor.consumption_daily_total_kwh
 
 

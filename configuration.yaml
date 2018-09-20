@@ -26,6 +26,11 @@ homeassistant:
   whitelist_external_dirs:
     - /config/cam_snapshots
     - /share/motion
+## AUTHORIZATION PROVIDERS
+  auth_providers:
+    - type: homeassistant
+    - type: legacy_api_password
+    - type: trusted_networks
 ## CUSTOMIZE
   customize: !include customize.yaml
 ## CUSTOMIZE GLOB
@@ -40,7 +45,6 @@ homeassistant:
       custom_ui_state_card: state-card-custom-ui
     input_boolean.*:
       custom_ui_state_card: state-card-custom-ui
-
 ## PACKAGES
   packages: !include_dir_named config_files/packages/
 
@@ -50,6 +54,7 @@ customizer:
 
 #### FRONTEND
 frontend:
+  javascript_version: latest
   themes: !include themes.yaml
   extra_html_url:
     - /local/custom_ui/state-card-custom-ui.html
@@ -58,14 +63,22 @@ frontend:
 
 #### SIDEBAR ITEMS
 panel_iframe:
-#  router_wifi:
-#    title: 'Router'
-#    url: 'http://192.168.1.1'
-#    icon: mdi:router-wireless
   dashboard:
     title: 'HADashboard'
     url: 'http://192.168.1.200:5050/PanelMain?skin=all_black'
-    icon: mdi:apps
+    icon: mdi:view-dashboard-variant
+  material_icons:
+    title: 'Material Icons'
+    url: 'https://materialdesignicons.com/'
+    icon: mdi:vector-square
+  portainer:
+    title: 'Portainer'
+    url: 'https://192.168.1.200:9000'
+    icon: mdi:tablet
+  cam_hall:
+    title: 'Cam - Hall'
+    url: 'http://192.168.1.81/web/admin.html'
+    icon: mdi:camcorder
 
 #### CONFIGURATION UI
 config:
@@ -107,13 +120,8 @@ history:
       - sensor
 
 #### LOGGER
-# tail -f /config/home-assistant.log
 logger:
   default: error
-#  logs:
-#    pymediaroom: debug
-#    homeassistant.components.media_player.mediaroom: debug
-#    custom_components.media_player.mediaroom: debug
 
 #### LOGBOOK
 logbook:
@@ -148,24 +156,18 @@ mqtt:
 
 #### INFLUXDB
 influxdb:
-  host: 192.168.1.200
+  host: !secret influxdb_host
   port: 8086
   database: !secret influxdb_database
   username: !secret influxdb_username
   password: !secret influxdb_password
 
 #### ANDROID IP WEBCAM
-android_ip_webcam:
-- name: 'HomeCAM01 (Porta Rua)'
-  host: !secret androidipwebcam_host
-  username: !secret androidipwebcam_username
-  password: !secret androidipwebcam_password
-
-#### WEBLINKS
-weblink:
-  entities:
-  - name: Multi-Room Player
-    url: https://universe-network.ddns.net:6581/moped/
+#android_ip_webcam:
+#- name: 'HomeCAM01 (Porta Rua)'
+#  host: !secret androidipwebcam_host
+#  username: !secret androidipwebcam_username
+#  password: !secret androidipwebcam_password
 
 #### TELEGRAM BOT
 telegram_bot:
@@ -174,6 +176,16 @@ telegram_bot:
     allowed_chat_ids:
       - !secret telegrambot_chat_id01
 
+#### IPMA
+weather:
+  - platform: ipma
+
+#### OCTOPRINT
+octoprint:
+  host: !secret octoprint_ip
+  api_key: !secret octoprint_api
+  bed: true
+  number_of_tools: 1
 
 ################################################################################
 #### SPLIT-UP CONFIGURATION

@@ -4,6 +4,30 @@
 # NAME: Temperaturas
 ################################################################################
 
+#### SALA
+tph_sala:
+  name: Temp./Press./Hum. Sala
+  entities:
+    - sensor.temperatura_sala
+    - sensor.humidade_sala
+    - sensor.pressao_sala
+
+#### COZINHA
+tph_cozinha:
+  name: Temp./Press./Hum. Cozinha
+  entities:
+    - sensor.temperatura_cozinha
+    - sensor.humidade_cozinha
+    - sensor.pressao_cozinha
+
+#### CORREDOR
+tph_corredor:
+  name: Temp./Press./Hum. Corredor
+  entities:
+    - sensor.temperatura_corredor
+    - sensor.humidade_corredor
+    - sensor.pressao_corredor
+
 #### QUARTO 1 - BIA E CHATY
 th_q1_biachaty:
   name: Temp./Hum. Q1 (Bia e Chaty)

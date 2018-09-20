@@ -11,6 +11,8 @@
       accent-color: '#5294E2'  # Accent color
       dark-primary-color: 'var(--accent-color)'  # Hyperlinks
       light-primary-color: 'var(--accent-color)'  # Horizontal line in about
+      sidebar-icon-color: '#9b9b9b' #Sidebar icons
+      
 
        # Text colors
       primary-text-color: '#FFFFFF'  # Primary text colour, here is referencing dark-primary-color

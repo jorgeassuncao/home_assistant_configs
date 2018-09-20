@@ -8,14 +8,9 @@
 tvs:
   name: TV - Sala
   entities:
-    - media_player.mediaroom_9c1fea2ce96d454c8cc2f36d8db31bde
+    - media_player.mediaroom_1921681101
+    - media_player.mediaroom_1921681102
     - media_player.tv_sala
-
-#### SPOTIFY
-spotify:
-  name: Spotify
-  entities:
-    - media_player.spotify
 
 #### KODI
 kodi:
