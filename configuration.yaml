@@ -1,7 +1,7 @@
 ################################################################################
 # TYPE: Configuration
 # FILENAME: configuration.yaml
-# NAME: Configuration
+# NAME: Configuração geral do Home Assistant
 ################################################################################
 
 ################################################################################
@@ -16,7 +16,7 @@ homeassistant:
   longitude: !secret ha_longitude
 ## ALTITUDE ABOVE SEA LEVEL (IN METERS)
   elevation: 150
-## METRIC, IMPERIAL FOR IMPERIAL
+## METRIC, IMPERIAL
   unit_system: metric
 ## C FOR CELCIUS, F FOR FAHRENHEIT
   temperature_unit: C
@@ -33,52 +33,39 @@ homeassistant:
     - type: trusted_networks
 ## CUSTOMIZE
   customize: !include customize.yaml
-## CUSTOMIZE GLOB
-  customize_glob:
-    light.*:
-      custom_ui_state_card: state-card-custom-ui
-    sensor.*:
-      custom_ui_state_card: state-card-custom-ui
-    switch.*:
-      custom_ui_state_card: state-card-custom-ui
-    binary-sensor.*:
-      custom_ui_state_card: state-card-custom-ui
-    input_boolean.*:
-      custom_ui_state_card: state-card-custom-ui
 ## PACKAGES
-  packages: !include_dir_named config_files/packages/
-
-#### CUSTOMIZER
-customizer:
-  custom_ui: local
+  packages: !include_dir_named packages/
 
 #### FRONTEND
 frontend:
   javascript_version: latest
   themes: !include themes.yaml
-  extra_html_url:
-    - /local/custom_ui/state-card-custom-ui.html
-  extra_html_url_es5:
-    - /local/custom_ui/state-card-custom-ui-es5.html
 
 #### SIDEBAR ITEMS
 panel_iframe:
-  dashboard:
-    title: 'HADashboard'
-    url: 'http://192.168.1.200:5050/PanelMain?skin=all_black'
-    icon: mdi:view-dashboard-variant
-  material_icons:
-    title: 'Material Icons'
-    url: 'https://materialdesignicons.com/'
-    icon: mdi:vector-square
-  portainer:
-    title: 'Portainer'
-    url: 'https://192.168.1.200:9000'
-    icon: mdi:tablet
-  cam_hall:
-    title: 'Cam - Hall'
-    url: 'http://192.168.1.81/web/admin.html'
-    icon: mdi:camcorder
+  menu_tasmoadmin:
+    title: 'TasmoAdmin'
+    url: 'https://192.168.1.200:9541/devices_autoscan'
+    icon: mdi:progress-wrench
+  menu_nodered:
+    title: 'Node-Red'
+    url: 'https://192.168.1.200:1880'
+    icon: mdi:sitemap
+  menu_z2m:
+    title: 'Z2M Panel'
+    url: 'https://192.168.1.200:1880/ui'
+    icon: mdi:zigbee
+  menu_log_viewer:
+    title: 'Log Viewer'
+    url: 'https://192.168.1.200:4277'
+    icon: mdi:notebook
+  networkmap:
+    title: 'Zigbee Map'
+    url: '/local/zigbee2mqtt_networkmap/map.html'
+    icon: 'mdi:graphql'
+
+#### API
+api:
 
 #### CONFIGURATION UI
 config:
@@ -98,26 +85,23 @@ http:
   trusted_networks:
     - 127.0.0.1
     - 192.168.1.0/24
-#  cors_allowed_origins:
-#    - https://192.168.1.200:7080
+    - 192.168.1.30
+    - 192.168.1.200
 
 #### CHECKS FOR AVAILABLE UPDATES
 updater:
   include_used_components: true
 
 #### Discover some devices automatically
-discovery:
-
-#### Allows you to issue voice commands from the frontend in enabled browsers
-conversation: !include conversation.yaml
-
-intent_script: !include intent_script.yaml
+#discovery:
 
 #### Enables support for tracking state changes over time.
 history:
   include:
     domains:
       - sensor
+      - light
+      - switch
 
 #### LOGGER
 logger:
@@ -162,109 +146,102 @@ influxdb:
   username: !secret influxdb_username
   password: !secret influxdb_password
 
-#### ANDROID IP WEBCAM
-#android_ip_webcam:
-#- name: 'HomeCAM01 (Porta Rua)'
-#  host: !secret androidipwebcam_host
-#  username: !secret androidipwebcam_username
-#  password: !secret androidipwebcam_password
-
-#### TELEGRAM BOT
-telegram_bot:
-  - platform: polling
-    api_key: !secret telegrambot_api_key
-    allowed_chat_ids:
-      - !secret telegrambot_chat_id01
-
-#### IPMA
+#### IPMA @DGOMES
 weather:
   - platform: ipma
+
+#### ENERGY METER @DGOMES
+electricity:
+  utility_edp:
+    country: Portugal
+    operator: EDP
+    plan: Bi-horário - ciclo semanal
+    source: sensor.energia_activa_total
 
 #### OCTOPRINT
 octoprint:
   host: !secret octoprint_ip
   api_key: !secret octoprint_api
   bed: true
-  number_of_tools: 1
+  number_of_tools: 2
+
+#### GOOGLE CALENDAR
+google:
+  client_id: !secret google_calendar_client_id
+  client_secret: !secret google_calendar_client_secret
+
+#### GOOGLE ASSISTANT
+google_assistant:
+  project_id: !secret google_assistant_project_id
+  api_key: !secret google_assistant_api_key
+  exposed_domains:
+    - switch
+    - light
+    - script
+    - media_player
+
+#### Z2M NETWORK MAP
+zigbee2mqtt_networkmap:
+
 
 ################################################################################
-#### SPLIT-UP CONFIGURATION
+#### SPLIT CONFIGURATION
 ################################################################################
+
+#### ACTIVE ####
 
 ## ALARM - CONTROL PANEL
 alarm_control_panel: !include alarm.yaml
-
 ## ALARM - CUSTOM PANEL
 panel_custom: !include panel_custom.yaml
-
-## AUTOMATION
-automation: !include_dir_merge_list config_files/automations/
-
+## CAMERAS
+camera: !include cameras.yaml
 ## DEVICE TRACKER
 device_tracker: !include device_tracker.yaml
-
+## DISPLAYS
+display: !include displays.yaml
 ## GROUPS
-group: !include_dir_merge_named config_files/groups/
-
-## SENSORS
-sensor: !include_dir_merge_list config_files/sensors/
-
-## BINARY SENSORS
-binary_sensor: !include_dir_merge_list config_files/binary_sensors/
-
-## SWITCHES
-switch: !include switches.yaml
-
-## LIGHTS
-light: !include lights.yaml
-
+group: !include groups.yaml
+## MEDIA PLAYERS
+media_player: !include media_players.yaml
+## NOTIFY
+notify:  !include notify.yaml
+## RECORDER
+recorder: !include recorder.yaml
 ## ZONES
 zone: !include zones.yaml
 
-## REST 
-rest_command: !include rest_commands.yaml
-
-## SCRIPTS
-script: !include_dir_merge_named config_files/scripts/
-
-## INPUT TEXT
-input_text: !include input_text.yaml
-
-## INPUT BOOLEAN
-input_boolean: !include input_booleans.yaml
-
-## INPUT NUMBER
-input_number: !include input_numbers.yaml
-
-## INPUT SELECT
-input_select: !include input_select.yaml
-
-## INPUT DATE TIME
-input_datetime: !include input_datetime.yaml
-
-## SHELL COMMAND
-shell_command: !include shell_commands.yaml
-
-## RECORDER
-recorder: !include recorder.yaml
-
-## MEDIA PLAYERS
-media_player: !include media_players.yaml
-
-## CAMERAS
-camera: !include cameras.yaml
-
-## HISTORY GRAPH
-history_graph: !include history_graphs.yaml
-
-## NOTIFY
-notify:  !include notify.yaml
-
+#### INACTIVE ####
 ## ALERT
-alert:  !include alerts.yaml
-
-## DYSPLAYS
-display: !include displays.yaml
+#alert:  !include alerts.yaml
+## AUTOMATION
+#automation: !include_dir_merge_list config_files/automations/
+## BINARY SENSORS
+#binary_sensor: !include_dir_merge_list config_files/binary_sensors/
+## HISTORY GRAPH
+#history_graph: !include history_graphs.yaml
+## INPUT BOOLEAN
+#input_boolean: !include input_booleans.yaml
+## INPUT DATE TIME
+#input_datetime: !include input_datetime.yaml
+## INPUT NUMBER
+#input_number: !include input_numbers.yaml
+## INPUT SELECT
+#input_select: !include input_select.yaml
+## INPUT TEXT
+#input_text: !include input_text.yaml
+## LIGHTS
+#light: !include lights.yaml
+## REST 
+#rest_command: !include rest_commands.yaml
+## SCRIPTS
+#script: !include_dir_merge_named config_files/scripts/
+## SENSORS
+#sensor: !include_dir_merge_list config_files/sensors/
+## SHELL COMMAND
+#shell_command: !include shell_commands.yaml
+## SWITCHES
+#switch: !include switches.yaml
 
 
 ####  ####  ####  ####

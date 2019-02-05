@@ -1,0 +1,357 @@
+################################################################################
+# TYPE: Package
+# FILENAME: package_sistema_homeassistant.yaml
+# NAME: ??
+################################################################################
+
+#### website
+
+################################################################################
+#### SCRIPTS
+################################################################################
+
+#script:
+
+#### 
+
+
+
+################################################################################
+## SHELL COMMAND
+################################################################################
+
+#shell_command: 
+
+#### 
+
+
+
+################################################################################
+#### AUTOMATIONS
+################################################################################
+
+automation:
+
+#### CHANGE LOG LEVEL
+  - alias: 'Nivel de Log'
+    initial_state: 'on'  
+    trigger:
+    - entity_id: input_select.log_level
+      platform: state
+    action:
+    - service: logger.set_level
+      data: {}
+      data_template:
+        homeassistant.components: '{{ trigger.to_state.state }}'
+
+#### PREVISÃO MATINAL
+  - alias: 'Previsão Matinal'
+    initial_state: 'on'
+    trigger:
+      platform: time
+      at: '07:05:00'
+    condition:
+      condition: state
+      entity_id: input_boolean.modo_ferias
+      state: 'on'
+    action:
+      - service: script.notify_zanzito_jorge
+        data:
+          title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+          message: '{{ states.sensor.morning_meteo.state }}'
+      - service: tts.microsoft_say
+        entity_id: media_player.kodi_servidor
+        data_template:
+          message: '{{ states.sensor.morning_meteo.state }}'
+          cache: false
+      - service: script.notify_html5
+        data_template:
+          title: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }}'
+          message: 'Bom dia! {{ states.sensor.morning_meteo.state }}'
+          data:
+            renotify: '1'
+      - service: script.notify_save_to_file
+        data:
+          message: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }} - Bom dia! {{ states.sensor.morning_meteo.state }}'
+
+#### https://github.com/dale3h/homeassistant-config/blob/master/packages/drop-in/persistence.yaml
+
+#### PERSISTENCE - PUBLISHER
+  - alias: persistence_publish
+    initial_state: 'on'
+    hide_entity: true
+    trigger:
+      - platform: event
+        event_type: state_changed
+    condition:
+      - condition: template
+        value_template: "{{ trigger.event.data is not none }}"
+      - condition: template
+        value_template: "{{ trigger.event.data.new_state is not none }}"
+      - condition: template
+        value_template: "{{ trigger.event.data.new_state.attributes is not none }}"
+      - condition: template
+        value_template: "{{ trigger.event.data.new_state.attributes.persistent|default(false, true) }}"
+      - condition: template
+        value_template: "{{ trigger.event.data.old_state is not none }}"
+      - condition: template
+        value_template: "{{ trigger.event.data.new_state.state != trigger.event.data.old_state.state }}"
+      - condition: or
+        conditions:
+          - condition: template
+            value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'automation' }}"
+          - condition: template
+            value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'input_boolean' }}"
+          - condition: template
+            value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'input_select' }}"
+          - condition: template
+            value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'input_number' }}"
+          - condition: template
+            value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'light' }}"
+          - condition: template
+            value_template: "{{ trigger.event.data.entity_id.split('.')[0] == 'switch' }}"
+    action:
+      - service: mqtt.publish
+        data_template:
+          topic: "home-assistant/{{ trigger.event.data.entity_id|replace('.', '/') }}"
+          payload: "{{ trigger.event.data.new_state.state }}"
+          retain: true
+#      - service: script.notify_save_to_file
+#        data:
+#          message: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }} - Persistence - PUBLISH'
+
+#### PERSISTENCE - SUBSCRIPTION
+  - alias: persistence_subscribe_binary
+    initial_state: 'on'
+    hide_entity: true
+    trigger:
+      - platform: mqtt
+        topic: home-assistant/automation/+
+      - platform: mqtt
+        topic: home-assistant/input_boolean/+
+      - platform: mqtt
+        topic: home-assistant/light/+
+      - platform: mqtt
+        topic: home-assistant/switch/+
+    condition: &subscribe_condition
+      - condition: template
+        value_template: "{{ ((states[trigger.topic.split('/')[1]][trigger.topic.split('/')[2]]|default).attributes|default).persistent|default(false, true) }}"
+      - condition: template
+        value_template: "{{ not is_state(trigger.topic|replace('home-assistant/', '')|replace('/', '.'), trigger.payload) }}"
+    action: &subscribe_action
+      - service_template: "{{ trigger.topic.split('/')[1] }}.turn_{{ trigger.payload|lower }}"
+        data_template:
+          entity_id: "{{ trigger.topic|replace('home-assistant/', '')|replace('/', '.') }}"
+#      - service: script.notify_save_to_file
+#        data:
+#          message: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }} - Persistence (binary) - SUBSCRIBE'
+
+####
+  - alias: persistence_subscribe_select_option
+    initial_state: 'on'
+    hide_entity: true
+    trigger:
+      - platform: mqtt
+        topic: home-assistant/input_select/+
+    condition: *subscribe_condition
+    action:
+      - service_template: "{{ trigger.topic.split('/')[1] }}.select_option"
+        data_template:
+          entity_id: "{{ trigger.topic|replace('home-assistant/', '')|replace('/', '.') }}"
+          option: "{{ trigger.payload }}"
+#    - service: script.notify_save_to_file
+#    data:
+#    message: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }} - Persistence (input_select) - SUBSCRIBE'
+
+####
+  - alias: persistence_subscribe_select_value
+    initial_state: 'on'
+    hide_entity: true
+    trigger:
+      - platform: mqtt
+        topic: home-assistant/input_number/+
+    condition: *subscribe_condition
+    action:
+      - service_template: "{{ trigger.topic.split('/')[1] }}.set_value"
+        data_template:
+          entity_id: "{{ trigger.topic|replace('home-assistant/', '')|replace('/', '.') }}"
+          value: "{{ trigger.payload }}"
+#      - service: script.notify_save_to_file
+#        data:
+#          message: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }} - Persistence (input_number) - SUBSCRIBE'
+
+
+################################################################################
+## INPUT TEXT
+################################################################################
+
+#input_text:
+
+#### 
+
+
+
+################################################################################
+#### INPUT SELECT
+################################################################################
+
+input_select:
+
+#### THEME INPUT
+  hass_template:
+    name: Escolha um tema
+    options:
+      - escuro_azul
+      - claro_laranja
+      - default
+    initial: escuro_azul
+    icon: mdi:theme-light-dark
+
+#### LOG LEVEL INPUT
+  log_level:
+   name: Log Level
+   options:
+    - critical
+    - fatal
+    - error
+    - warning
+    - warn
+    - info
+    - debug
+    - notset
+   initial: error
+
+
+################################################################################
+#### INPUT BOOLEANS
+################################################################################
+
+input_boolean:
+
+#### MODO FÉRIAS  
+  modo_ferias:
+    name: Modo Férias
+    icon: mdi:beach 
+
+
+################################################################################
+#### INPUT NUMBER (OLD INPUT_SLIDER)
+################################################################################
+
+#input_number:
+
+#### 
+
+
+################################################################################
+#### INPUT DATE TIME
+################################################################################
+
+#input_datetime:
+
+#### 
+
+
+
+################################################################################
+#### REST COMMANDS
+################################################################################
+
+#rest_command:
+
+#### 
+
+
+
+################################################################################
+#### SENSORS
+################################################################################
+
+sensor:
+
+#### HA CURRENT VERSION
+  - platform: version
+    name: version_current
+#### HA NEW VERSION
+  - platform: version
+    name: version_new
+    image: raspberrypi3-64
+    source: hassio
+#### DATA E HORA
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+#### ÉPOCA DO ANO
+  - platform: season
+    name: 'Época (astronomica)'
+    type: astronomical
+#### 
+  - platform: alarm_control_panel
+    name: 'Alarme' 
+
+
+################################################################################
+#### SENSOR TEMPLATES
+################################################################################
+
+#### VERSÃO HA
+  - platform: command_line
+    name: "HA ver."
+    command: "cat .HA_VERSION"
+
+
+################################################################################
+## BINARY SENSORS
+################################################################################
+
+binary_sensor:
+
+#### WORKDAYS
+  - platform: workday
+    name: 'Workdays'
+    country: PTE
+    workdays: [ mon, tue, wed, thu, fri ]
+
+
+################################################################################
+#### BINARY SENSOR TEMPLATES
+################################################################################
+
+####
+
+
+
+################################################################################
+## SWITCHES
+################################################################################
+
+#switch:
+
+#### 
+
+
+
+################################################################################
+## ALERTS
+################################################################################
+
+#alert:
+
+#### 
+
+
+
+################################################################################
+#### CUSTOMIZE
+################################################################################
+
+#homeassistant:
+
+#  customize:
+
+#### 
+
+
+
+####  ####  ####  ####

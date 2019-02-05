@@ -1,0 +1,131 @@
+################################################################################
+# TYPE: Package
+# FILENAME: package_front_door.yaml
+# NAME: Front Door
+################################################################################
+
+#### website
+
+################################################################################
+#### SCRIPTS
+################################################################################
+
+#script:
+
+#### 
+
+
+
+################################################################################
+## SHELL COMMAND
+################################################################################
+
+#shell_command: 
+
+#### 
+
+
+
+################################################################################
+#### SENSORS
+################################################################################
+
+sensor:
+
+#### PORTA DA RUA - BATERIA
+  - platform: "mqtt"
+    name: "Bateria DWS Porta da Rua"
+    state_topic: "zigbee2mqtt/xiaomi_dws_porta_da_rua"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "%"
+    icon: "mdi:battery-charging-wireless-50"
+    value_template: "{{ value_json.battery }}"
+
+#### PORTA DA RUA - VOLTAGEM
+  - platform: "mqtt"
+    name: "Voltagem DWS Porta da Rua"
+    state_topic: "zigbee2mqtt/xiaomi_dws_porta_da_rua"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "V"
+    icon: "mdi:battery-charging-wireless-50"
+    value_template: "{{ value_json.voltage }}"
+
+#### PORTA DA RUA - LINK QUALITY
+  - platform: "mqtt"
+    name: "Link Quality DWS Porta da Rua"
+    state_topic: "zigbee2mqtt/xiaomi_dws_porta_da_rua"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "%"
+    icon: "mdi:battery-charging-wireless-50"
+    value_template: "{{ value_json.linkquality }}"
+
+
+################################################################################
+#### SENSOR TEMPLATES
+################################################################################
+
+  - platform: template
+    sensors:
+#### OPEN/CLOSE
+      porta_rua_time:
+        friendly_name: 'Última abertura/fecho '
+        value_template: '{{ as_timestamp(states.binary_sensor.porta_rua.last_changed) | timestamp_custom("%H:%M") }}'
+#### HOW LONG SINCE LAST OPEN/CLOSE
+      porta_rua_offset:
+        friendly_name: 'Tempo decorrido '
+        value_template: '{{ (((as_timestamp(now()) | int )) - (as_timestamp(states.binary_sensor.porta_rua.last_changed)))  | timestamp_custom("%H:%M",0) }}'
+
+
+################################################################################
+#### BINARY SENSORS
+################################################################################
+
+binary_sensor:
+
+#### 
+  - platform: "mqtt"
+    name: "Porta Rua"
+    state_topic: "zigbee2mqtt/xiaomi_dws_porta_da_rua"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_on: false
+    payload_off: true
+    value_template: "{{ value_json.contact }}"
+    device_class: "door"
+    json_attributes: 
+      - "battery"
+      - "voltage"
+
+
+################################################################################
+## ALERTS
+################################################################################
+
+alert:
+
+#### FRONT DOOR OPENED FOR TOO LONG
+  porta_da_rua:
+    name: 'Porta da Rua aberta à demasiado tempo'
+    done_message: 'A Porta da Rua foi finalmente fechada'
+    entity_id: binary_sensor.xiaomi_dws_porta_da_rua
+    state: on
+    repeat: 1
+    can_acknowledge: True
+    skip_first: False
+    notifiers:
+      - jorge_zanzito
+
+
+################################################################################
+#### CUSTOMIZE
+################################################################################
+
+homeassistant:
+
+  customize:
+
+#### PORTA DA RUA
+    binary_sensor.xiaomi_dws_porta_da_rua:
+      icon: mdi:glassdoor
+
+
+####  ####  ####  ####

@@ -31,7 +31,7 @@ load_lights_panel:
   widget_type: navigate
   widget_style: "border-radius: 6px;"
   title: ILUMINAÇÃO
-  icon_inactive: fa-lightbulb-o
+  icon_inactive: mdi-lightbulb
   dashboard: PanelLights
   args:
     timeout: 600
@@ -41,7 +41,7 @@ load_temperatures_panel:
   widget_type: navigate
   widget_style: "border-radius: 6px;"
   title: TEMP.
-  icon_inactive: fa-thermometer-3
+  icon_inactive: mdi-oil-temperature
   dashboard: PanelTemperatures
   args:
     timeout: 120
@@ -51,7 +51,7 @@ load_cameras_panel:
   widget_type: navigate
   widget_style: "border-radius: 6px;"
   title: CAMERAS
-  icon_inactive: fa-video-camera
+  icon_inactive: mdi-cctv
   dashboard: PanelCameras
   args:
     timeout: 120
@@ -71,7 +71,7 @@ reload_dash:
   widget_type: reload
   widget_style: "border-radius: 6px;"
   title: RELOAD
-  icon_inactive: fa-refresh
+  icon_inactive: mdi-reload
 
 layout: 
     - load_main_panel, load_weather_panel, load_energy_panel, load_lights_panel,load_temperatures_panel, load_cameras_panel, load_alarm_panel, reload_dash

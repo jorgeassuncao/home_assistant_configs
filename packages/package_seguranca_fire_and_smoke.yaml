@@ -1,0 +1,220 @@
+################################################################################
+# TYPE: Package
+# FILENAME: package_seguranca_fire_and_smoke.yaml
+# NAME: Alarmes de incendio e de fumo
+################################################################################
+
+#### website
+
+################################################################################
+#### SCRIPTS
+################################################################################
+
+#script:
+
+#### 
+
+
+
+################################################################################
+## SHELL COMMAND
+################################################################################
+
+#shell_command: 
+
+#### 
+
+
+
+################################################################################
+## INPUT TEXT
+################################################################################
+
+#input_text:
+
+#### 
+
+
+
+################################################################################
+#### INPUT SELECT
+################################################################################
+
+#input_select:
+
+#### 
+
+
+
+################################################################################
+#### INPUT BOOLEANS
+################################################################################
+
+#input_boolean:
+
+#### 
+
+
+
+################################################################################
+#### INPUT NUMBER (OLD INPUT_SLIDER)
+################################################################################
+
+#input_number:
+
+#### 
+
+
+################################################################################
+#### INPUT DATE TIME
+################################################################################
+
+#input_datetime:
+
+#### 
+
+
+
+################################################################################
+#### REST COMMANDS
+################################################################################
+
+#rest_command:
+
+#### 
+
+
+
+################################################################################
+#### SENSORS
+################################################################################
+
+#sensor:
+
+#### 
+
+
+
+################################################################################
+#### SENSOR TEMPLATES
+################################################################################
+
+
+
+################################################################################
+## BINARY SENSORS
+################################################################################
+
+binary_sensor:
+
+####
+
+
+################################################################################
+#### BINARY SENSOR TEMPLATES
+################################################################################
+
+  - platform: template
+    sensors:
+#### HALL
+#      hall_fire:
+#        friendly_name: "Incêndio Hall"
+#        device_class: safety
+#        value_template: "{{ states('sensor.temperatura_q1')|float > 35.0 }}"
+#### CORREDOR
+      corredor_fire:
+        friendly_name: "Incêndio Corredor"
+        device_class: safety
+        value_template: "{{ states('sensor.temperatura_corredor')|float > 35.0 }}"
+      corredor_high_temp:
+        friendly_name: "Temp. Alta Corredor"
+        device_class: heat
+        value_template: "{{ states('sensor.temperatura_corredor')|float > 30.0 }}"
+#### SALA
+      sala_fire:
+        friendly_name: "Incêndio Sala"
+        device_class: safety
+        value_template: "{{ states('sensor.temperatura_sala')|float > 35.0 }}"
+      sala_high_temp:
+        friendly_name: "Temp. Alta Sala"
+        device_class: heat
+        value_template: "{{ states('sensor.temperatura_sala')|float > 30.0 }}"      
+#### FIRE Q1
+      q1_fire:
+        friendly_name: "Incêndio Q1"
+        device_class: safety
+        value_template: "{{ states('sensor.temperatura_q1')|float > 35.0 }}"
+      q1_high_temp:
+        friendly_name: "Temp. Alta Q1"
+        device_class: heat
+        value_template: "{{ states('sensor.temperatura_q1')|float > 30.0 }}"
+#### Q2
+      q2_fire:
+        friendly_name: "Incêndio Q2"
+        device_class: safety
+        value_template: "{{ states('sensor.temperatura_q2')|float > 35.0 }}"
+      q2_high_temp:
+        friendly_name: "Temp. Alta Q2"
+        device_class: heat
+        value_template: "{{ states('sensor.temperatura_q2')|float > 30.0 }}"
+#### Q3
+      q3_fire:
+        friendly_name: "Incêndio Q3"
+        device_class: safety
+        value_template: "{{ states('sensor.temperatura_q3')|float > 35.0 }}"
+      q3_high_temp:
+        friendly_name: "Temp. Alta Q3"
+        device_class: heat
+        value_template: "{{ states('sensor.temperatura_q3')|float > 30.0 }}"
+#### COZINHA
+      cozinha_fire:
+        friendly_name: "Incêndio Cozinha"
+        device_class: safety
+        value_template: "{{ states('sensor.temperatura_cozinha')|float > 35.0 }}"
+      cozinha_high_temp:
+        friendly_name: "Temp. Alta Cozinha"
+        device_class: heat
+        value_template: "{{ states('sensor.temperatura_cozinha')|float > 30.0 }}"
+#### WC
+      wc_fire:
+        friendly_name: "Incêndio WC"
+        device_class: safety
+        value_template: "{{ states('sensor.temperatura_extractor_wc1')|float > 35.0 }}"
+      wc_high_temp:
+        friendly_name: "Temp. Alta WC"
+        device_class: heat
+        value_template: "{{ states('sensor.temperatura_extractor_wc1')|float > 30.0 }}"
+
+
+################################################################################
+## SWITCHES
+################################################################################
+
+#switch:
+
+#### 
+
+
+################################################################################
+## ALERTS
+################################################################################
+
+#alert:
+
+#### 
+
+
+
+################################################################################
+#### CUSTOMIZE
+################################################################################
+
+#homeassistant:
+
+#  customize:
+
+#### 
+
+
+
+####  ####  ####  ####

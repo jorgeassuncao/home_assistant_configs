@@ -1,5 +1,5 @@
 title: HA Main Panel
-widget_dimensions: [114, 114]
+widget_dimensions: [122, 114]
 widget_size: [1, 1]
 widget_margins: [5, 5]
 columns: 8
@@ -8,13 +8,7 @@ global_parameters:
     precision: 1
     use_hass_icon: 1
 
-#### Layout
-layout:
-    - clock(2x1), temp_out, temp_in, alarm, jmra_presence, lslma_presence, bama_presence
-    - weather_widget(2x2), space, space, space, weather_summary(2x1)
-    - 
-    - porta_rua, consumption_w
-    - include: TemplateNavigation
+
 
 
 #### Widgets
@@ -34,7 +28,7 @@ clock:
 porta_rua:
   widget_type: binary_sensor
   widget_style: "border-radius: 6px;"
-  entity: binary_sensor.porta_da_rua
+  entity: binary_sensor.porta_rua
   title: Porta da Rua
   state_text: 1
   state_map:
@@ -60,33 +54,31 @@ jmra_presence:
   widget_type: device_tracker
   widget_style: "border-radius: 6px;"
   title: Jorge
-  device: jmra
+  device: jorge
 
 lslma_presence:
   widget_type: device_tracker
   widget_style: "border-radius: 6px;"
   title: Lara
-  device: lslma
+  device: lara
 
 bama_presence:
   widget_type: device_tracker
   widget_style: "border-radius: 6px;"
   title: Bia
-  device: bama
+  device: bia
 
 temp_out:
   widget_type: sensor
   widget_style: "border-radius: 6px;"
   entity: sensor.dark_sky_temperature
   title: Temp. Rua
-  sub_entity: sensor.dark_sky_humidity
 
-temp_in:
+hum_out:
   widget_type: sensor
   widget_style: "border-radius: 6px;"
-  entity: sensor.temperatura_media_casa
-  title: Temp. Casa
-  sub_entity: sensor.humidade_media_casa
+  entity: sensor.dark_sky_humidity
+  title: Hum. Rua
 
 alarm:
   widget_type: alarm
@@ -102,5 +94,13 @@ consumption_w:
   title: Consumo
   sub_entity: sensor.consumption_daily_total_kwh
 
+
+#### Layout
+layout:
+    - clock(2x1), temp_out, hum_out, alarm, jmra_presence, lslma_presence, bama_presence
+    - weather_widget(2x2)
+    - 
+    - porta_rua, consumption_w
+    - include: TemplateNavigation
 
 ####  ####  ####  ####

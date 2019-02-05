@@ -1,0 +1,270 @@
+################################################################################
+# TYPE: Package
+# FILENAME: package_.yaml
+# NAME: ??
+################################################################################
+
+#### website
+
+################################################################################
+#### SCRIPTS
+################################################################################
+
+#script:
+
+#### 
+
+
+
+################################################################################
+## SHELL COMMAND
+################################################################################
+
+#shell_command: 
+
+#### 
+
+
+
+################################################################################
+#### AUTOMATIONS
+################################################################################
+
+automation:
+
+#### LIGA EXTRACTOR
+  - alias: 'Liga Extractor do WC1'
+    initial_state: 'on'
+    trigger:
+      - platform: time_pattern
+        minutes: '/1'
+        seconds: 01
+    condition:
+      condition: and
+      conditions:
+        - condition: template
+          value_template: '{{ (states.sensor.humidade_extractor_wc1.state | int) >= (states.input_number.start_hum_vent_wc1.state | int) }}'
+        - condition: state
+          entity_id: input_boolean.extractor_auto
+          state: 'on'
+        - condition: state
+          entity_id: input_boolean.modo_ferias
+          state: 'off'
+    action:
+      - service: switch.turn_on
+        entity_id: switch.extractor_wc1
+      - service: script.notify_save_to_file
+        data:
+          message: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }} - Extractor do WC1 - LIGADO'
+
+#### DESLIGA EXTRACTOR
+  - alias: 'Desliga Extractor do WC1'
+    initial_state: 'on'
+    trigger:
+      - platform: time_pattern
+        minutes: '/1'
+        seconds: 01
+    condition:
+      condition: and
+      conditions:
+        - condition: template
+          value_template: '{{ (states.sensor.humidade_extractor_wc1.state | int) <= (states.input_number.stop_hum_vent_wc1.state | int) }}'
+        - condition: state
+          entity_id: input_boolean.extractor_auto
+          state: 'on'
+        - condition: state
+          entity_id: input_boolean.modo_ferias
+          state: 'off'
+    action:
+      - service: switch.turn_off
+        entity_id: switch.extractor_wc1
+      - service: script.notify_save_to_file
+        data:
+          message: '{{ as_timestamp (now()) | timestamp_custom("%d/%b/%Y %T") }} - Extractor do WC1 - DESLIGADO' 
+
+
+################################################################################
+## INPUT TEXT
+################################################################################
+
+#input_text:
+
+#### 
+
+
+
+################################################################################
+#### INPUT SELECT
+################################################################################
+
+#input_select:
+
+#### 
+
+
+
+################################################################################
+#### INPUT BOOLEANS
+################################################################################
+
+input_boolean:
+
+#### EXTRACTOR AUTO
+  extractor_auto:
+    name: Automático
+    icon: mdi:auto-fix
+
+
+
+################################################################################
+#### INPUT NUMBER (OLD INPUT_SLIDER)
+################################################################################
+
+input_number:
+
+#### Arranque ventilador WC1
+  start_hum_vent_wc1:
+    name: Arranque
+    icon: mdi:ray-start
+    min: 0
+    max: 100
+    step: 1
+    mode: box
+    unit_of_measurement: '%'
+
+#### Paragem ventilador WC1
+  stop_hum_vent_wc1:
+    name: Paragem
+    icon: mdi:ray-end
+    min: 0
+    max: 100
+    step: 1
+    mode: box
+    unit_of_measurement: '%'
+
+
+################################################################################
+#### INPUT DATE TIME
+################################################################################
+
+#input_datetime:
+
+#### 
+
+
+
+################################################################################
+#### REST COMMANDS
+################################################################################
+
+#rest_command:
+
+#### 
+
+
+
+################################################################################
+#### SENSORS
+################################################################################
+
+sensor:
+
+#### SONOFF-TH10-3B963B (EXTRACTOR WC1)
+  - platform: mqtt
+    state_topic: "home/indoor/switch/SONOFF-TH10-3B963B/temperature"
+    name: "Temperatura Extractor WC1"
+    unit_of_measurement: °C
+    retain: true
+    force_update: true
+
+  - platform: mqtt
+    state_topic: "home/indoor/switch/SONOFF-TH10-3B963B/humidity"
+    name: "Humidade Extractor WC1"
+    unit_of_measurement: '%'
+    retain: true
+    force_update: true
+
+
+################################################################################
+#### SENSOR TEMPLATES
+################################################################################
+
+#### EXTRACTOR STATE
+  - platform: template
+    sensors:
+      switch_extractor_wc1_state:
+        friendly_name: 'Estado actual '
+        icon_template: mdi:apple-keyboard-option
+        value_template: '{{ states.switch.extractor_wc1.state }}'
+
+
+################################################################################
+## BINARY SENSORS
+################################################################################
+
+#binary_sensor:
+
+#### 
+
+
+
+################################################################################
+#### BINARY SENSOR TEMPLATES
+################################################################################
+
+####
+
+
+
+################################################################################
+## SWITCHES
+################################################################################
+
+switch:
+
+#### Switch WC1 - Extractor
+- platform: mqtt
+  name: "Extractor WC1"
+  state_topic: "home/indoor/switch/SONOFF-TH10-3B963B/relay/0"
+  command_topic: "home/indoor/switch/SONOFF-TH10-3B963B/relay/0/set"
+  qos: 1
+  payload_on: 1
+  payload_off: 0
+  optimistic: false
+  retain: true 
+
+
+
+################################################################################
+## LIGHTS
+################################################################################
+
+#light:
+
+#### 
+
+
+
+################################################################################
+## ALERTS
+################################################################################
+
+#alert:
+
+#### 
+
+
+
+################################################################################
+#### CUSTOMIZE
+################################################################################
+
+#homeassistant:
+
+#  customize:
+
+#### 
+
+
+
+####  ####  ####  ####

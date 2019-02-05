@@ -1,0 +1,103 @@
+################################################################################
+# TYPE: Package
+# FILENAME: package_alarm.yaml
+# NAME: Alarm
+################################################################################
+
+#### https://github.com/gazoscalvertos/Hass-Custom-Alarm
+
+################################################################################
+#### SCRIPTS
+################################################################################
+
+script:
+
+#### ALARM ARM
+  alarm_arm:
+    sequence:
+      service: alarm_control_panel.alarm_arm_away
+      entity_id: alarm_control_panel.house
+
+#### ALARM DISARM
+  alarm_disarm:
+    sequence:
+      service: alarm_control_panel.alarm_disarm
+      entity_id: alarm_control_panel.house
+      data:
+        code: !secret alarm_code
+
+
+################################################################################
+#### AUTOMATIONS
+################################################################################
+
+#automation:
+
+#  - id: alarm_arming_away
+#    alias: '[Alarm] Away Mode Arming'
+#    trigger:
+#    - platform: state
+#      entity_id: alarm_control_panel.house
+#      to: 'pending'
+#    action:
+#    - data:
+#        message: 'House alarm activating, ensure all doors and windows are closed'
+#      service: notify.example_phone_tts
+#  
+#  - id: alarm_disarmed
+#    alias: '[Alarm] Disarmed'
+#    trigger:
+#    - platform: state
+#      entity_id: alarm_control_panel.house
+#      to: 'disarmed'
+#    action:
+#    - service: notify.pushbullet
+#      data:
+#        message: 'Alarm Disabled'
+#        target: email/example@gmail.com
+#    - service: switch.turn_off
+#      entity_id: switch.siren_switch
+#    - data:
+#        message: 'The house alarm has been Deactivated'
+#      service: notify.example_phone_tts
+#  
+#  - id: alarm_triggered
+#    alias: '[Alarm] Triggered'
+#    trigger:
+#    - platform: state
+#      entity_id: alarm_control_panel.house
+#      to: 'triggered'
+#    action:
+#    - service: switch.turn_on
+#      entity_id: switch.siren_switch
+#    - service: notify.pushbullet
+#      data:
+#        message: 'ALARM TRIGGERED!!! {{ states[states.alarm_control_panel.house.attributes.changed_by.split(".")[0]][ states.alarm_control_panel.house.attributes.changed_by.split(".")[1]].name }}'
+#        target: email/example@gmail.com
+#  
+#  - id: alarm_warning
+#    alias: '[Alarm] Warning'
+#    trigger:
+#    - platform: state
+#      entity_id: alarm_control_panel.house
+#      to: 'warning'
+#    action:
+#    - service: notify.pushbullet
+#      data:
+#        message: 'ALARM Warning {{ states[states.alarm_control_panel.house.attributes.changed_by.split(".")[0]][ states.alarm_control_panel.house.attributes.changed_by.split(".")[1]].name }}'
+#        target: email/example@gmail.com
+#    - data:
+#        message: 'Hello, the house alarm has been tripped. Please deactivate'
+#      service: notify.example_phone_tts
+#
+#  - alias: '[Alarm] Panic Mode'
+#    trigger:
+#      platform: state
+#      entity_id: alarm_control_panel.house
+#      value_template: '{{ state.attributes.panic_mode }}'
+#      to: 'ACTIVE'
+#    action:
+#      service: activate_self_defence_robot
+    
+
+####  ####  ####  ####

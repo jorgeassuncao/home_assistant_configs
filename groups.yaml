@@ -1,0 +1,37 @@
+################################################################################
+# TYPE: Group
+# FILENAME: groups.yaml
+# NAME: All
+################################################################################
+
+#### FAMILIA
+familia:
+  name: Familia
+  icon: mdi:account-multiple
+  control: hidden
+  entities:
+    - device_tracker.jorge
+    - device_tracker.lara
+    - device_tracker.bia
+
+#### LUZES DE PRESENÇA
+## COZINHA
+lp_cozinha:
+  entities:
+    - light.luz_de_presenca_cozinha_1_bancada
+    - light.luz_de_presenca_cozinha_2_mesa
+## QUARTOS
+lp_quartos:
+  name: Luzes de Presença dos Quartos
+  control: hidden
+  entities:
+    - light.luz_de_presenca_q1
+    - light.luz_de_presenca_q2
+    - light.luz_de_presenca_q3
+## CORREDOR
+lp_corredor:
+  entities:
+    - light.luz_de_presenca_corredor_estrelas
+
+
+####  ####  ####  ####

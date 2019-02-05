@@ -1,7 +1,7 @@
 #### Lights
 
 title: Lights
-widget_dimensions: [114, 114]
+widget_dimensions: [122, 114]
 widget_size: [1, 1]
 widget_margins: [5, 5]
 columns: 8
@@ -34,19 +34,19 @@ jmra_presence:
   widget_type: device_tracker
   widget_style: "border-radius: 6px;"
   title: Jorge
-  device: jmra
+  device: jorge
 
 lslma_presence:
   widget_type: device_tracker
   widget_style: "border-radius: 6px;"
   title: Lara
-  device: lslma
+  device: lara
 
 bama_presence:
   widget_type: device_tracker
   widget_style: "border-radius: 6px;"
   title: Bia
-  device: bama
+  device: bia
 
 panel_label:
   widget_type: label
@@ -121,7 +121,7 @@ lp_cozinha_mesa:
 lp_quarto_1:
   widget_type: switch
   widget_style: "border-radius: 6px;"
-  entity: light.luz_de_presenca_q1_biachaty
+  entity: light.luz_de_presenca_q1
   title: Quarto 1
   state_text: 1
   state_map:
@@ -133,7 +133,7 @@ lp_quarto_1:
 lp_quarto_2:
   widget_type: switch
   widget_style: "border-radius: 6px;"
-  entity: light.luz_de_presenca_q2_rafa
+  entity: light.luz_de_presenca_q2
   title: Quarto 2
   state_text: 1
   state_map:
@@ -145,7 +145,7 @@ lp_quarto_2:
 lp_quarto_3:
   widget_type: switch
   widget_style: "border-radius: 6px;"
-  entity: light.luz_de_presenca_q3_pike_e_mike
+  entity: light.luz_de_presenca_q3
   title: Quarto 3
   state_text: 1
   state_map:
@@ -157,7 +157,7 @@ lp_quarto_3:
 candeeiro_quarto_3:
   widget_type: switch
   widget_style: "border-radius: 6px;"
-  entity: light.candeeiro_de_tecto_q3_pike_e_mike
+  entity: light.candeeiro_de_tecto_q3
   title: Luz Quarto 3
   state_text: 1
   state_map:
@@ -202,10 +202,22 @@ vent_wc1:
   icon_on: mdi-fan
   icon_off: mdi-fan-off
 
+natal:
+  widget_type: switch
+  widget_style: "border-radius: 6px;"
+  entity: switch.arvore_de_natal
+  title: Natal
+  state_text: 1
+  state_map:
+    "on": LIGADA
+    "off": DESLIGADA
+  icon_on: mdi-pine-tree
+  icon_off: mdi-pine-tree
+
 action_lp_cozinha_on:
   widget_type: script
   widget_style: "border-radius: 6px;"
-  entity: script.auto_lp_cozinha_weekday_on
+  entity: script.manual_lp_cozinha_on
   title: Luz Cozinha ON
   icon_on: mdi-radiobox-blank
   icon_off: mdi-radiobox-marked
@@ -213,7 +225,7 @@ action_lp_cozinha_on:
 action_lp_cozinha_nm_on:
   widget_type: script
   widget_style: "border-radius: 6px;"
-  entity: script.auto_lp_cozinha_weekend_night_mode_on
+  entity: script.manual_lp_cozinha_night_mode_on
   title: Modo Nocturno ON
   icon_on: mdi-radiobox-blank
   icon_off: mdi-radiobox-marked
@@ -221,7 +233,7 @@ action_lp_cozinha_nm_on:
 action_lp_cozinha_off:
   widget_type: script
   widget_style: "border-radius: 6px;"
-  entity: script.auto_lp_cozinha_weekday_off
+  entity: script.manual_lp_cozinha_off
   title: Luz Cozinha OFF
   icon_on: mdi-radiobox-blank
   icon_off: mdi-radiobox-marked
@@ -229,7 +241,7 @@ action_lp_cozinha_off:
 action_lp_quartos_on:
   widget_type: script
   widget_style: "border-radius: 6px;"
-  entity: script.auto_lp_quartos_on
+  entity: script.manual_lp_quartos_on
   title: Luz Quartos ON
   icon_on: mdi-radiobox-blank
   icon_off: mdi-radiobox-marked
@@ -237,7 +249,7 @@ action_lp_quartos_on:
 action_lp_quartos_off:
   widget_type: script
   widget_style: "border-radius: 6px;"
-  entity: script.auto_lp_quartos_off
+  entity: script.manual_lp_quartos_off
   title: Luz Quartos OFF
   icon_on: mdi-radiobox-blank
   icon_off: mdi-radiobox-marked

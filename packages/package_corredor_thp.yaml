@@ -1,0 +1,211 @@
+################################################################################
+# TYPE: Package
+# FILENAME: package_corredor_thp.yaml
+# NAME: Sensores de Temperatura, Humidade e Pressão do Corredor
+################################################################################
+
+#### website
+
+################################################################################
+#### SCRIPTS
+################################################################################
+
+#script:
+
+#### 
+
+
+
+################################################################################
+## SHELL COMMAND
+################################################################################
+
+#shell_command: 
+
+#### 
+
+
+
+################################################################################
+## INPUT TEXT
+################################################################################
+
+#input_text:
+
+#### 
+
+
+
+################################################################################
+#### INPUT SELECT
+################################################################################
+
+#input_select:
+
+#### 
+
+
+
+################################################################################
+#### INPUT BOOLEANS
+################################################################################
+
+#input_boolean:
+
+#### 
+
+
+
+################################################################################
+#### INPUT NUMBER (OLD INPUT_SLIDER)
+################################################################################
+
+#input_number:
+
+#### 
+
+
+################################################################################
+#### INPUT DATE TIME
+################################################################################
+
+#input_datetime:
+
+#### 
+
+
+
+################################################################################
+#### REST COMMANDS
+################################################################################
+
+#rest_command:
+
+#### 
+
+
+
+################################################################################
+#### SENSORS
+################################################################################
+
+sensor:
+
+## CORREDOR THP - TEMPERATURA
+  - platform: "mqtt"
+    name: "Temperatura Corredor"
+    state_topic: "zigbee2mqtt/xiaomi_tph_corredor"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "°C"
+    icon: "mdi:thermometer"
+    value_template: "{{ value_json.temperature }}"
+## CORREDOR THP - HUMIDADE
+  - platform: "mqtt"
+    name: "Humidade Corredor"
+    state_topic: "zigbee2mqtt/xiaomi_tph_corredor"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "%"
+    icon: "mdi:water-percent"
+    value_template: "{{ value_json.humidity }}"
+## CORREDOR THP - PRESSÃO
+  - platform: "mqtt"
+    name: "Pressão Corredor"
+    state_topic: "zigbee2mqtt/xiaomi_tph_corredor"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "Pa"
+    icon: "mdi:speedometer"
+    value_template: "{{ value_json.pressure }}"
+## CORREDOR THP - BATERIA
+  - platform: "mqtt"
+    name: "Bateria THP Corredor"
+    state_topic: "zigbee2mqtt/xiaomi_tph_corredor"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "%"
+    icon: "mdi:battery-charging-wireless-50"
+    value_template: "{{ value_json.battery }}"
+## CORREDOR THP - VOLTAGEM
+  - platform: "mqtt"
+    name: "Voltagem THP Corredor"
+    state_topic: "zigbee2mqtt/xiaomi_tph_corredor"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "V"
+    icon: "mdi:battery-charging-wireless-50"
+    value_template: "{{ value_json.voltage }}"
+## CORREDOR THP - LINK QUALITY
+  - platform: "mqtt"
+    name: "Link Quality THP Corredor"
+    state_topic: "zigbee2mqtt/xiaomi_tph_corredor"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "%"
+    icon: "mdi:battery-charging-wireless-50"
+    value_template: "{{ value_json.linkquality }}"
+
+
+################################################################################
+#### SENSOR TEMPLATES
+################################################################################
+
+####
+
+
+
+################################################################################
+## BINARY SENSORS
+################################################################################
+
+#binary_sensor:
+
+#### 
+
+
+################################################################################
+#### BINARY SENSOR TEMPLATES
+################################################################################
+
+####
+
+
+
+################################################################################
+## SWITCHES
+################################################################################
+
+#switch:
+
+#### 
+
+
+
+################################################################################
+## LIGHTS
+################################################################################
+
+#light:
+
+#### 
+
+
+
+################################################################################
+## ALERTS
+################################################################################
+
+#alert:
+
+#### 
+
+
+
+################################################################################
+#### CUSTOMIZE
+################################################################################
+
+#homeassistant:
+
+#  customize:
+
+#### 
+
+
+
+####  ####  ####  ####

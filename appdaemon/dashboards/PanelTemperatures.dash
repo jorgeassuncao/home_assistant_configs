@@ -1,7 +1,7 @@
 #### Temperatures
 
 title: Temperatures
-widget_dimensions: [114, 114]
+widget_dimensions: [122, 114]
 widget_size: [1, 1]
 widget_margins: [5, 5]
 columns: 8
@@ -12,9 +12,9 @@ global_parameters:
 
 layout:
     - clock(2x1), jmra_presence, lslma_presence, bama_presence, panel_label (3x1)
-    - temp_q1, hum_q1, spacer, temp_sala, hum_sala, spacer, temp_wc1, hum_wc1
-    - temp_q2, hum_q2, spacer, spacer, spacer, press_sala, spacer, spacer
-    - temp_q3, hum_q3, spacer, temp_out, hum_out, spacer, temp_in, hum_in
+    - temp_q1, hum_q1, spacer, temp_wc1, hum_wc1, spacer, temp_cozinha, hum_cozinha
+    - temp_q2, hum_q2, spacer, spacer, spacer, spacer, temp_sala, hum_sala
+    - temp_q3, hum_q3, spacer, temp_out, hum_out, spacer, temp_corredor, hum_corredor
     - include: TemplateNavigation
 
 clock:
@@ -34,19 +34,19 @@ jmra_presence:
   widget_type: device_tracker
   widget_style: "border-radius: 6px;"
   title: Jorge
-  device: jmra
+  device: jorge
 
 lslma_presence:
   widget_type: device_tracker
   widget_style: "border-radius: 6px;"
   title: Lara
-  device: lslma
+  device: lara
 
 bama_presence:
   widget_type: device_tracker
   widget_style: "border-radius: 6px;"
   title: Bia
-  device: bama
+  device: bia
 
 panel_label:
   widget_type: label
@@ -56,71 +56,53 @@ panel_label:
 
 ####
 
-temp_sala:
-  widget_type: sensor
-  widget_style: "border-radius: 6px;"
-  entity: sensor.temperatura_sala
-  title: Temperatura Sala
-
-hum_sala:
-  widget_type: sensor
-  widget_style: "border-radius: 6px;"
-  entity: sensor.humidade_sala
-  title: Humidade Sala
-
-press_sala:
-  widget_type: sensor
-  widget_style: "border-radius: 6px;"
-  entity: sensor.pressao_sala
-  title: Pressão Sala
-
 temp_q1:
   widget_type: sensor
   widget_style: "border-radius: 6px;"
-  entity: sensor.temperatura_q1__biachaty
-  title: Temperatura Q1
+  entity: sensor.temperatura_q1
+  title: Temp. Q1
 
 hum_q1:
   widget_type: sensor
   widget_style: "border-radius: 6px;"
-  entity: sensor.humidade_q1__biachaty
-  title: Humidade Q1
+  entity: sensor.humidade_q1
+  title: Hum. Q1
 
 temp_q2:
   widget_type: sensor
   widget_style: "border-radius: 6px;"
-  entity: sensor.temperatura_q2__rafa
-  title: Temperatura Q2
+  entity: sensor.temperatura_q2
+  title: Temp. Q2
 
 hum_q2:
   widget_type: sensor
   widget_style: "border-radius: 6px;"
-  entity: sensor.humidade_q2__rafa
-  title: Humidade Q2
+  entity: sensor.humidade_q2
+  title: Hum. Q2
 
 temp_q3:
   widget_type: sensor
   widget_style: "border-radius: 6px;"
-  entity: sensor.temperatura_q3__pike_e_mike
-  title: Temperatura Q3
+  entity: sensor.temperatura_q3
+  title: Temp. Q3
 
 hum_q3:
   widget_type: sensor
   widget_style: "border-radius: 6px;"
-  entity: sensor.humidade_q3__pike_e_mike
-  title: Humidade Q3
+  entity: sensor.humidade_q3
+  title: Hum. Q3
 
 temp_wc1:
   widget_type: sensor
   widget_style: "border-radius: 6px;"
   entity: sensor.temperatura_extractor_wc1
-  title: Temperatura WC1
+  title: Temp. WC1
 
 hum_wc1:
   widget_type: sensor
   widget_style: "border-radius: 6px;"
   entity: sensor.humidade_extractor_wc1
-  title: Humidade WC1
+  title: Hum. WC1
 
 temp_out:
   widget_type: sensor
@@ -134,17 +116,59 @@ hum_out:
   entity: sensor.dark_sky_humidity
   title: Hum. Rua
 
-temp_in:
+temp_sala:
   widget_type: sensor
   widget_style: "border-radius: 6px;"
-  entity: sensor.temperatura_media_casa
-  title: Temperatura Média Casa
+  entity: sensor.temperatura_sala
+  title: Temp. Sala
 
-hum_in:
+hum_sala:
   widget_type: sensor
   widget_style: "border-radius: 6px;"
-  entity: sensor.humidade_media_casa
-  title: Humidade Média Casa
+  entity: sensor.humidade_sala
+  title: Hum. Sala
+
+press_sala:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.pressao_sala
+  title: Pres. Sala
+
+temp_cozinha:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.temperatura_cozinha
+  title: Temp. Cozinha
+
+hum_cozinha:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.humidade_cozinha
+  title: Hum. Cozinha
+
+press_cozinha:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.pressao_cozinha
+  title: Pres. Cozinha
+
+temp_corredor:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.temperatura_corredor
+  title: Temp. Corredor
+
+hum_corredor:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.humidade_corredor
+  title: Hum. Corredor
+
+press_corredor:
+  widget_type: sensor
+  widget_style: "border-radius: 6px;"
+  entity: sensor.pressao_corredor
+  title: Pres. Corredor
 
 
 ####  ####  ####  ####

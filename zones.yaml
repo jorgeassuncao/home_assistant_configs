@@ -16,7 +16,7 @@
   name: ETAR Chelas
   latitude: !secret zones_etarchelas_latitude
   longitude: !secret zones_etarchelas_longitude
-  radius: 270
+  radius: 320
   icon: mdi:worker
 
 #### Trabalho Lara
@@ -43,7 +43,7 @@
   radius: 50
   icon: mdi:account-multiple-outline
 
-#### Casa Alto do Lagoal
+#### Ginásio
 - zone:
   name: Ginásio
   latitude: !secret zones_ginasio_latitude

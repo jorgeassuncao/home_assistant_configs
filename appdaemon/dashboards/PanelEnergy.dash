@@ -1,7 +1,7 @@
 #### Energy
 
 title: Energy
-widget_dimensions: [114, 114]
+widget_dimensions: [122, 114]
 widget_size: [1, 1]
 widget_margins: [5, 5]
 columns: 8
@@ -34,19 +34,19 @@ jmra_presence:
   widget_type: device_tracker
   widget_style: "border-radius: 6px;"
   title: Jorge
-  device: jmra
+  device: jorge
 
 lslma_presence:
   widget_type: device_tracker
   widget_style: "border-radius: 6px;"
   title: Lara
-  device: lslma
+  device: lara
 
 bama_presence:
   widget_type: device_tracker
   widget_style: "border-radius: 6px;"
   title: Bia
-  device: bama
+  device: bia
 
 panel_label:
   widget_type: label

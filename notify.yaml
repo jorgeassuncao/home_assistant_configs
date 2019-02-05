@@ -37,15 +37,10 @@
   gcm_api_key: !secret html5_gcm_api_key
   gcm_sender_id: !secret html5_gcm_sender_id
 
-#### TELEGRAM
-- name: telegram_ha_info
-  platform: telegram
-  chat_id: !secret telegrambot_chat_id01
-
 #### FILE
-- name: Save to File
-  platform: file
-  filename: notifications.txt
+#- name: Save to File
+#  platform: file
+#  filename: notifications.txt
 
 
 ####  ####  ####  ####

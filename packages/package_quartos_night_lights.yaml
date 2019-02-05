@@ -1,0 +1,208 @@
+################################################################################
+# TYPE: Package
+# FILENAME: package_quartos_night_lights.yaml
+# NAME: Luzes de presença dos quartos
+################################################################################
+
+#### website
+
+################################################################################
+#### SCRIPTS
+################################################################################
+
+script:
+ 
+#### LUZES DE PRESENÇA DOS QUARTOS
+  manual_lp_quartos_on:
+    alias: Ligar
+    sequence:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.lp_quartos_manual
+  
+  manual_lp_quartos_off:
+    alias: Desligar
+    sequence:
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.lp_quartos_manual
+
+
+################################################################################
+## SHELL COMMAND
+################################################################################
+
+#shell_command: 
+
+#### 
+
+
+
+################################################################################
+## INPUT TEXT
+################################################################################
+
+#input_text:
+
+#### 
+
+
+
+################################################################################
+#### INPUT SELECT
+################################################################################
+
+#input_select:
+
+#### 
+
+
+
+################################################################################
+#### INPUT BOOLEANS
+################################################################################
+
+input_boolean:
+
+#### MANUAL MODE
+  lp_quartos_manual:
+    name: Luzes em Manual
+    icon: mdi:toggle-switch
+
+
+################################################################################
+#### INPUT NUMBER
+################################################################################
+
+input_number:
+
+#### Temporizador das luzes de presença dos quartos
+  auto_lp_quartos_light_offset_on:
+    name: Offset ON
+    icon: mdi:timer
+    unit_of_measurement: 'min.'
+    min: -90
+    max: 90
+    step: 10
+
+  auto_lp_quartos_light_offset_off:
+    name: Offset OFF
+    icon: mdi:timer
+    unit_of_measurement: 'min.'
+    min: -90
+    max: 90
+    step: 10 
+
+################################################################################
+#### INPUT DATE TIME
+################################################################################
+
+#input_datetime:
+
+#### 
+
+
+
+################################################################################
+#### REST COMMANDS
+################################################################################
+
+#rest_command:
+
+#### 
+
+
+
+################################################################################
+#### SENSORS
+################################################################################
+
+sensor:
+
+#### 
+
+
+
+################################################################################
+#### SENSOR TEMPLATES
+################################################################################
+
+#### LUZES DE PRESENÇA DOS QUARTOS
+  - platform: template
+    sensors:
+      auto_lp_quartos_light_group_state:
+        friendly_name: 'Estado actual '
+        icon_template: mdi:apple-keyboard-option
+        value_template: '{{ states.group.lp_quartos.state }}'
+      auto_lp_quartos_light_start:
+        friendly_name: 'Luzes acendem às '
+        icon_template: mdi:lightbulb-on-outline
+        value_template: '{{ (as_timestamp(states.sun.sun.attributes.next_dusk) + (states("input_number.auto_lp_quartos_light_offset_on") | int) * 60) | timestamp_custom("%H:%M") }}'
+      auto_lp_quartos_light_stop:
+        friendly_name: 'Luzes apagam às '
+        icon_template: mdi:lightbulb-outline
+        value_template: '{{ (as_timestamp(states.sun.sun.attributes.next_dawn) + (states("input_number.auto_lp_quartos_light_offset_off") | int) * 60) | timestamp_custom("%H:%M") }}'
+      auto_lp_quartos_light_minutes_start_offset:
+        friendly_name: 'Minutos de Acerto '
+        icon_template: mdi:timer-sand
+        value_template: '{{ states("input_number.auto_lp_quartos_light_offset_on") | int }}'
+      auto_lp_quartos_light_minutes_stop_offset:
+        friendly_name: 'Minutos de Acerto '
+        icon_template: mdi:timer-sand
+        value_template: '{{ states("input_number.auto_lp_quartos_light_offset_off") | int }}'
+      auto_lp_quartos_light_start_seconds:
+        value_template: '{{ ((as_timestamp(states.sun.sun.attributes.next_dusk) + (states("input_number.auto_lp_quartos_light_offset_on") | int) * 60) | timestamp_custom("%H") | int * 3600 + (as_timestamp(states.sun.sun.attributes.next_dusk) + (states("input_number.auto_lp_quartos_light_offset_on") | int) * 60) | timestamp_custom("%M") | int * 60) }}'
+      auto_lp_quartos_light_stop_seconds:
+        value_template: '{{ (as_timestamp(states.sun.sun.attributes.next_dawn) + (states("input_number.auto_lp_quartos_light_offset_off") | int) * 60) | timestamp_custom("%H") | int * 3600 + (as_timestamp(states.sun.sun.attributes.next_dawn) + (states("input_number.auto_lp_quartos_light_offset_off") | int) * 60) | timestamp_custom("%M") | int * 60 }}'
+      auto_lp_quartos_light_start_offset:
+        friendly_name: 'Tempo até ligar (h) '
+        icon_template: mdi:timelapse
+        value_template: '{{ (((states.sensor.auto_lp_quartos_light_start_seconds.state | int)) - ((as_timestamp (now()) | int ))) | timestamp_custom("%H:%M") }}'
+      auto_lp_quartos_light_stop_offset:
+        friendly_name: 'Tempo até desligar (h) '
+        icon_template: mdi:timelapse
+        value_template: '{{ (((states.sensor.auto_lp_quartos_light_stop_seconds.state | int)) - ((as_timestamp (now()) | int ))) | timestamp_custom("%H:%M") }}'
+
+################################################################################
+## BINARY SENSORS
+################################################################################
+
+#binary_sensor:
+
+#### 
+
+
+
+################################################################################
+## SWITCHES
+################################################################################
+
+#switch:
+
+#### 
+
+
+
+################################################################################
+## ALERTS
+################################################################################
+
+#alert:
+
+#### 
+
+
+
+################################################################################
+#### CUSTOMIZE
+################################################################################
+
+#homeassistant:
+
+#  customize:
+
+#### 
+
+
+
+####  ####  ####  ####

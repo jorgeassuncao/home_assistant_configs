@@ -20,9 +20,9 @@ include:
     - light.luz_de_presenca_cozinha_1_bancada
     - light.luz_de_presenca_cozinha_2_mesa
     - light.luz_de_presenca_corredor_estrelas
-    - light.luz_de_presenca_q1_biachaty
-    - light.luz_de_presenca_q2_rafa
-    - light.luz_de_presenca_q3_pike_e_mike
+    - light.luz_de_presenca_q1
+    - light.luz_de_presenca_q2
+    - light.luz_de_presenca_q3
 #### Sensor
 ## O Tempo Hoje
     - sensor.dark_sky_temperature
@@ -32,12 +32,12 @@ include:
     - sensor.porta_da_rua
     - sensor.porta_rua_time
 ## Temp./Hum. de Casa
-    - sensor.temperatura_q1__biachaty
-    - sensor.humidade_q1__biachaty
-    - sensor.temperatura_q2__rafa
-    - sensor.humidade_q2__rafa
-    - sensor.temperatura_q3__pike_e_mike
-    - sensor.humidade_q3__pike_e_mike
+    - sensor.temperatura_q1
+    - sensor.humidade_q1
+    - sensor.temperatura_q2
+    - sensor.humidade_q2
+    - sensor.temperatura_q3
+    - sensor.humidade_q3
     - sensor.temperatura_extractor_wc1
     - sensor.humidade_extractor_wc1
     - sensor.temperatura_sala
@@ -80,6 +80,21 @@ include:
     - sensor.energia_activa_exportada
     - sensor.energia_activa_total
 ## Consumos
+    - sensor.utility_edp_vazio
+    - sensor.utility_edp_fora_de_vazio
+    - sensor.consumo_kw_diario_vazio
+    - sensor.consumo_kw_diario_fora_vazio
+    - sensor.consumo_kw_diario_total
+    - sensor.consumo_kw_semanal_vazio
+    - sensor.consumo_kw_semanal_fora_vazio
+    - sensor.consumo_kw_semanal_total
+    - sensor.consumo_kw_mensal_vazio
+    - sensor.consumo_kw_mensal_fora_vazio
+    - sensor.consumo_kw_mensal_total
+    - sensor.consumo_kw_anual_vazio
+    - sensor.consumo_kw_anual_fora_vazio
+    - sensor.consumo_kw_anual_total
+## OLD
     - sensor.consumption_daily_total_kwh
     - sensor.consumption_daily_total_euro
     - sensor.consumption_monthly_total_kwh
@@ -88,13 +103,13 @@ include:
     - sensor.consumption_total_euro
 ## Presenças
     - device_tracker.jmra
-    - sensor.pike__bateria
+    - sensor.pike_bateria
     - sensor.jmra_gps
     - device_tracker.lslma
-    - sensor.mike__bateria
+    - sensor.mike_bateria
     - sensor.lslma_gps
     - device_tracker.bama
-    - sensor.bia__bateria
+    - sensor.bia_bateria
     - sensor.bama_gps
 ## SISTEMA
     - sensor.cpu_temp

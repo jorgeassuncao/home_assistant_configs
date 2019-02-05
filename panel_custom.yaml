@@ -1,16 +1,5 @@
-################################################################################
-# TYPE: Panel Custom
-# FILENAME: panel_custom.yaml
-# NAME: Panel Custom
-################################################################################
-
-####
-## Same ID as used in "name" on alarm.yaml
   - name: alarm
     sidebar_title: Alarm
     sidebar_icon: mdi:security-home
     config:
       alarmid: alarm_control_panel.house
-
-
-####  ####  ####  ####

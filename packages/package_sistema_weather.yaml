@@ -1,0 +1,250 @@
+################################################################################
+# TYPE: Package
+# FILENAME: package_sistema_weather.yaml
+# NAME: Informações sobre meteorologia
+################################################################################
+
+#### website
+
+################################################################################
+#### SCRIPTS
+################################################################################
+
+#script:
+
+#### 
+
+
+
+################################################################################
+## SHELL COMMAND
+################################################################################
+
+#shell_command: 
+
+#### 
+
+
+
+################################################################################
+#### AUTOMATIONS
+################################################################################
+
+#automation:
+
+#### 
+
+
+
+################################################################################
+## INPUT TEXT
+################################################################################
+
+#input_text:
+
+#### 
+
+
+
+################################################################################
+#### INPUT SELECT
+################################################################################
+
+#input_select:
+
+#### 
+
+
+
+################################################################################
+#### INPUT BOOLEANS
+################################################################################
+
+#input_boolean:
+
+#### 
+
+
+
+################################################################################
+#### INPUT NUMBER (OLD INPUT_SLIDER)
+################################################################################
+
+#input_number:
+
+#### 
+
+
+################################################################################
+#### INPUT DATE TIME
+################################################################################
+
+#input_datetime:
+
+#### 
+
+
+
+################################################################################
+#### REST COMMANDS
+################################################################################
+
+#rest_command:
+
+#### 
+
+
+
+################################################################################
+#### SENSORS
+################################################################################
+
+sensor:
+
+#### WEATHER UNDERGROUND
+  - platform: wunderground
+    entity_namespace: ext_meteo
+    lang: BR
+    api_key: !secret wunderground_api_key
+    monitored_conditions:
+#      - temp_high_1d_c
+      - temp_c
+#      - temp_low_1d_c
+#      - relative_humidity
+#      - precip_1d
+#      - wind_kph
+#      - wind_1d_kph
+#      - UV
+#      - alerts
+      - weather_1d_metric
+#      - weather_1n_metric
+#      - weather_2d_metric
+#      - weather_2n_metric
+#      - weather_3d_metric
+#      - weather_3n_metric
+#      - weather_4d_metric
+#      - weather_4n_metric
+
+#### DARKSKY
+  - platform: darksky
+    api_key: !secret darksky_api_key
+    latitude: 38.782539
+    longitude: -9.322645
+    lang: pt
+    monitored_conditions:
+      - humidity
+      - dew_point
+      - pressure
+      - summary
+      - daily_summary
+      - hourly_summary
+      - temperature
+      - temperature_max
+      - temperature_min
+      - apparent_temperature
+      - icon
+      - wind_speed
+      - wind_bearing
+      - precip_intensity
+      - precip_probability
+      - ozone
+      - uv_index
+      - cloud_cover
+    units: si 
+
+
+################################################################################
+#### SENSOR TEMPLATES
+################################################################################
+
+#### Previsão Meteorologica Matinal
+  - platform: template
+    sensors:
+      morning_meteo:
+        friendly_name: 'Previsão Meteorologica Matinal'
+        value_template: 'O tempo hoje é {{ states("sensor.pws_weather_1d_metric") }}. Estão {{ states("sensor.pws_temp_c") }} graus em Rio de Mouro.'
+#### SUNSET
+  - platform: template
+    sensors:
+      sunset_time:
+        icon_template: mdi:weather-sunset-down
+        value_template: '{{ as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom("%H:%M") }}'
+        friendly_name: 'Pôr do Sol'
+#### SUNRISE
+  - platform: template
+    sensors:
+      sunrise_time:
+        icon_template: mdi:weather-sunset-up
+        value_template: '{{ as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom("%H:%M") }}'
+        friendly_name: 'Nascer do Sol'
+#### DAY/NIGHT
+  - platform: template
+    sensors:
+      sun_state:
+        value_template: '{% if is_state("sun.sun", "above_horizon") %}Dia{% else %}Noite{% endif %}'
+        icon_template: '{% if is_state("sun.sun", "above_horizon") %}mdi:weather-sunny{% else %}mdi:weather-night{% endif %}'
+        friendly_name: 'Sol'
+
+
+
+################################################################################
+## BINARY SENSORS
+################################################################################
+
+#binary_sensor:
+
+#### 
+
+
+
+################################################################################
+#### BINARY SENSOR TEMPLATES
+################################################################################
+
+####
+
+
+
+################################################################################
+## SWITCHES
+################################################################################
+
+#switch:
+
+#### 
+
+
+
+################################################################################
+## LIGHTS
+################################################################################
+
+#light:
+
+#### 
+
+
+
+################################################################################
+## ALERTS
+################################################################################
+
+#alert:
+
+#### 
+
+
+
+################################################################################
+#### CUSTOMIZE
+################################################################################
+
+#homeassistant:
+
+#  customize:
+
+#### 
+
+
+
+####  ####  ####  ####

@@ -8,15 +8,11 @@ appdaemon:
   disable_apps: 1
   app_dir: /config/appdaemon/apps
   time_zone: Europe/Lisbon
-  latitude: !secret ha_latitude
-  longitude: !secret ha_longitude
-  elevation: 150
   plugins:
     HASS:
       type: hass
-      ha_url: !secret appdaemon_ha_url
-      ha_key: !secret appdaemon_ha_key
-      
+      ha_url: http://hassio/homeassistant
+      token: be7acdc0c0967d02f3006d8eac5e03150f6e8d97ac81784a9b932d789c160234
 hadashboard:
   dash_url: http://127.0.0.1:5050
   dash_dir: /config/appdaemon/dashboards

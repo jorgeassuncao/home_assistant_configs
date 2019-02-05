@@ -1,0 +1,262 @@
+################################################################################
+# TYPE: Package
+# FILENAME: package_sistema_notifications.yaml
+# NAME: ??
+################################################################################
+
+#### website
+
+################################################################################
+#### SCRIPTS
+################################################################################
+
+script:
+
+#### NOTIFY HTML5
+  notify_html5:
+    sequence:
+      - condition: state
+        entity_id: input_boolean.notification_html5
+        state: 'on'
+      - service: notify.browser_alerts
+        data_template:
+          title: '{{ title }}'
+          message: '{{ message }}'
+          data:
+            renotify: '1'
+
+#### NOTIFY TELEGRAM
+#  notify_telegram:
+#    sequence:
+#      - condition: state
+#        entity_id: input_boolean.notification_telegram
+#        state: 'on'
+#      - service: notify.telegram_ha_info
+#        data_template:
+#          title: '{{ title }}'
+#          message: '{{ message }}'
+#          data:
+#            photo:
+#              file: '{{ file }}'
+#              caption: '{{ caption }}'
+
+#### NOTIFY ZANZITO JORGE
+  notify_zanzito_jorge:
+    sequence:
+      - condition: state
+        entity_id: input_boolean.notification_zanzito_jorge
+        state: 'on'
+      - service: notify.jorge_zanzito
+        data_template:
+          title: '{{ title }}'
+          message: '{{ message }}'
+
+#### NOTIFY ZANZITO ADULTOS
+  notify_zanzito_adultos:
+    sequence:
+      - condition: state
+        entity_id: input_boolean.notification_zanzito_adultos
+        state: 'on'
+      - service: notify.adultos_zanzito
+        data_template:
+          title: '{{ title }}'
+          message: '{{ message }}'
+
+#### NOTIFY ZANZITO TODOS
+  notify_zanzito_todos:
+    sequence:
+      - condition: state
+        entity_id: input_boolean.notification_zanzito_todos
+        state: 'on'
+      - service: notify.todos_zanzito
+        data_template:
+          title: '{{ title }}'
+          message: '{{ message }}'
+
+#### NOTIFY SAVE TO FILE
+  notify_save_to_file:
+    sequence:
+      - condition: state
+        entity_id: input_boolean.notification_save_to_file
+        state: 'on'
+      - service: notify.save_to_file
+        data_template:
+          message: '{{ message }}' 
+
+
+################################################################################
+## SHELL COMMAND
+################################################################################
+
+#shell_command: 
+
+#### 
+
+
+
+################################################################################
+## INPUT TEXT
+################################################################################
+
+#input_text:
+
+#### 
+
+
+
+################################################################################
+#### INPUT SELECT
+################################################################################
+
+#input_select:
+
+#### 
+
+
+
+################################################################################
+#### INPUT BOOLEANS
+################################################################################
+
+input_boolean:
+
+#### NOTIFICAÇÕES HTML  
+  notification_html5:
+    name: Notificações HTML5
+    icon: mdi:account-location
+
+#### NOTIFICAÇÕES TELEGRAM  
+  notification_telegram:
+    name: Notificações Telegram
+    icon: mdi:telegram
+
+#### NOTIFICAÇÕES ZANZITO JORGE
+  notification_zanzito_jorge:
+    name: Notificações Zanzito (Jorge)
+    icon: mdi:account-location
+
+#### NOTIFICAÇÕES ZANZITO ADULTOS
+  notification_zanzito_adultos:
+    name: Notificações Zanzito (Adultos)
+    icon: mdi:account-location
+
+#### NOTIFICAÇÕES ZANZITO TODOS
+  notification_zanzito_todos:
+    name: Notificações Zanzito (Todos)
+    icon: mdi:account-location
+
+#### NOTIFICAÇÕES SAVE TO FILE
+  notification_save_to_file:
+    name: Grava Últimas Notificações
+    icon: mdi:account-location 
+
+
+
+################################################################################
+#### INPUT NUMBER (OLD INPUT_SLIDER)
+################################################################################
+
+#input_number:
+
+#### 
+
+
+################################################################################
+#### INPUT DATE TIME
+################################################################################
+
+#input_datetime:
+
+#### 
+
+
+
+################################################################################
+#### REST COMMANDS
+################################################################################
+
+#rest_command:
+
+#### 
+
+
+
+################################################################################
+#### SENSORS
+################################################################################
+
+#sensor:
+
+#### 
+
+
+
+################################################################################
+#### SENSOR TEMPLATES
+################################################################################
+
+####
+
+
+
+################################################################################
+## BINARY SENSORS
+################################################################################
+
+#binary_sensor:
+
+#### 
+
+
+
+################################################################################
+#### BINARY SENSOR TEMPLATES
+################################################################################
+
+####
+
+
+
+################################################################################
+## SWITCHES
+################################################################################
+
+#switch:
+
+#### 
+
+
+
+################################################################################
+## ALERTS
+################################################################################
+
+#alert:
+
+#### 
+
+
+
+################################################################################
+#### GROUPS
+################################################################################
+
+#group:
+
+#### 
+
+
+
+################################################################################
+#### CUSTOMIZE
+################################################################################
+
+#homeassistant:
+
+#  customize:
+
+#### 
+
+
+
+####  ####  ####  ####

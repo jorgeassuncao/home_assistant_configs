@@ -8,19 +8,19 @@
 ## JORGE
 - platform: generic
   name: Jorge
-  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.jmra.attributes.latitude }},{{ states.device_tracker.jmra.attributes.longitude }}&zoom=16&size=500x500&maptype=roadmap&markers=color:green%7Clabel:JA%7C{{ states.device_tracker.jmra.attributes.latitude }},{{ states.device_tracker.jmra.attributes.longitude }}
+  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.jorge.attributes.latitude }},{{ states.device_tracker.jorge.attributes.longitude }}&zoom=16&size=500x500&maptype=roadmap&markers=color:green%7Clabel:JA%7C{{ states.device_tracker.jorge.attributes.latitude }},{{ states.device_tracker.jorge.attributes.longitude }}
   limit_refetch_to_url_change: true
 
 ## LARA
 - platform: generic
   name: Lara
-  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.lslma.attributes.latitude }},{{ states.device_tracker.lslma.attributes.longitude }}&zoom=16&size=500x500&maptype=roadmap&markers=color:pink%7Clabel:LA%7C{{ states.device_tracker.lslma.attributes.latitude }},{{ states.device_tracker.lslma.attributes.longitude }}
+  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.lara.attributes.latitude }},{{ states.device_tracker.lara.attributes.longitude }}&zoom=16&size=500x500&maptype=roadmap&markers=color:pink%7Clabel:LA%7C{{ states.device_tracker.lara.attributes.latitude }},{{ states.device_tracker.lara.attributes.longitude }}
   limit_refetch_to_url_change: true
 
 ## BIA
 - platform: generic
   name: Bia
-  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.bama.attributes.latitude }},{{ states.device_tracker.bama.attributes.longitude }}&zoom=16&size=500x500&maptype=roadmap&markers=color:purple%7Clabel:BA%7C{{ states.device_tracker.bama.attributes.latitude }},{{ states.device_tracker.bama.attributes.longitude }}
+  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.bia.attributes.latitude }},{{ states.device_tracker.bia.attributes.longitude }}&zoom=16&size=500x500&maptype=roadmap&markers=color:purple%7Clabel:BA%7C{{ states.device_tracker.bia.attributes.latitude }},{{ states.device_tracker.bia.attributes.longitude }}
   limit_refetch_to_url_change: true
 
 #### IPcam VLC stream

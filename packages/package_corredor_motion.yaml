@@ -1,0 +1,203 @@
+################################################################################
+# TYPE: Package
+# FILENAME: package_corredor_motion.yaml
+# NAME: Sensores de Movimento do Corredor
+################################################################################
+
+#### website
+
+################################################################################
+#### SCRIPTS
+################################################################################
+
+#script:
+
+#### 
+
+
+
+################################################################################
+## SHELL COMMAND
+################################################################################
+
+#shell_command: 
+
+#### 
+
+
+
+################################################################################
+## INPUT TEXT
+################################################################################
+
+#input_text:
+
+#### 
+
+
+
+################################################################################
+#### INPUT SELECT
+################################################################################
+
+#input_select:
+
+#### 
+
+
+
+################################################################################
+#### INPUT BOOLEANS
+################################################################################
+
+#input_boolean:
+
+#### 
+
+
+
+################################################################################
+#### INPUT NUMBER (OLD INPUT_SLIDER)
+################################################################################
+
+#input_number:
+
+#### 
+
+
+################################################################################
+#### INPUT DATE TIME
+################################################################################
+
+#input_datetime:
+
+#### 
+
+
+
+################################################################################
+#### REST COMMANDS
+################################################################################
+
+#rest_command:
+
+#### 
+
+
+
+################################################################################
+#### SENSORS
+################################################################################
+
+sensor:
+
+#### CORREDOR PIR - LUX
+  - platform: "mqtt"
+    name: "LUX PIR Corredor"
+    state_topic: "zigbee2mqtt/xiaomi_motion_sensor_corredor"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "lx"
+    icon: "mdi:theme-light-dark"
+    value_template: "{{ value_json.illuminance }}"
+#### CORREDOR PIR - BATERIA
+  - platform: "mqtt"
+    name: "Bateria PIR Corredor"
+    state_topic: "zigbee2mqtt/xiaomi_motion_sensor_corredor"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "%"
+    icon: "mdi:battery-charging-wireless-50"
+    value_template: "{{ value_json.battery }}"
+#### CORREDOR PIR - VOLTAGEM
+  - platform: "mqtt"
+    name: "Voltagem PIR Corredor"
+    state_topic: "zigbee2mqtt/xiaomi_motion_sensor_corredor"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "V"
+    icon: "mdi:battery-charging-wireless-50"
+    value_template: "{{ value_json.voltage }}"
+#### CORREDOR PIR - LINK QUALITY
+  - platform: "mqtt"
+    name: "Link Quality PIR Corredor"
+    state_topic: "zigbee2mqtt/xiaomi_motion_sensor_corredor"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "%"
+    icon: "mdi:battery-charging-wireless-50"
+    value_template: "{{ value_json.linkquality }}"
+
+
+################################################################################
+#### SENSOR TEMPLATES
+################################################################################
+
+####
+
+
+
+################################################################################
+## BINARY SENSORS
+################################################################################
+
+binary_sensor:
+
+#### CORREDOR - MOTION
+  - platform: "mqtt"
+    name: "PIR Corredor"
+    state_topic: "zigbee2mqtt/xiaomi_motion_sensor_corredor"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    device_class: "motion" 
+
+
+################################################################################
+#### BINARY SENSOR TEMPLATES
+################################################################################
+
+####
+
+
+
+################################################################################
+## SWITCHES
+################################################################################
+
+#switch:
+
+#### 
+
+
+
+################################################################################
+## LIGHTS
+################################################################################
+
+#light:
+
+#### 
+
+
+
+################################################################################
+## ALERTS
+################################################################################
+
+#alert:
+
+#### 
+
+
+
+################################################################################
+#### CUSTOMIZE
+################################################################################
+
+#homeassistant:
+
+#  customize:
+
+#### 
+
+
+
+####  ####  ####  ####

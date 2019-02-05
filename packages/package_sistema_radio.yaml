@@ -1,0 +1,240 @@
+################################################################################
+# TYPE: Package
+# FILENAME: package_radio.yaml
+# NAME: Radio
+################################################################################
+
+#### 
+
+################################################################################
+#### SCRIPTS
+################################################################################
+
+script:
+
+#### PLAY - ZONE
+  radio_play_zone:
+    alias: Play Zone
+    sequence:
+      - service: media_player.media_stop
+        data_template:
+          entity_id: >
+            {%- if is_state('input_select.zona_onde_toca', 'Cozinha') -%}
+              media_player.kitchen_speaker
+            {%- elif is_state('input_select.zona_onde_toca', 'Sala') -%}
+              media_player.kodi_sala
+            {%- endif -%}
+      - service: media_player.play_media
+        data_template:
+          entity_id: >
+            {%- if is_state('input_select.zona_onde_toca', 'Cozinha') -%}
+              media_player.kitchen_speaker
+            {%- elif is_state('input_select.zona_onde_toca', 'Sala') -%}
+              media_player.kodi_sala
+            {%- endif -%}
+          media_content_id: >
+            {%- if is_state('input_select.estacoes_de_radio', 'TSF') -%}
+              http://tsfdirecto.tsf.pt/tsfdirecto.mp3
+            {%- elif is_state('input_select.estacoes_de_radio', 'Comercial') -%}  
+              http://mcrscast.mcr.iol.pt/comercial.mp3
+            {%- elif is_state('input_select.estacoes_de_radio', 'Renascença') -%}
+              http://19593.live.streamtheworld.com:80/RADIO_RENASCENCA_SC  
+            {%- elif is_state('input_select.estacoes_de_radio', 'Antena 1') -%} 
+              http://radiocast.rtp.pt/antena180a.mp3
+            {%- elif is_state('input_select.estacoes_de_radio', 'RFM') -%}                 
+              http://19553.live.streamtheworld.com:3690/RFM_SC 
+            {%- elif is_state('input_select.estacoes_de_radio', 'Orbital') -%}
+               http://stream.radio.com.pt/ROLI-ENC-401
+            {%- endif -%}
+          media_content_type: 'audio/mp3'
+
+#### PAUSE - ZONE
+  radio_stop_zone:
+    alias: Stop Zone
+    sequence:
+      - service: media_player.media_stop
+        data_template:
+          entity_id: >
+            {%- if is_state('input_select.zona_onde_toca', 'Cozinha') -%}
+                media_player.kitchen_speaker
+            {%- elif is_state('input_select.zona_onde_toca', 'Sala') -%}
+                media_player.kodi_sala
+            {%- endif -%}
+
+#### PLAY - ALL
+  radio_play_all:
+    alias: Play All
+    sequence:
+      - service: media_player.play_media
+        data_template:
+          entity_id: media_player.kitchen_speaker
+          media_content_id: >
+            {%- if is_state('input_select.estacoes_de_radio', 'TSF') -%}
+              http://tsfdirecto.tsf.pt/tsfdirecto.mp3
+            {%- elif is_state('input_select.estacoes_de_radio', 'Comercial') -%}  
+              http://mcrscast.mcr.iol.pt/comercial.mp3
+            {%- elif is_state('input_select.estacoes_de_radio', 'Renascença') -%}
+              http://19593.live.streamtheworld.com:80/RADIO_RENASCENCA_SC  
+            {%- elif is_state('input_select.estacoes_de_radio', 'Antena 1') -%} 
+              http://radiocast.rtp.pt/antena180a.mp3
+            {%- elif is_state('input_select.estacoes_de_radio', 'RFM') -%}                 
+              http://19553.live.streamtheworld.com:3690/RFM_SC 
+            {%- elif is_state('input_select.estacoes_de_radio', 'Orbital') -%}
+               http://stream.radio.com.pt/ROLI-ENC-401
+            {%- endif -%}
+      - service: media_player.play_media
+        data_template:
+          entity_id: media_player.kodi_sala
+          media_content_id: >
+            {%- if is_state('input_select.estacoes_de_radio', 'TSF') -%}
+              http://tsfdirecto.tsf.pt/tsfdirecto.mp3
+            {%- elif is_state('input_select.estacoes_de_radio', 'Comercial') -%}  
+              http://mcrscast.mcr.iol.pt/comercial.mp3
+            {%- elif is_state('input_select.estacoes_de_radio', 'Renascença') -%}
+              http://19593.live.streamtheworld.com:80/RADIO_RENASCENCA_SC  
+            {%- elif is_state('input_select.estacoes_de_radio', 'Antena 1') -%} 
+              http://radiocast.rtp.pt/antena180a.mp3
+            {%- elif is_state('input_select.estacoes_de_radio', 'RFM') -%}                 
+              http://19553.live.streamtheworld.com:3690/RFM_SC 
+            {%- elif is_state('input_select.estacoes_de_radio', 'Orbital') -%}
+               http://stream.radio.com.pt/ROLI-ENC-401
+            {%- endif -%}
+
+#### PAUSE - ALL
+  radio_stop_all:
+    alias: Stop All
+    sequence:
+      - service: media_player.media_stop
+        data:
+          entity_id: media_player.kitchen_speaker
+      - service: media_player.media_stop
+        data:
+          entity_id: media_player.kodi_sala
+
+
+################################################################################
+#### AUTOMATIONS
+################################################################################
+
+automation:
+
+#### SET RADIO VOLUME
+  - alias: 'Ajustar o volume do Rádio'
+    initial_state: 'on'
+    trigger:
+      platform: state
+      entity_id: input_number.volume_radio
+    action:
+      service: media_player.volume_set
+      data_template:
+        entity_id: >
+          {%- if is_state('input_select.zona_onde_toca', 'Cozinha') -%}
+                media_player.kitchen_speaker
+          {%- elif is_state('input_select.zona_onde_toca', 'Sala') -%}
+                media_player.kodi_sala
+          {%- endif -%}
+        volume_level: '{{  states.input_number.volume_radio.state  }}'
+
+
+################################################################################
+#### INPUT SELECT
+################################################################################
+
+input_select:
+
+#### ESTAÇÕES DE RÁDIO
+  estacoes_de_radio:
+    name: 'Selecciona a Estação de Radio:'
+    options:
+      - TSF
+      - Comercial
+      - Renascensa
+      - Antena 1
+      - RFM
+      - Orbital
+
+#### ZONA ONDE TOCA
+  zona_onde_toca:
+    name: 'Selecciona a Zona Onde Toca:'
+    options:
+      - Cozinha
+      - Sala
+    icon: mdi:speaker-wireless
+
+
+################################################################################
+#### INPUT NUMBER
+################################################################################
+
+input_number:
+
+#### VOLUME DO RÁDIO
+  volume_radio:
+    name: Volume
+    icon: mdi:volume-high
+    min: 0
+    max: 1
+    step: 0.05
+
+
+################################################################################
+#### SENSOR
+################################################################################
+
+sensor:
+
+  - platform: template
+    sensors:
+      kodi_cozinha:
+        friendly_name: 'Kodi Cozinha'
+        value_template: >
+         {%- if is_state('media_player.kitchen_speaker', 'off') -%}
+         Desligado
+         {%- elif is_state('media_player.kitchen_speaker', 'idle') -%}
+         Pronto
+         {%- elif is_state('media_player.kitchen_speaker', 'playing') -%}
+         A Tocar
+         {%- endif -%}
+      kodi_sala:  
+        friendly_name: 'Kodi Sala'
+        value_template: >    
+         {%- if is_state('media_player.kodi_sala', 'off') -%}
+         Desligado
+         {%- elif is_state('media_player.kodi_sala', 'idle') -%}
+         Pronto
+         {%- elif is_state('media_player.kodi_sala', 'playing') -%}
+         A Tocar
+         {%- endif -%}
+
+
+################################################################################
+#### CUSTOMIZE
+################################################################################
+
+homeassistant:
+
+  customize:
+ 
+    script.radio_play_zone:
+      friendly_name: Tocar na Zona Seleccionada
+      icon: mdi:play
+    script.radio_play_all:
+      friendly_name: Tocar em Todas as Zonas
+      icon: mdi:play
+    script.radio_stop_zone:
+      friendly_name: Parar na Zona Seleccionada
+      icon: mdi:stop
+    script.radio_stop_all:
+      friendly_name: Parar em Todas as Zonas
+      icon: mdi:stop
+    input_select.estacoes_de_radio:
+      persistent: true
+    input_select.zona_onde_toca:
+      persistent: true
+    sensor.kodi_cozinha:
+      icon: mdi:speaker
+    sensor.kodi_sala:
+      icon: mdi:speaker
+
+
+####  ####  ####  ####

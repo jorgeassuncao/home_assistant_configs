@@ -1,0 +1,276 @@
+################################################################################
+# TYPE: Package
+# FILENAME: package_sistema_zigbee2mqtt.yaml
+# NAME: ??
+################################################################################
+
+#### https://github.com/Koenkk/zigbee2mqtt 
+#### https://github.com/danielwelch/hassio-zigbee2mqtt
+
+################################################################################
+#### SCRIPTS
+################################################################################
+
+#script:
+
+#### 
+
+
+
+################################################################################
+## SHELL COMMAND
+################################################################################
+
+#shell_command: 
+
+#### 
+
+
+
+################################################################################
+#### AUTOMATIONS
+################################################################################
+
+automation:
+
+#### ENABLE ZIGBEE JOIN
+  - id: enable_zigbee_join
+    initial_state: 'on'
+    alias: Enable Zigbee joining
+    hide_entity: true
+    trigger:
+      platform: state
+      entity_id: input_boolean.zigbee_permit_join
+      to: 'on'
+    action:
+    - service: mqtt.publish
+      data:
+        topic: zigbee2mqtt/bridge/config/permit_join
+        payload: 'true'
+    - service: timer.start
+      data:
+        entity_id: timer.zigbee_permit_join
+
+
+#### DISABLE ZIGBEE JOIN
+  - id: disable_zigbee_join
+    initial_state: 'on'
+    alias: Disable Zigbee joining
+    trigger:
+    - entity_id: input_boolean.zigbee_permit_join
+      platform: state
+      to: 'off'
+    action:
+    - data:
+        payload: 'false'
+        topic: zigbee2mqtt/bridge/config/permit_join
+      service: mqtt.publish
+    - data:
+        entity_id: timer.zigbee_permit_join
+      service: timer.cancel
+
+
+#### DISABLE ZIGBEE JOIN TIMER
+  - id: disable_zigbee_join_timer
+    initial_state: 'on'
+    alias: Disable Zigbee joining by timer
+    hide_entity: true
+    trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.zigbee_permit_join
+    action:
+    - service: mqtt.publish
+      data:
+        topic: zigbee2mqtt/bridge/config/permit_join
+        payload: 'false'
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.zigbee_permit_join
+
+
+#### Z2M LOG LEVEL
+  - alias: Zigbee2mqtt Log Level
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: input_select.zigbee2mqtt_log_level
+        to: debug
+      - platform: state
+        entity_id: input_select.zigbee2mqtt_log_level
+        to: warn
+      - platform: state
+        entity_id: input_select.zigbee2mqtt_log_level
+        to: error
+      - platform: state
+        entity_id: input_select.zigbee2mqtt_log_level
+        to: info
+    action:
+      - service: mqtt.publish
+        data:
+          payload_template: '{{ states(''input_select.zigbee2mqtt_log_level'') }}'
+          topic: zigbee2mqtt/bridge/config/log_level
+
+####
+  - alias: 'Actualizar Zigbee Map'  
+    hide_entity: true  
+    trigger:
+      platform: time_pattern
+      minutes: '/10'
+      seconds: 00
+    action:
+      service: zigbee2mqtt_networkmap.update
+
+
+################################################################################
+## INPUT TEXT
+################################################################################
+
+#input_text:
+
+#### 
+
+
+
+################################################################################
+#### INPUT SELECT
+################################################################################
+
+input_select:
+
+#### 
+  zigbee2mqtt_log_level:
+    name: Zigbee2mqtt Log Level
+    options:
+     - debug
+     - info
+     - warn
+     - error
+    initial: info
+    icon: mdi:format-list-bulleted
+
+
+################################################################################
+#### INPUT BOOLEANS
+################################################################################
+
+input_boolean:
+
+#### 
+  zigbee_permit_join:
+    name: Allow devices to join
+    initial: off
+    icon: mdi:cellphone-wireless
+
+
+################################################################################
+#### INPUT NUMBER (OLD INPUT_SLIDER)
+################################################################################
+
+#input_number:
+
+#### 
+
+
+################################################################################
+#### INPUT DATE TIME
+################################################################################
+
+#input_datetime:
+
+#### 
+
+
+
+################################################################################
+#### REST COMMANDS
+################################################################################
+
+#rest_command:
+
+#### 
+
+
+
+################################################################################
+#### SENSORS
+################################################################################
+
+sensor:
+
+#### 
+  - platform: mqtt
+    name: Zigbee Bridge
+    state_topic: "zigbee2mqtt/bridge/state"
+    icon: mdi:router-wireless
+
+
+################################################################################
+#### SENSOR TEMPLATES
+################################################################################
+
+####
+
+
+
+################################################################################
+## BINARY SENSORS
+################################################################################
+
+#binary_sensor:
+
+#### 
+
+
+
+################################################################################
+## SWITCHES
+################################################################################
+
+switch:
+
+#### 
+  - platform: mqtt
+    name: "Zigbee2mqtt Main join"
+    state_topic: "zigbee2mqtt/bridge/config/permit_join"
+    command_topic: "zigbee2mqtt/bridge/config/permit_join"
+    payload_on: "true"
+    payload_off: "false"
+
+
+################################################################################
+## ALERTS
+################################################################################
+
+#alert:
+
+#### 
+
+
+
+################################################################################
+#### TIMER
+################################################################################
+
+timer:
+
+#### 
+  zigbee_permit_join:
+    name: Time remaining
+    duration: 120
+
+
+################################################################################
+#### CUSTOMIZE
+################################################################################
+
+#homeassistant:
+
+#  customize:
+
+#### 
+
+
+
+####  ####  ####  ####

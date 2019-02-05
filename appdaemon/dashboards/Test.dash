@@ -55,19 +55,19 @@ jmra_presence:
   widget_type: device_tracker
   widget_style: "border-radius: 6px;"
   title: Jorge
-  device: jmra
+  device: jorge
 
 lslma_presence:
   widget_type: device_tracker
   widget_style: "border-radius: 6px;"
   title: Lara
-  device: lslma
+  device: lara
 
 bama_presence:
   widget_type: device_tracker
   widget_style: "border-radius: 6px;"
   title: Bia
-  device: bama
+  device: bia
 
 temp_out:
   widget_type: sensor
